@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "Borrower-Information-Microservice"
+		},
+		{
+			"path": "Loan-Information-Microservice"
+		},
+		{
+			"name": "Loan Management System",
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}
