@@ -1,0 +1,35 @@
+<div>
+    <form>
+        <div>
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" [(ngModel)]="this.borrowerDetails.fname" required>
+        </div>
+        <div>
+            <label for="lname">Last Name:</label>
+            <input type="text" name="lname" [(ngModel)]="this.borrowerDetails.lname" required>
+        </div>
+        <div>
+            <label for="uname">User Name:</label>
+            <input type="text" name="uname" [(ngModel)]="this.borrowerDetails.uname" required>
+        </div>
+        <div>
+            <label for="password">Create Password:</label>
+            <input type="password" name="password" [(ngModel)]="this.borrowerDetails.password" required>
+        </div>
+        <div>
+            <label for="emailId">Email Id:</label>
+            <input type="email" name="emailId" [(ngModel)]="this.borrowerDetails.emailId" required>
+        </div>
+        <div>
+            <label for="phoneno">Phone Number:</label>
+            <input type="number" name="phoneno" [(ngModel)]="this.borrowerDetails.phoneno" required>
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" name="address" [(ngModel)]="this.borrowerDetails.address" required>
+        </div>
+        <div>
+            <button type="submit" onclick="signup()">Signup</button>
+        </div>
+    </form>
+</div>
