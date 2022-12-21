@@ -1,21 +1,16 @@
 {
-	"folders": [
-		{
-			"path": "Borrower-Information-Microservice"
-		},
-		{
-			"path": "Loan-Information-Microservice"
-		},
-		{
-			"name": "Loan Management System",
-			"path": "."
-		},
-		{
-			"path": "Loan-Management-Portal"
-		}
-	],
-	"settings": {
-		"java.compile.nullAnalysis.mode": "automatic",
-		"java.configuration.updateBuildConfiguration": "interactive"
-	}
+    "folders": [
+        {
+            "path": "Borrower-Information-Microservice"
+        },
+        {
+            "path": "Loan-Information-Microservice"
+        },
+        {
+            "path": "../Loan Management/Loan-Management-Portal"
+        }
+    ],
+    "settings": {
+        "java.compile.nullAnalysis.mode": "automatic"
+    }
 }
