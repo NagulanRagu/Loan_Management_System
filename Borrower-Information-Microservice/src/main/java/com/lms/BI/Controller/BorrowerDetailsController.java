@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Pojo.LoginCredentails;
 import com.lms.BI.Service.BorrowerDetailsService;
 
 @RestController
@@ -27,29 +28,44 @@ public class BorrowerDetailsController {
     public ResponseEntity<BorrowerDetails> getById(@PathVariable int id) {
 
         try {
-            return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.OK);
+            return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.FOUND);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/all-user")
+    @GetMapping("/")
     public ResponseEntity<List<BorrowerDetails>> getAllUsers() {
 
         try {
-            return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.OK);
+            return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.FOUND);
         }catch(NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
+    public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 
         try {
             return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
         }catch(IllegalArgumentException e) {
-            return new ResponseEntity<String>("An error occured in saving.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginCredentails loginCredentails) {
+
+        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(loginCredentails.getUname());
+        try {
+            if(borrowerDetails.getPassword().equals(loginCredentails.getPassword())) {
+                return new ResponseEntity<>("Login is Successfull.", HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Password is Wrong.", HttpStatus.FORBIDDEN);
+            }
+        }catch(IllegalArgumentException e) {
+            return new ResponseEntity<>("Username is Wrong.", HttpStatus.FORBIDDEN);
         }
     }
 

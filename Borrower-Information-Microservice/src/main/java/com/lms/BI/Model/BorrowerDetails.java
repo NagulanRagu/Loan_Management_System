@@ -41,7 +41,7 @@ public class BorrowerDetails {
     @Column(name = "PhoneNumber")
     private String phoneno;
 
-    @Column(name = "EmailId")
+    @Column(name = "EmailId", unique = true)
     private String emailId;
 
     @Column(name = "Address")
@@ -52,7 +52,7 @@ public class BorrowerDetails {
     private List<Integer> loanId = new ArrayList<>();
 
     public BorrowerDetails(String fname, String lname, String uname, String password, String phoneno, String emailId,
-            String address, List<Integer> loanId) {
+            String address) {
         this.fname = fname;
         this.lname = lname;
         this.uname = uname;
@@ -60,6 +60,5 @@ public class BorrowerDetails {
         this.phoneno = phoneno;
         this.emailId = emailId;
         this.address = address;
-        this.loanId = loanId;
     }
 }
