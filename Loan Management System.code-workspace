@@ -5,9 +5,6 @@
         },
         {
             "path": "Loan-Information-Microservice"
-        },
-        {
-            "path": "../Loan Management/Loan-Management-Portal"
         }
     ],
     "settings": {
