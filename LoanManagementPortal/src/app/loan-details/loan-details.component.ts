@@ -25,7 +25,6 @@ export class LoanDetailsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.loanDetails = error;
       })
   }
 }

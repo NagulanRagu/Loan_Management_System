@@ -29,9 +29,9 @@ public class LoanDetailsController {
     public ResponseEntity<List<LoanDetails>> getAllDetails() {
 
         try {
-            return new ResponseEntity<>(loanDetailsService.getAllDetails(), HttpStatus.FOUND);
+            return new ResponseEntity<>(loanDetailsService.getAllDetails(), HttpStatus.OK);
         }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(loanDetailsService.getAllDetails(),HttpStatus.NOT_FOUND);
         }
     }
 
@@ -39,7 +39,7 @@ public class LoanDetailsController {
     public ResponseEntity<List<LoanDetails>> getByType(@PathVariable String loanType) {
 
         try {
-            return new ResponseEntity<>(loanDetailsService.getByType(loanType), HttpStatus.FOUND);
+            return new ResponseEntity<>(loanDetailsService.getByType(loanType), HttpStatus.OK);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -49,7 +49,7 @@ public class LoanDetailsController {
     public ResponseEntity<LoanDetails> getByNumber(@PathVariable String loanNo) {
 
         try {
-            return new ResponseEntity<>(loanDetailsService.getByNumber(loanNo), HttpStatus.FOUND);
+            return new ResponseEntity<>(loanDetailsService.getByNumber(loanNo), HttpStatus.OK);
         }catch(NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

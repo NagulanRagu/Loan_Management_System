@@ -31,7 +31,7 @@ public class BorrowerDetailsController {
     public ResponseEntity<BorrowerDetails> getById(@PathVariable int id) {
 
         try {
-            return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.OK);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -41,7 +41,7 @@ public class BorrowerDetailsController {
     public ResponseEntity<List<BorrowerDetails>> getAllUsers() {
 
         try {
-            return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.FOUND);
+            return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.OK);
         }catch(NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
