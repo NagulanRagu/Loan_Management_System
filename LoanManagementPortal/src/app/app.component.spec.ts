@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Loan-Management-Portal'`, () => {
+  it(`should have as title 'LoanManagementPortal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Loan-Management-Portal');
+    expect(app.title).toEqual('LoanManagementPortal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Loan-Management-Portal app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('LoanManagementPortal app is running!');
   });
 });
