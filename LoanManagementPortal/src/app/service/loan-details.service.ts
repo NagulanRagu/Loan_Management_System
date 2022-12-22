@@ -9,10 +9,10 @@ export class LoanDetailsService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://localhost:8090/loan';
+  private baseUrl = 'http://localhost:8090';
 
   getLoanDetails() {
 
-    return this.http.get<LoanDetails[]>(`${this.baseUrl}/`);
+    return this.http.get<LoanDetails[]>(`${this.baseUrl}/all-loan`);
   }
 }

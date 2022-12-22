@@ -10,7 +10,7 @@ export class LoginServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://localhost:8080/user';
+  private baseUrl = 'http://localhost:8080';
 
   login(loginCredentails: LoginCredentails) {
 

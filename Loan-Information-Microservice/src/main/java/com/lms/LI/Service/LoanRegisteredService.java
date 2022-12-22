@@ -40,4 +40,28 @@ public class LoanRegisteredService {
         log.info("Deleting the Details from Database for Id: {}", id);
         loanRegisteredRepository.deleteById(id);
     }
+
+    public List<LoanRegistered> getByLoanNo(String loanNo) throws IllegalArgumentException {
+
+        log.info("Getting Details by Loan Number: {}", loanNo);
+        if(loanRegisteredRepository.findByLoanNo(loanNo).isEmpty()) {
+            log.error("No Details found for Loan Number: {}", loanNo);
+            return loanRegisteredRepository.findByLoanNo(loanNo);
+        }else {
+            log.info("All Details are found for Loan Number: {}", loanNo);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<LoanRegistered> getByBorrowerId(int id) throws IllegalArgumentException {
+
+        log.info("Getting Details by Borrower Id: {}", id);
+        if(loanRegisteredRepository.findByBorrowerId(id).isEmpty()) {
+            log.error("No Details found for Borrower Id: {}", id);
+            return loanRegisteredRepository.findByBorrowerId(id);
+        }else {
+            log.info("All Details are found for Borrower Id: {}", id);
+            throw new IllegalArgumentException();
+        }
+    }
 }

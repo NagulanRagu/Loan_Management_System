@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.LI.Model.LoanDetails;
@@ -19,13 +18,12 @@ import com.lms.LI.Service.LoanDetailsService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/loan")
 public class LoanDetailsController {
     
     @Autowired
     LoanDetailsService loanDetailsService;
 
-    @GetMapping("/")
+    @GetMapping("/all-loan")
     public ResponseEntity<List<LoanDetails>> getAllDetails() {
 
         try {
@@ -35,7 +33,7 @@ public class LoanDetailsController {
         }
     }
 
-    @GetMapping("/loan-type/{loanType}")
+    @GetMapping("/loan-by-loanType/{loanType}")
     public ResponseEntity<List<LoanDetails>> getByType(@PathVariable String loanType) {
 
         try {
@@ -45,7 +43,7 @@ public class LoanDetailsController {
         }
     }
 
-    @GetMapping("/loan-no/{loanNo}")
+    @GetMapping("/loan-by-loanNo/{loanNo}")
     public ResponseEntity<LoanDetails> getByNumber(@PathVariable String loanNo) {
 
         try {
@@ -65,7 +63,7 @@ public class LoanDetailsController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-loan/{id}")
     public ResponseEntity<String> deleteEntity(@PathVariable int id) {
 
         loanDetailsService.deleteDetails(id);
