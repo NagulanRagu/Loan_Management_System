@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.lms.LI.Model.LoanDetails;
 import com.lms.LI.Service.LoanDetailsService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/loan")
 public class LoanDetailsController {
     
@@ -33,7 +35,7 @@ public class LoanDetailsController {
         }
     }
 
-    @GetMapping("/{loanType}")
+    @GetMapping("/loan-type/{loanType}")
     public ResponseEntity<List<LoanDetails>> getByType(@PathVariable String loanType) {
 
         try {
@@ -43,7 +45,7 @@ public class LoanDetailsController {
         }
     }
 
-    @GetMapping("/{loanNo}")
+    @GetMapping("/loan-no/{loanNo}")
     public ResponseEntity<LoanDetails> getByNumber(@PathVariable String loanNo) {
 
         try {
@@ -53,7 +55,7 @@ public class LoanDetailsController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("/add-loan")
     public ResponseEntity<LoanDetails> saveEntity(@RequestBody LoanDetails newLoanDetails) {
 
         try {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BorrowerDetails } from '../model/borrower-details';
+import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { BorrowerDetails } from '../model/borrower-details';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private loginService: LoginServiceService) { }
 
   public borrowerDetails!: BorrowerDetails;
 
@@ -16,5 +18,15 @@ export class SignupComponent implements OnInit {
     this.borrowerDetails = new BorrowerDetails("","","","","","","");
   }
 
-  signup(){}
+  signup(){
+    this.loginService.signup(this.borrowerDetails).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['login']);
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['signup']);
+      })
+  }
 }

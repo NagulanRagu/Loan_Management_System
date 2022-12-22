@@ -28,8 +28,7 @@
             <label for="address">Address:</label>
             <input type="text" name="address" [(ngModel)]="this.borrowerDetails.address" required>
         </div>
-        <div>
-            <button type="submit" onclick="signup()">Signup</button>
-        </div>
+        <div><button type="submit" (click)="signup()">Signup</button></div>
+        <div>Already Register<a routerLink="/login">Click here</a></div>
     </form>
 </div>

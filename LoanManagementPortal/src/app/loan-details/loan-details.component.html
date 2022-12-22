@@ -1,0 +1,15 @@
+<table>
+    <caption>Loan Details</caption>
+    <thead>
+        <th>Loan Number</th>
+        <th>Loan Type</th>
+        <th>Rate Of Interest</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let loanDetail of loanDetails">
+            <td>{{loanDetail.loanNo}}</td>
+            <td>{{loanDetail.loanType}}</td>
+            <td>{{loanDetail.rateOfInterest}}</td>
+        </tr>
+    </tbody>
+</table>
