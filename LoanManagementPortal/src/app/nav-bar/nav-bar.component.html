@@ -1,9 +1,10 @@
 <div>
     <p>Loan Managment System</p>
     <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/loan">Loan</a></li>
-        <li style="float:right"><a routerLink="/login">Login</a></li>
-        <li style="float:right"><a routerLink="/signup">Signup</a></li>
+        <li><a *ngIf="logStatus" routerLink="/home">Home</a></li>
+        <li><a *ngIf="logStatus" routerLink="/loan">Loan</a></li>
+        <li><a *ngIf="logStatus" routerLink="/loan-registration">Registration</a></li>
+        <li style="float:right"><a *ngIf="!logStatus" routerLink="/login">Login</a></li>
+        <li style="float:right"><a *ngIf="!logStatus" routerLink="/signup">Signup</a></li>
     </ul>
 </div>
