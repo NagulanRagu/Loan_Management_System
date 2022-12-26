@@ -28,13 +28,13 @@ public class LoanRegistered {
     private int borrowerId;
 
     @Column(name = "Loan Number")
-    private int loanNo;
+    private String loanNo;
 
     @Column(name = "Loan Amount")
     private String loanAmt;
 
     @Column(name = "Payment Period")
-    private String paymentPeriod;
+    private int paymentPeriod;
 
     @Column(name = "EMI Amount")
     private String emiAmt;
@@ -46,7 +46,7 @@ public class LoanRegistered {
     @Column(name = "Property Details")
     private String propertyDetails;
 
-    public LoanRegistered(int borrowerId, int loanNo, String loanAmt, String paymentPeriod, String emiAmt,
+    public LoanRegistered(int borrowerId, String loanNo, String loanAmt, int paymentPeriod, String emiAmt,
             Date issuedDate, String propertyDetails) {
         this.borrowerId = borrowerId;
         this.loanNo = loanNo;

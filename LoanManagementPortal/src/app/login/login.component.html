@@ -2,7 +2,7 @@
     <form>
         <label for="uname">User Name:</label>
         <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" required>
-        <label for="password">Create Password:</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" required>
         <button type="submit" (click)="login()">Login</button>
         New Register<a routerLink="/signup">Click here</a>

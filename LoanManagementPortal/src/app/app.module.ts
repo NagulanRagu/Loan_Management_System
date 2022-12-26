@@ -10,9 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoanDetailsComponent } from './loan-details/loan-details.component';
-import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';  
+import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';
 import { LoginStatus } from './model/login-status';
 import { LoginCredentails } from './model/login-credentails';
+import { LoanRegistration } from './model/loan-registration';
+import { BorrowerDetails } from './model/borrower-details';
+import { LoanDetails } from './model/loan-details';
 
 @NgModule({
   declarations: [
@@ -31,8 +34,14 @@ import { LoginCredentails } from './model/login-credentails';
     HttpClientModule
   ],
   providers: [
+    LoanRegistration,
+    LoginCredentails,
+    BorrowerDetails,
+    LoanDetails,
     LoginStatus,
-    LoginCredentails
+    // {provide: LoanRegistration, useFactory: LoanRegistration}
+    // {provide: LoginStatus, useFactory: LoginStatus},
+    // {provide: LoginCredentails, useFactory: LoginCredentails}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoanRegistration } from '../model/loan-registration';
 
 @Component({
   selector: 'app-loan-registration',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoanRegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loanRegistration: LoanRegistration) { }
 
   ngOnInit(): void {
+    this.loanRegistration = new LoanRegistration();
   }
 
 }

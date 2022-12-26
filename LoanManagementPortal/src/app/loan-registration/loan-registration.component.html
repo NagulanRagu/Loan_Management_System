@@ -1,1 +1,35 @@
-<p>loan-registration works!</p>
+<div>
+    <form>
+        <div>
+            <label for="borrowerId">Borrower Id:</label>
+            <input type="search" name="borrowerId" [(ngModel)] = "this.loanRegistration.borrowerId" required>
+        </div>
+        <div>
+            <label for="loanNo">Loan Number:</label>
+            <input type="search" name="loanNo" [(ngModel)] = "this.loanRegistration.loanNo" required>
+        </div>
+        <div>
+            <label for="loanAmt">Loan Amount:</label>
+            <input type="text" name="loanAmt" [(ngModel)] = "this.loanRegistration.loanAmt" required>
+        </div>
+        <div>
+            <label for="paymentPeriod">Payment Period:</label>
+            <input type="text" name="paymentPeriod" [(ngModel)] = "this.loanRegistration.paymentPeriod" required>
+        </div>
+        <div>
+            <label for="emiAmt">Emi Amount:</label>
+            <input type="text" name="emiAmt" [(ngModel)] = "this.loanRegistration.emiAmt" required>
+        </div>
+        <div>
+            <label for="issuedDate">Issue Date:</label>
+            <input type="date" name="issuedDate" [(ngModel)] = "this.loanRegistration.issuedDate" required>
+        </div>
+        <div>
+            <label for="propertyDetails">Property Details:</label>
+            <input type="text" name="propertyDetails" [(ngModel)] = "this.loanRegistration.propertyDetails" required>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>

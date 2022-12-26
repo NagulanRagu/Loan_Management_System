@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   public borrowerDetails!: BorrowerDetails;
 
   ngOnInit(): void {
-    this.borrowerDetails = new BorrowerDetails("","","","","","","");
+    this.borrowerDetails = new BorrowerDetails();
   }
 
   signup(){

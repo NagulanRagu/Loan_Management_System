@@ -1,7 +1,10 @@
 export class LoginCredentails {
 
-    public uname:string = "";
-    public password:string = "";
+    public uname!: string;
+    public password!: string;
 
-    constructor(){}
+    // constructor(uname: string, password: string){
+    //     this.uname = uname;
+    //     this.password = password;
+    // }
 }
