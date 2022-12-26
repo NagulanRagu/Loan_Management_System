@@ -1,4 +1,7 @@
 export class LoginCredentails {
 
-    constructor(public uname:string, public password:string){}
+    public uname:string = "";
+    public password:string = "";
+
+    constructor(){}
 }

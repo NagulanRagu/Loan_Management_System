@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginCredentails } from '../model/login-credentails';
+import { LoginStatus } from '../model/login-status';
 import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
@@ -10,12 +11,13 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginServiceService, private router: Router) { }
+  constructor(private loginService: LoginServiceService, private router: Router, 
+    public loginCredentails: LoginCredentails) { }
 
-  public loginCredentails!: LoginCredentails;
+  
 
   ngOnInit(): void {
-    this.loginCredentails = new LoginCredentails("","");
+    this.loginCredentails = new LoginCredentails();
   }
 
   login(){
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginCredentails).subscribe(
       data => {
         console.log(data);
+        this.loginService.setLoginStatus(true);
         this.router.navigate(['home']);
       },
       error => {

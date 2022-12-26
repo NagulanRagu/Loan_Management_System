@@ -9,7 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { LoanDetailsComponent } from './loan-details/loan-details.component';  
+import { LoanDetailsComponent } from './loan-details/loan-details.component';
+import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';  
+import { LoginStatus } from './model/login-status';
+import { LoginCredentails } from './model/login-credentails';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { LoanDetailsComponent } from './loan-details/loan-details.component';
     LoginComponent,
     HomeComponent,
     NavBarComponent,
-    LoanDetailsComponent
+    LoanDetailsComponent,
+    LoanRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,10 @@ import { LoanDetailsComponent } from './loan-details/loan-details.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LoginStatus,
+    LoginCredentails
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
