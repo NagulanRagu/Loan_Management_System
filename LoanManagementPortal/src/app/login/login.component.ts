@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginCredentails } from '../model/login-credentails';
-import { LoginStatus } from '../model/login-status';
 import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginCredentails).subscribe(
       data => {
         console.log(data);
-        this.loginService.setLoginStatus(true);
         this.router.navigate(['home']);
       },
       error => {

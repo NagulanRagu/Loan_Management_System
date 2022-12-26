@@ -13,10 +13,6 @@ export class NavBarComponent implements OnInit {
   public logStatus!: boolean;
 
   ngOnInit(): void {
-    if(this.loginService.getLoginStatus()) {
-      console.log(this.loginService.getLoginStatus());
-      this.logStatus = this.loginService.getLoginStatus();
-    }
   }
 
 }

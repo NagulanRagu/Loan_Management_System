@@ -11,11 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoanDetailsComponent } from './loan-details/loan-details.component';
 import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';
-import { LoginStatus } from './model/login-status';
 import { LoginCredentails } from './model/login-credentails';
 import { LoanRegistration } from './model/loan-registration';
 import { BorrowerDetails } from './model/borrower-details';
 import { LoanDetails } from './model/loan-details';
+import { HttpCall } from './model/http-call';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { LoanDetails } from './model/loan-details';
     LoginCredentails,
     BorrowerDetails,
     LoanDetails,
-    LoginStatus,
+    HttpCall
     // {provide: LoanRegistration, useFactory: LoanRegistration}
     // {provide: LoginStatus, useFactory: LoginStatus},
     // {provide: LoginCredentails, useFactory: LoginCredentails}
