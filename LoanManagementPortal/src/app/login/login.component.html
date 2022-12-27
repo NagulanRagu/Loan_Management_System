@@ -1,10 +1,9 @@
-<div>
+<div class="main">
     <form>
-        <label for="uname">User Name:</label>
-        <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" required>
-        <button type="submit" (click)="login()">Login</button>
-        New Register<a routerLink="/signup">Click here</a>
+        <div><input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" placeholder="User name" required></div>
+        <div><input type="password" name="password" [(ngModel)]="this.loginCredentails.password" placeholder="Password" required></div>
+        <div><button type="submit" (click)="login()">Login</button>
+            New Register<a routerLink="/signup"> Click here</a>
+        </div>
     </form>
 </div>
