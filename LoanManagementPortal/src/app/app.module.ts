@@ -16,6 +16,7 @@ import { LoanRegistration } from './model/loan-registration';
 import { BorrowerDetails } from './model/borrower-details';
 import { LoanDetails } from './model/loan-details';
 import { HttpCall } from './model/http-call';
+import { RegistrationSuccessfullComponent } from './submitted/registration-successfull/registration-successfull.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpCall } from './model/http-call';
     HomeComponent,
     NavBarComponent,
     LoanDetailsComponent,
-    LoanRegistrationComponent
+    LoanRegistrationComponent,
+    RegistrationSuccessfullComponent
   ],
   imports: [
     BrowserModule,

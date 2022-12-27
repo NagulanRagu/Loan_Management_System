@@ -40,7 +40,7 @@ public class LoanRegistered {
     private String emiAmt;
 
     @Column(name = "Issued Date")
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date issuedDate;
 
     @Column(name = "Property Details")

@@ -57,7 +57,7 @@ public class LoanRegisteredController {
     public ResponseEntity<LoanRegistered> saveEntity(@RequestBody LoanRegistered newLoanRegistered) {
 
         try {
-            return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered),HttpStatus.CREATED);
+            return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered),HttpStatus.OK);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

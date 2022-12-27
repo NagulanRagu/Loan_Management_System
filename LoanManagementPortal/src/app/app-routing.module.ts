@@ -6,6 +6,7 @@ import { LoanRegistrationComponent } from './loan-registration/loan-registration
 import { LoginComponent } from './login/login.component';
 import { RouterGuardService } from './service/router-guard.service';
 import { SignupComponent } from './signup/signup.component';
+import { RegistrationSuccessfullComponent } from './submitted/registration-successfull/registration-successfull.component';
 
 const routes: Routes = [
   {path : "", component : LoginComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path : "login", component : LoginComponent},
   {path : "home", component : HomeComponent, canActivate: [RouterGuardService]},
   {path : "loan", component : LoanDetailsComponent, canActivate: [RouterGuardService]},
-  {path : "loan-registration", component : LoanRegistrationComponent, canActivate: [RouterGuardService]}
+  {path : "loan-registration", component : LoanRegistrationComponent, canActivate: [RouterGuardService]},
+  {path : "registration-success", component : RegistrationSuccessfullComponent, canActivate: [RouterGuardService]}
 ];
 
 @NgModule({
