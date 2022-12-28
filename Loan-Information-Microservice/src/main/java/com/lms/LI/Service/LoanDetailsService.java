@@ -29,6 +29,18 @@ public class LoanDetailsService {
         }
     }
 
+    public LoanDetails getById(int id) {
+
+        log.info("Getting all Details from Database for Loan Id: {}.", id);
+        if(loanDetailsRepository.findById(id) == null) {
+            log.error("No Details is found in Database for Loan id: {}.", id);
+            throw new IllegalArgumentException();
+        }else {
+            log.info("All Details are fetched for Loan id: {}.", id);
+            return loanDetailsRepository.findById(id);
+        }
+    }
+
     public List<LoanDetails> getByType(String loanType) throws IllegalArgumentException {
 
         log.info("Getting all Details from Database for Loan Type: {}.",loanType);
@@ -53,10 +65,24 @@ public class LoanDetailsService {
         }
     }
 
-    public LoanDetails saveDetails(LoanDetails loanDetails) {
+    public LoanDetails saveDetails(LoanDetails loanDetails) throws IllegalArgumentException {
 
         log.info("Saving the Details {} to the Database.", loanDetails);
-        return loanDetailsRepository.save(loanDetails);
+        if(loanDetailsRepository.save(loanDetails) == null) {
+            log.error("There is an error in saving the Details");
+            throw new IllegalArgumentException();
+        }else {
+            log.info("Details are saved in the Database.");
+            return loanDetailsRepository.save(loanDetails);
+        }
+    }
+
+    public LoanDetails updateDetails(LoanDetails updateDetails) {
+
+        log.info("Updating the Details: {}", updateDetails);
+        getById(updateDetails.getId());
+        deleteDetails(updateDetails.getId());
+        return saveDetails(updateDetails);
     }
 
     public void deleteDetails(int id) {

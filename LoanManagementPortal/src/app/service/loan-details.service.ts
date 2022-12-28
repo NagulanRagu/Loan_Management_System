@@ -13,12 +13,26 @@ export class LoanDetailsService {
   private baseUrl = 'http://localhost:8090';
 
   getLoanDetails() {
-
     return this.http.get<LoanDetails[]>(`${this.baseUrl}/all-loan`);
   }
 
-  sendLoanRegistration(loanRegistration: LoanRegistration) {
+  getLoanDetailsById(id: number) {
+    return this.http.get<LoanDetails>(`${this.baseUrl}loan-by-id/${id}`);
+  }
 
+  addLoanDetails(loanDetails: LoanDetails) {
+    return this.http.post<LoanDetails>(`${this.baseUrl}/add-loan`,loanDetails);
+  }
+
+  updateLoanDetails(id: number,loanDetails: LoanDetails) {
+    return this.http.put<LoanDetails>(`${this.baseUrl}/update-loan/${id}`, loanDetails);
+  }
+
+  deleteLoanDetails(id: number) {
+    return this.http.delete(`${this.baseUrl}/delete-loan/${id}`);
+  }
+
+  sendLoanRegistration(loanRegistration: LoanRegistration) {
     return this.http.post<LoanRegistration>(`${this.baseUrl}/apply`, loanRegistration);
   }
 }

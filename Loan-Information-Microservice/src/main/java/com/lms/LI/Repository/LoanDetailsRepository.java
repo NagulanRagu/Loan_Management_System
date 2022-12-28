@@ -10,6 +10,8 @@ import com.lms.LI.Model.LoanDetails;
 @Repository
 public interface LoanDetailsRepository extends JpaRepository<LoanDetails, Integer> {
     
+    LoanDetails findById(int id);
+    
     List<LoanDetails> findByLoanType(String loanType);
 
     LoanDetails findByLoanNo(String loanNo);

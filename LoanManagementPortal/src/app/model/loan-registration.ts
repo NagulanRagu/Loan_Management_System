@@ -1,5 +1,6 @@
 export class LoanRegistration {
     
+    public id!: number;
     public borrowerId!: number;
     public loanNo!: string;
     public loanAmt!: string;

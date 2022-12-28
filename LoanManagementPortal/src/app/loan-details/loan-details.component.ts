@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoanDetails } from '../model/loan-details';
 import { LoanDetailsService } from '../service/loan-details.service';
 
@@ -9,7 +10,7 @@ import { LoanDetailsService } from '../service/loan-details.service';
 })
 export class LoanDetailsComponent implements OnInit {
 
-  constructor(public loanDetailsService: LoanDetailsService) { }
+  constructor(public loanDetailsService: LoanDetailsService, private router: Router) { }
 
   loanDetails!: LoanDetails[];
 
@@ -25,6 +26,21 @@ export class LoanDetailsComponent implements OnInit {
       },
       error => {
         console.log(error);
-      })
+      });
+  }
+
+  addLoanDetails() {
+    this.router.navigate(['update-loan']);
+  }
+
+  updateLoanDetails(id: number) {
+    this.router.navigate(['update-loan', id]);
+  }
+
+  deleteLoanDetails(id: number) {
+    this.loanDetailsService.deleteLoanDetails(id).subscribe(
+      response => {
+        this.refreshPage();
+    });
   }
 }
