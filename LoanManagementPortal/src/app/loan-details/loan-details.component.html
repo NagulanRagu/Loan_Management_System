@@ -1,15 +1,22 @@
-<table>
-    <caption>Loan Details</caption>
-    <thead>
-        <th>Loan Number</th>
-        <th>Loan Type</th>
-        <th>Rate Of Interest</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let loanDetail of loanDetails">
-            <td>{{loanDetail.loanNo}}</td>
-            <td>{{loanDetail.loanType}}</td>
-            <td>{{loanDetail.rateOfInterest}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <table class="table table-bordered">
+        <caption>Loan Details</caption>
+        <thead>
+            <tr>
+                <th scope="col">Loan Number</th>
+                <th scope="col">Loan Type</th>
+                <th scope="col">Rate Of Interest</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let loanDetail of loanDetails">
+                <td>{{loanDetail.loanNo}}</td>
+                <td>{{loanDetail.loanType}}</td>
+                <td>{{loanDetail.rateOfInterest}}</td>
+                <td><button (click)="updateLoanDetails(loanDetail.id)" class="btn btn-success" type="button">Update</button></td>
+                <td><button (click)="deleteLoanDetails(loanDetail.id)" class="btn btn-warning" type="button">Delete</button></td>
+            </tr>
+            <tr><td><button (click)="addLoanDetails()" class="btn btn-success">Add</button></td></tr>
+        </tbody>
+    </table>
+</div>

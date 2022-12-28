@@ -1,5 +1,6 @@
 export class BorrowerDetails {
 
+    public id!: number;
     public fname!: string;
     public lname!: string;
     public uname!: string;

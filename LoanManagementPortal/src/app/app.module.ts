@@ -17,6 +17,8 @@ import { BorrowerDetails } from './model/borrower-details';
 import { LoanDetails } from './model/loan-details';
 import { HttpCall } from './model/http-call';
 import { RegistrationSuccessfullComponent } from './submitted/registration-successfull/registration-successfull.component';
+import { AddLoanDetailsComponent } from './add-loan-details/add-loan-details.component';
+import { SeeLoanRegistrationComponent } from './see-loan-registration/see-loan-registration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { RegistrationSuccessfullComponent } from './submitted/registration-succe
     NavBarComponent,
     LoanDetailsComponent,
     LoanRegistrationComponent,
-    RegistrationSuccessfullComponent
+    RegistrationSuccessfullComponent,
+    AddLoanDetailsComponent,
+    SeeLoanRegistrationComponent
   ],
   imports: [
     BrowserModule,
