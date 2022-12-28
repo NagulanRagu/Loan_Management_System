@@ -31,12 +31,12 @@ public class LoanDetailsService {
 
     public LoanDetails getById(int id) {
 
-        log.info("Getting all Details from Database for Loan Id: {}.", id);
+        log.info("Getting Details from Database for Loan Id: {}.", id);
         if(loanDetailsRepository.findById(id) == null) {
             log.error("No Details is found in Database for Loan id: {}.", id);
             throw new IllegalArgumentException();
         }else {
-            log.info("All Details are fetched for Loan id: {}.", id);
+            log.info("Details are fetched for Loan id: {}.", id);
             return loanDetailsRepository.findById(id);
         }
     }
@@ -65,16 +65,10 @@ public class LoanDetailsService {
         }
     }
 
-    public LoanDetails saveDetails(LoanDetails loanDetails) throws IllegalArgumentException {
+    public LoanDetails saveDetails(LoanDetails loanDetails) {
 
         log.info("Saving the Details {} to the Database.", loanDetails);
-        if(loanDetailsRepository.save(loanDetails) == null) {
-            log.error("There is an error in saving the Details");
-            throw new IllegalArgumentException();
-        }else {
-            log.info("Details are saved in the Database.");
-            return loanDetailsRepository.save(loanDetails);
-        }
+        return loanDetailsRepository.save(loanDetails);
     }
 
     public LoanDetails updateDetails(LoanDetails updateDetails) {

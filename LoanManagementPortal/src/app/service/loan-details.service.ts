@@ -17,7 +17,7 @@ export class LoanDetailsService {
   }
 
   getLoanDetailsById(id: number) {
-    return this.http.get<LoanDetails>(`${this.baseUrl}loan-by-id/${id}`);
+    return this.http.get<LoanDetails>(`${this.baseUrl}/loan-by-id/${id}`);
   }
 
   addLoanDetails(loanDetails: LoanDetails) {
@@ -25,14 +25,10 @@ export class LoanDetailsService {
   }
 
   updateLoanDetails(id: number,loanDetails: LoanDetails) {
-    return this.http.put<LoanDetails>(`${this.baseUrl}/update-loan/${id}`, loanDetails);
+    return this.http.put<LoanDetails>(`${this.baseUrl}/update-loan/${id}`, loanDetails).pipe();
   }
 
   deleteLoanDetails(id: number) {
     return this.http.delete(`${this.baseUrl}/delete-loan/${id}`);
-  }
-
-  sendLoanRegistration(loanRegistration: LoanRegistration) {
-    return this.http.post<LoanRegistration>(`${this.baseUrl}/apply`, loanRegistration);
   }
 }

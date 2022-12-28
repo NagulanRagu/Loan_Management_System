@@ -30,7 +30,7 @@ export class LoanDetailsComponent implements OnInit {
   }
 
   addLoanDetails() {
-    this.router.navigate(['update-loan']);
+    this.router.navigate(['update-loan', -1]);
   }
 
   updateLoanDetails(id: number) {

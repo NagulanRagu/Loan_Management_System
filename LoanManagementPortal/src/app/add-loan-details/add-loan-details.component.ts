@@ -18,7 +18,7 @@ export class AddLoanDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.loanDetails = new LoanDetails();
-    if(this.id!=null) {
+    if(this.id!=-1) {
       this.loanDetailsService.getLoanDetailsById(this.id).subscribe(
         data => {
           console.log(data);
@@ -28,7 +28,7 @@ export class AddLoanDetailsComponent implements OnInit {
   }
 
   addLoanDetails() {
-    if(this.id == null) {
+    if(this.id == -1) {
       this.loanDetailsService.addLoanDetails(this.loanDetails).subscribe(
         data => {
           console.log(data);

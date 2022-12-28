@@ -1,0 +1,28 @@
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th><a>Customer Name</a></th>
+                <th>Loan Number</th>
+                <th>Loan Amount</th>
+                <th>Payment Period</th>
+                <th>Emi Amount</th>
+                <th>Issued Date</th>
+                <th>Property Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let registration of loanRegistration">
+                <td>{{registration.id}}</td>
+                <td>{{registration.borrowerId}}</td>
+                <td>{{registration.loanNo}}</td>
+                <td>{{registration.loanAmt}}</td>
+                <td>{{registration.paymentPeriod}}</td>
+                <td>{{registration.emiAmt}}</td>
+                <td>{{registration.issuedDate}}</td>
+                <td>{{registration.propertyDetails}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
