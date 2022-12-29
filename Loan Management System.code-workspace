@@ -10,9 +10,6 @@
             "path": "LoanManagementPortal"
         },
         {
-            "path": "Registration-Information-Microservice"
-        },
-        {
             "path": "Authentication-Microservice"
         }
     ],
