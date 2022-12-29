@@ -35,6 +35,10 @@ export class LoginServiceService {
     return user!=null;
   }
 
+  getUserName() {
+    return sessionStorage.getItem('Authenticated User');
+  }
+
   logout(): void {
     sessionStorage.removeItem('Authenticated User');
   }

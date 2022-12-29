@@ -2,11 +2,18 @@
     <ul>
         <li><a><strong>Loan Managment System</strong></a></li>
         <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/home">Home</a></li>
-        <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan">Loan</a></li>
-        <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan-registration">Apply Registration</a></li>
-        <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/all-registration">View Registration</a></li>
-        <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" (click)="logout()">Logout</a></li>
+        <li class="dropdown"><button *ngIf="this.loginService.isUserLoggedIn()">Loan</button>
+            <ul class="dropdown-content">
+                <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan">Loan Details</a></li>
+                <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan-registration">Apply Loan</a></li>
+                <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/all-registration">View Registrated</a></li>
+            </ul>
+        </li>
+        <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="#" (click)="logout()">Logout</a></li>
+        <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/profile/{{uname}}">{{uname}}</a></li>
         <li style="float:right"><a *ngIf="!this.loginService.isUserLoggedIn()" routerLink="/login">Login</a></li>
         <li style="float:right"><a *ngIf="!this.loginService.isUserLoggedIn()" routerLink="/signup">Signup</a></li>
     </ul>
-</div>
+</div> 
+
+

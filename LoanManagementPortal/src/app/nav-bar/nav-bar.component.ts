@@ -11,10 +11,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(public loginService: LoginServiceService, private router: Router) { }
 
-  public logStatus!: string;
-  public routerStatus!: string;
+  uname!: any;
 
   ngOnInit(): void {
+    this.router.events.subscribe(
+      data => {
+        this.uname = this.loginService.getUserName();
+      });
   }
 
   logout(): boolean {

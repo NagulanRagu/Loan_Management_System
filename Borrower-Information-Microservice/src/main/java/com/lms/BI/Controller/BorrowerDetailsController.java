@@ -35,6 +35,16 @@ public class BorrowerDetailsController {
         }
     }
 
+    @GetMapping("/user-by-uname/{uname}")
+    public ResponseEntity<BorrowerDetails> getByUname(@PathVariable String uname) {
+
+        try {
+            return new ResponseEntity<>(borrowerDetailsService.getByUname(uname), HttpStatus.OK);
+        }catch(IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/all-user")
     public ResponseEntity<List<BorrowerDetails>> getAllUsers() {
 
