@@ -8,6 +8,9 @@
         },
         {
             "path": "LoanManagementPortal"
+        },
+        {
+            "path": "Registration-Information-Microservice"
         }
     ],
     "settings": {
