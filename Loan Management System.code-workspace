@@ -11,6 +11,9 @@
         },
         {
             "path": "Registration-Information-Microservice"
+        },
+        {
+            "path": "Authentication-Microservice"
         }
     ],
     "settings": {
