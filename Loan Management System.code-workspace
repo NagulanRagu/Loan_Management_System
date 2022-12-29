@@ -10,24 +10,16 @@
             "path": "LoanManagementPortal"
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "path": "Authentication-Microservice"
         },
         {
             "path": "Registration Information Microservice"
-=======
-            "path": "Registration-Information-Microservice"
         },
         {
-            "path": "Authentication-Microservice"
->>>>>>> master
-=======
             "path": "Authentication-Microservice"
         },
         {
             "path": "Registration Information Microservice"
->>>>>>> master
         }
     ],
     "settings": {
