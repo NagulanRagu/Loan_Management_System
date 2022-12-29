@@ -11,6 +11,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "path": "Authentication-Microservice"
         },
         {
@@ -20,6 +21,12 @@
         },
         {
             "path": "Authentication-Microservice"
+>>>>>>> master
+=======
+            "path": "Authentication-Microservice"
+        },
+        {
+            "path": "Registration Information Microservice"
 >>>>>>> master
         }
     ],
