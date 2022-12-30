@@ -16,7 +16,7 @@ export class LoginServiceService {
 
   login(loginCredentails: LoginCredentails) {
 
-    return this.http.post<HttpCall>(`${this.baseUrl}/login`, loginCredentails)
+    return this.http.post<HttpCall>(`${this.baseUrl}/login-call`, loginCredentails)
             .pipe(map(
               data => {
                 sessionStorage.setItem('Authenticated User', loginCredentails.uname);

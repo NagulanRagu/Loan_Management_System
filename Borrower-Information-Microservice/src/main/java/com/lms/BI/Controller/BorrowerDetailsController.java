@@ -65,7 +65,7 @@ public class BorrowerDetailsController {
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login-call")
     public ResponseEntity<HttpCall> login(@RequestBody LoginCredentails loginCredentails) {
 
         HttpCall httpCall = new HttpCall();
@@ -83,6 +83,16 @@ public class BorrowerDetailsController {
             httpCall.setReponse("Username is Wrong.");
             return new ResponseEntity<>(httpCall, HttpStatus.FORBIDDEN);
         }
+    }
+
+    @PostMapping("/login")
+    public LoginCredentails login(@RequestBody String uname) {
+
+        LoginCredentails loginCredentails = new LoginCredentails();
+        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(loginCredentails.getUname());
+        loginCredentails.setUname(borrowerDetails.getUname());
+        loginCredentails.setPassword(borrowerDetails.getPassword());
+        return loginCredentails;
     }
 
     @DeleteMapping("/delete-by-id/{id}")

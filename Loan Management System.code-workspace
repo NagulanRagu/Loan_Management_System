@@ -10,20 +10,14 @@
             "path": "LoanManagementPortal"
         },
         {
-            "path": "Authentication-Microservice"
-        },
-        {
             "path": "Registration Information Microservice"
         },
         {
             "path": "Authentication-Microservice"
-        },
-        {
-            "path": "Registration Information Microservice"
         }
     ],
     "settings": {
         "java.compile.nullAnalysis.mode": "automatic",
-        "java.configuration.updateBuildConfiguration": "interactive"
+        "java.configuration.updateBuildConfiguration": "automatic"
     }
 }
