@@ -19,7 +19,7 @@ import com.lms.BI.Pojo.LoginCredentails;
 import com.lms.BI.Service.BorrowerDetailsService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8083"})
 public class BorrowerDetailsController {
     
     @Autowired
@@ -89,7 +89,7 @@ public class BorrowerDetailsController {
     public LoginCredentails login(@RequestBody String uname) {
 
         LoginCredentails loginCredentails = new LoginCredentails();
-        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(loginCredentails.getUname());
+        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(uname);
         loginCredentails.setUname(borrowerDetails.getUname());
         loginCredentails.setPassword(borrowerDetails.getPassword());
         return loginCredentails;
