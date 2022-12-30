@@ -87,14 +87,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/login",
+					"raw": "http://localhost:8080/login-call",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"login"
+						"login-call"
 					]
 				}
 			},
@@ -115,6 +115,26 @@
 					"path": [
 						"delete-by-id",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByUname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user-by-uname/Nagulan R U",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user-by-uname",
+						"Nagulan R U"
 					]
 				}
 			},
