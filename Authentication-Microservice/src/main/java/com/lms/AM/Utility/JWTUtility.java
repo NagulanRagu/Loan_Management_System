@@ -15,8 +15,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JWTUtility implements Serializable {
-    
-    static final long serialVersionUID = 234234523523L;
 
     private String secretkey = "${jwt.secret}";
 	/**

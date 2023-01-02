@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lms.AM.Pojo.AuthResponse;
 import com.lms.AM.Pojo.JwtResponse;
 import com.lms.AM.Pojo.LoginCredentails;
 import com.lms.AM.Service.UserService;
@@ -20,12 +22,20 @@ import com.lms.AM.Utility.JWTUtility;
 @RestController
 public class LoginController {
 
+    /**
+	 * This is a private field of type {@link JwtUtil} class which provides the
+	 * utilities for the token like get token, validate token, expiration time etc.
+	 */
     @Autowired
     JWTUtility jwtUtility;
 
     @Autowired
     AuthenticationManager authenticationManager;
 
+    /**
+	 * This is a private field of type {@link ManagerDetailsService} class which is
+	 * used to fetch the user credentials from the database
+	 */
     @Autowired
     UserService userService;
     
@@ -34,7 +44,16 @@ public class LoginController {
         return "Authentication Microservice working";
     }
 
-    @PostMapping("/authenticates")
+    /**
+	 * This method is used to check the credentials whether the provided credentials
+	 * are correct or not. For this we will call authenticate method. If user
+	 * credentials are correct then we will fetch the data from database based on
+	 * userid and return it to the user with a token
+	 * 
+	 
+	 */
+
+    @PostMapping("/authenticate")
     public ResponseEntity<JwtResponse> authenticate(@RequestBody LoginCredentails loginCredentails) throws BadCredentialsException {
         
         try {
@@ -49,5 +68,23 @@ public class LoginController {
         final UserDetails userDetails = userService.loadUserByUsername(loginCredentails.getUname());
         final String token = jwtUtility.generateToken(userDetails);
         return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<AuthResponse> getValidity(@RequestHeader("Authorization") String token) {
+        AuthResponse authResponse = new AuthResponse();
+        token = token.substring(7);
+        try {
+            if(jwtUtility.validateToken(token)) {
+                authResponse.setUserId(jwtUtility.extractUsername(token));
+                authResponse.setValid(true);
+                authResponse.setMessage("Token is Good.");
+            }
+        }catch(Exception e) {
+            authResponse.setValid(false);
+            authResponse.setMessage("Token is not valid.");
+            return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
     }
 }
