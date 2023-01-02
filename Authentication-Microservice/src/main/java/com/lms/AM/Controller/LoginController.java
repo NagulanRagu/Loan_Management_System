@@ -34,9 +34,9 @@ public class LoginController {
         return "Authentication Microservice working";
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/authenticates")
     public ResponseEntity<JwtResponse> authenticate(@RequestBody LoginCredentails loginCredentails) throws BadCredentialsException {
-
+        
         try {
             authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

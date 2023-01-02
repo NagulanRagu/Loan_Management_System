@@ -24,13 +24,13 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        log.debug("Start: loadUserByUsername Method.");
+        log.info("Start: loadUserByUsername Method.");
         LoginCredentails loginCredentails = authClient.login(username);
         if(loginCredentails == null) {
-            log.debug("End: loadUserByUsername Method.");
+            log.error("End: loadUserByUsername Method with Username is not found");
             throw new UsernameNotFoundException("Username is not found: " + username);
         }else {
-            log.debug("End: loadUserByUsername Method.");
+            log.info("End: loadUserByUsername Method.");
             return new User(loginCredentails.getUname(),loginCredentails.getPassword(),new ArrayList<>());
         }
     }

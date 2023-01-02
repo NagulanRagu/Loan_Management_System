@@ -1,35 +1,36 @@
 <div class="container">
-    <div *ngIf="signupForm.invalid && signupForm.touched">Please the fill the required field.</div>
+    <h3><strong>Sign in</strong></h3>
+    <div class="error" *ngIf="signupForm.invalid && signupForm.touched">Please the fill the required field.</div>
     <form #signupForm = "ngForm">
-        <div>
-            <label for="fname">First Name:*</label>
-            <input type="text" id="fname" name="fname" [(ngModel)]="this.borrowerDetails.fname" required>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="fname">First Name:*</label>
+            <input type="text" id="fname" name="fname" class="form-control" [(ngModel)]="this.borrowerDetails.fname" required>
         </div>
-        <div>
-            <label for="lname">Last Name:*</label>
-            <input type="text" id="lname" name="lname" [(ngModel)]="this.borrowerDetails.lname" required>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="lname">Last Name:*</label>
+            <input type="text" id="lname" name="lname" class="form-control" [(ngModel)]="this.borrowerDetails.lname" required>
         </div>
-        <div>
-            <label for="uname">User Name:*</label>
-            <input type="text" id="uname" name="uname" [(ngModel)]="this.borrowerDetails.uname" required>
+        <div class="form-outline mb-4">
+            <label class="form-label"  for="uname">User Name:*</label>
+            <input type="text" id="uname" name="uname" class="form-control" [(ngModel)]="this.borrowerDetails.uname" required>
         </div>
-        <div>
-            <label for="password">Create Password:*</label>
-            <input type="password" id="password" name="password" [(ngModel)]="this.borrowerDetails.password" required>
+        <div class="form-outline mb-4">
+            <label class="form-label"  for="password">Create Password:*</label>
+            <input type="password" id="password" name="password" class="form-control" [(ngModel)]="this.borrowerDetails.password" required>
         </div>
-        <div>
-            <label for="emailId">Email Id:*</label>
-            <input type="email" id="emailId" name="emailId" [(ngModel)]="this.borrowerDetails.emailId" required>
+        <div class="form-outline mb-4">
+            <label class="form-label"  for="emailId">Email Id:*</label>
+            <input type="email" id="emailId" name="emailId" class="form-control" [(ngModel)]="this.borrowerDetails.emailId" required>
         </div>
-        <div>
-            <label for="phoneno">Phone Number:*</label>
-            <input type="number" id="phoneno" name="phoneno" [(ngModel)]="this.borrowerDetails.phoneno" required>
+        <div class="form-outline mb-4">
+            <label class="form-label"  for="phoneno">Phone Number:*</label>
+            <input type="number" id="phoneno" name="phoneno" class="form-control" [(ngModel)]="this.borrowerDetails.phoneno" required>
         </div>
-        <div>
-            <label for="address">Address:*</label>
-            <input type="text" id="address" name="address" [(ngModel)]="this.borrowerDetails.address" required>
+        <div class="form-outline mb-4">
+            <label class="form-label"  for="address">Address:*</label>
+            <textarea id="address" name="address" class="form-control" [(ngModel)]="this.borrowerDetails.address" rows="5" required></textarea>
         </div>
-        <div><button class="btn btn-success" type="submit" (click)="signup()">Signup</button></div>
+        <button class="btn btn-primary btn-block mb-4" type="submit" (click)="signup()">Signup</button>
         <div>Already Register<a routerLink="/login">Click here</a></div>
     </form>
 </div>
