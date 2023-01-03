@@ -30,7 +30,7 @@ public class LoanDetailsController {
     TokenService tokenService;
 
     @GetMapping("/all-loan")
-    public ResponseEntity<List<LoanDetails>> getAllDetails(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<List<LoanDetails>> getAllDetails(@RequestHeader(name = "Authorization")String token) {
 
         if(tokenService.checkValidation(token)) {
             try {

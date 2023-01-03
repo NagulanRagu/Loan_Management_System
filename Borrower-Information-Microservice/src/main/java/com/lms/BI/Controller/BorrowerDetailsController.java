@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.BI.Model.BorrowerDetails;
 import com.lms.BI.Pojo.HttpCall;
 import com.lms.BI.Pojo.LoginCredentails;
 import com.lms.BI.Service.BorrowerDetailsService;
+import com.lms.BI.Service.TokenService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200","http://localhost:8083"})
@@ -25,33 +27,48 @@ public class BorrowerDetailsController {
     @Autowired
     BorrowerDetailsService borrowerDetailsService;
 
-    @GetMapping("/user-by-id/{id}")
-    public ResponseEntity<BorrowerDetails> getById(@PathVariable int id) {
+    @Autowired
+    TokenService tokenService;
 
-        try {
-            return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/user-by-id/{id}")
+    public ResponseEntity<BorrowerDetails> getById(@RequestHeader("Authorization") String token, @PathVariable int id) {
+
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/user-by-uname/{uname}")
-    public ResponseEntity<BorrowerDetails> getByUname(@PathVariable String uname) {
+    public ResponseEntity<BorrowerDetails> getByUname(@RequestHeader("Authorization") String token, @PathVariable String uname) {
 
-        try {
-            return new ResponseEntity<>(borrowerDetailsService.getByUname(uname), HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(borrowerDetailsService.getByUname(uname), HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/all-user")
-    public ResponseEntity<List<BorrowerDetails>> getAllUsers() {
+    public ResponseEntity<List<BorrowerDetails>> getAllUsers(@RequestHeader("Authorization") String token) {
 
-        try {
-            return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -96,17 +113,21 @@ public class BorrowerDetailsController {
     }
 
     @DeleteMapping("/delete-by-id/{id}")
-    public ResponseEntity<HttpCall> deletEntity(@PathVariable int id) {
+    public ResponseEntity<HttpCall> deletEntity(@RequestHeader("Authorization") String token, @PathVariable int id) {
 
-        HttpCall httpCall = new HttpCall();
-        httpCall.setRequest("Delete call is Requested.");
-        try {
-            borrowerDetailsService.deleteBorrowerDetail(id);
-            httpCall.setReponse("Details is Deleted.");
-            return new ResponseEntity<>(httpCall, HttpStatus.OK);
-        }catch(Exception e) {
-            httpCall.setReponse("Error occured in Deleting.");
-            return new ResponseEntity<>(httpCall, HttpStatus.INTERNAL_SERVER_ERROR);
+        if(tokenService.checkValidation(token)) {
+            HttpCall httpCall = new HttpCall();
+            httpCall.setRequest("Delete call is Requested.");
+            try {
+                borrowerDetailsService.deleteBorrowerDetail(id);
+                httpCall.setReponse("Details is Deleted.");
+                return new ResponseEntity<>(httpCall, HttpStatus.OK);
+            }catch(Exception e) {
+                httpCall.setReponse("Error occured in Deleting.");
+                return new ResponseEntity<>(httpCall, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 }

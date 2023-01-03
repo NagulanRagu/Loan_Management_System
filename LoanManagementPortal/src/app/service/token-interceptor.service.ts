@@ -12,13 +12,16 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
+    let request = req;
     let token = this.loginService.getToken();
-    let request = req.clone({
-      setHeaders: {
-        Authorization: 'Bearer '+token
-      }
-    });
-
+    if(token != null) {
+      let request = req.clone({
+        setHeaders: {
+          Authorization: 'Bearer '+token
+        }
+      });
+    }
+    console.log(next, req);
     return next.handle(request);
   }
 }

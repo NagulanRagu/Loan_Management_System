@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.RI.Model.LoanRegistered;
 import com.lms.RI.Service.LoanRegisteredService;
+import com.lms.RI.Service.TokenService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -23,50 +25,73 @@ public class LoanRegisteredController {
     @Autowired
     LoanRegisteredService loanRegisteredService;
 
-    @GetMapping("/all-registration")
-    public ResponseEntity<List<LoanRegistered>> getAllDetails() {
+    @Autowired
+    TokenService tokenService;
 
-        try {
-            return new ResponseEntity<>(loanRegisteredService.getAllDetails(), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/all-registration")
+    public ResponseEntity<List<LoanRegistered>> getAllDetails(@RequestHeader("Authorization") String token) {
+
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanRegisteredService.getAllDetails(), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/registration-by-loanNo/{loanNo}")
-    public ResponseEntity<List<LoanRegistered>> getByLoanNo(@PathVariable String loanNo) {
+    public ResponseEntity<List<LoanRegistered>> getByLoanNo(@RequestHeader("Authorization") String token, @PathVariable String loanNo) {
 
-        try {
-            return new ResponseEntity<>(loanRegisteredService.getByLoanNo(loanNo), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanRegisteredService.getByLoanNo(loanNo), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/registration-by-BorrowerId/{borrowerId}")
-    public ResponseEntity<List<LoanRegistered>> getByBorrowerId(@PathVariable int borrowerId) {
+    public ResponseEntity<List<LoanRegistered>> getByBorrowerId(@RequestHeader("Authorization") String token, @PathVariable int borrowerId) {
 
-        try {
-            return new ResponseEntity<>(loanRegisteredService.getByBorrowerId(borrowerId), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanRegisteredService.getByBorrowerId(borrowerId), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<LoanRegistered> saveEntity(@RequestBody LoanRegistered newLoanRegistered) {
+    public ResponseEntity<LoanRegistered> saveEntity(@RequestHeader("Authorization") String token, @RequestBody LoanRegistered newLoanRegistered) {
 
-        try {
-            return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered),HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered),HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @DeleteMapping("/delete-registration/{id}")
-    public ResponseEntity<String> deleteEntity(@PathVariable int id) {
+    public ResponseEntity<String> deleteEntity(@RequestHeader("Authorization") String token, @PathVariable int id) {
 
-        loanRegisteredService.deleteDetails(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(tokenService.checkValidation(token)) {
+            loanRegisteredService.deleteDetails(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 }
