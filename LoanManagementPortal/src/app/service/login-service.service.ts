@@ -16,10 +16,11 @@ export class LoginServiceService {
 
   login(loginCredentails: LoginCredentails) {
 
-    return this.http.post<HttpCall>(`${this.baseUrl}/login-call`, loginCredentails)
+    return this.http.post<HttpCall>('http://localhost:8083/authenticate', loginCredentails)
             .pipe(map(
               data => {
                 sessionStorage.setItem('Authenticated User', loginCredentails.uname);
+                sessionStorage.setItem('Token',data.jwtToken);
                 return data;
               }
             ));
@@ -39,7 +40,12 @@ export class LoginServiceService {
     return sessionStorage.getItem('Authenticated User');
   }
 
+  getToken() {
+    return sessionStorage.getItem('Token');
+  }
+
   logout(): void {
     sessionStorage.removeItem('Authenticated User');
+    sessionStorage.removeItem('Token');
   }
 }

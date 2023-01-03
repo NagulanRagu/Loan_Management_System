@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.LI.Model.LoanDetails;
 import com.lms.LI.Service.LoanDetailsService;
+import com.lms.LI.Service.TokenService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,70 +26,101 @@ public class LoanDetailsController {
     @Autowired
     LoanDetailsService loanDetailsService;
 
-    @GetMapping("/all-loan")
-    public ResponseEntity<List<LoanDetails>> getAllDetails() {
+    @Autowired
+    TokenService tokenService;
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.getAllDetails(), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/all-loan")
+    public ResponseEntity<List<LoanDetails>> getAllDetails(@RequestHeader("Authorization") String token) {
+
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.getAllDetails(), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/loan-by-id/{id}")
-    public ResponseEntity<LoanDetails> getById(@PathVariable int id) {
+    public ResponseEntity<LoanDetails> getById(@RequestHeader("Authorization") String token, @PathVariable int id) {
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.getById(id), HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.getById(id), HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/loan-by-loanType/{loanType}")
-    public ResponseEntity<List<LoanDetails>> getByType(@PathVariable String loanType) {
+    public ResponseEntity<List<LoanDetails>> getByType(@RequestHeader("Authorization") String token, @PathVariable String loanType) {
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.getByType(loanType), HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.getByType(loanType), HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @GetMapping("/loan-by-loanNo/{loanNo}")
-    public ResponseEntity<LoanDetails> getByNumber(@PathVariable String loanNo) {
+    public ResponseEntity<LoanDetails> getByNumber(@RequestHeader("Authorization") String token, @PathVariable String loanNo) {
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.getByNumber(loanNo), HttpStatus.OK);
-        }catch(NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.getByNumber(loanNo), HttpStatus.OK);
+            }catch(NullPointerException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @PostMapping("/add-loan")
-    public ResponseEntity<LoanDetails> saveEntity(@RequestBody LoanDetails newLoanDetails) {
+    public ResponseEntity<LoanDetails> saveEntity(@RequestHeader("Authorization") String token, @RequestBody LoanDetails newLoanDetails) {
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.saveDetails(newLoanDetails), HttpStatus.CREATED);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.saveDetails(newLoanDetails), HttpStatus.CREATED);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @PutMapping("/update-loan/{id}")
-    public ResponseEntity<LoanDetails> updateEntity(@RequestBody LoanDetails updateDetails) {
+    public ResponseEntity<LoanDetails> updateEntity(@RequestHeader("Authorization") String token, @RequestBody LoanDetails updateDetails) {
 
-        try {
-            return new ResponseEntity<>(loanDetailsService.updateDetails(updateDetails), HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(loanDetailsService.updateDetails(updateDetails), HttpStatus.OK);
+            }catch(IllegalArgumentException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 
     @DeleteMapping("/delete-loan/{id}")
-    public ResponseEntity<String> deleteEntity(@PathVariable int id) {
+    public ResponseEntity<String> deleteEntity(@RequestHeader("Authorization") String token, @PathVariable int id) {
 
-        loanDetailsService.deleteDetails(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(tokenService.checkValidation(token)) {
+            loanDetailsService.deleteDetails(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
     }
 }
