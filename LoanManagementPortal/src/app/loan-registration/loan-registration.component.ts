@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BorrowerDetails } from '../model/borrower-details';
 import { LoanRegistration } from '../model/loan-registration';
+import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
+import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
   selector: 'app-loan-registration',
@@ -10,11 +13,26 @@ import { LoanRegistrationService } from '../service/loan-registration.service';
 })
 export class LoanRegistrationComponent implements OnInit {
 
-  constructor(public loanRegistration: LoanRegistration, private loanRegistrationService: LoanRegistrationService,
-    private router: Router) { }
+  constructor(
+    private router: Router, 
+    public loanRegistration: LoanRegistration, 
+    private loanRegistrationService: LoanRegistrationService,
+    private borrowerDetailsService: BorrowerDetailsService, 
+    private loginService: LoginServiceService) { }
+
+  borrowerDetails!: BorrowerDetails;
+  uname!: any;
+  borrowerName!: string;
 
   ngOnInit(): void {
     this.loanRegistration = new LoanRegistration();
+    this.borrowerDetails = new BorrowerDetails();
+    this.uname = this.loginService.getUserName()
+    this.borrowerDetailsService.getBorrowerDetails(this.uname).subscribe(
+      data => {
+        console.log(data);
+        this.borrowerDetails = data;
+      });
   }
 
   sendOnClick() {

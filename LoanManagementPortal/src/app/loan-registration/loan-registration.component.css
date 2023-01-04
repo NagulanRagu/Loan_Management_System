@@ -1,3 +1,51 @@
 .container {
-    margin-top: 100px;
+    background-color: ghostwhite;
+    margin-top: 50px;
+    width :unset;
+    padding: 20px 300px 20px 300px;
+}
+
+h2 {
+    color:crimson;
+    padding: 0px 150px 0px 250px;
+}
+
+h4 {
+    margin-bottom: 0;
+}
+
+hr {
+    margin: 0;
+    background-color: black;
+}
+
+.form-input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: aliceblue;
+}
+
+.form-input:hover {
+    border-color: aliceblue;
+}
+
+.error {
+    background-color: bisque;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+    padding: 8px 0px 0px 0px;
+}
+
+button {
+    width: 15%;
+    margin: 10px 0px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rebeccapurple;
+    font-size: medium;
+    color: whitesmoke;
 }
