@@ -1,32 +1,45 @@
 <div class="container">
     <form>
+        <h2><strong>Application Form</strong></h2>
+        <h4><strong>Borrower Details</strong></h4>
+        <hr>
         <div>
-            <label for="borrowerId">Borrower Id:</label>
-            <input type="search" name="borrowerId" [(ngModel)] = "this.loanRegistration.borrowerId" required>
+            <label for="borrowerName">Borrower Name:</label>
+            <input type="text" name="borrowerName" class="form-input" [(ngModel)] = "this.borrowerDetails.uname" required>
         </div>
         <div>
-            <label for="loanNo">Loan Number:</label>
-            <input type="search" name="loanNo" [(ngModel)] = "this.loanRegistration.loanNo" required>
+            <label for="aadhaarCard">Aadhaar Card:</label>
+            <input type="text" name="aadhaarCard" class="form-input" [(ngModel)] = "this.borrowerDetails.aadhaarCard" required>
+        </div>
+        <div>
+            <label for="panCard">Pan Card:</label>
+            <input type="text" name="panCard" class="form-input" [(ngModel)] = "this.borrowerDetails.panCard" required>
+        </div>
+        <h4><strong>Loan Details</strong></h4>
+        <hr>
+        <div>
+            <label for="loanType">Loan Type:</label>
+            <input type="text" name="loanType" class="form-input" [(ngModel)] = "this.loanRegistration.loanNo" required>
         </div>
         <div>
             <label for="loanAmt">Loan Amount:</label>
-            <input type="text" name="loanAmt" [(ngModel)] = "this.loanRegistration.loanAmt" required>
+            <input type="text" name="loanAmt" class="form-input" [(ngModel)] = "this.loanRegistration.loanAmt" required>
         </div>
         <div>
             <label for="paymentPeriod">Payment Period:</label>
-            <input type="text" name="paymentPeriod" [(ngModel)] = "this.loanRegistration.paymentPeriod" required>
+            <input type="text" name="paymentPeriod" class="form-input" [(ngModel)] = "this.loanRegistration.paymentPeriod" required>
         </div>
         <div>
             <label for="emiAmt">Emi Amount:</label>
-            <input type="text" name="emiAmt" [(ngModel)] = "this.loanRegistration.emiAmt" required>
+            <input type="text" name="emiAmt" class="form-input" [(ngModel)] = "this.loanRegistration.emiAmt" required>
         </div>
         <div>
             <label for="issuedDate">Issue Date:</label>
-            <input type="date" name="issuedDate" [(ngModel)] = "this.loanRegistration.issuedDate" required>
+            <input type="date" name="issuedDate" class="form-input" [(ngModel)] = "this.loanRegistration.issuedDate" required>
         </div>
         <div>
             <label for="propertyDetails">Property Details:</label>
-            <input type="text" name="propertyDetails" [(ngModel)] = "this.loanRegistration.propertyDetails" required>
+            <input type="text" name="propertyDetails" class="form-input" [(ngModel)] = "this.loanRegistration.propertyDetails" required>
         </div>
         <div>
             <button type="submit" (click)="sendOnClick()">Submit</button>

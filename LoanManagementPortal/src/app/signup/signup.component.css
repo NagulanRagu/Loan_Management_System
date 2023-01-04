@@ -1,17 +1,27 @@
 .container {
     background-color: ghostwhite;
-    width: 25%;
-    margin: 100px 50px 50px 50px;
-    padding: 20px;
-    float: right;
+    margin-top: 50px;
+    width :unset;
+    padding: 20px 300px 20px 300px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: aliceblue;
+}
+
+.form-input:hover {
+    border-color: aliceblue;
 }
 
 h3 {
-    padding: 0px 85px;
+    padding: 0px 150px 0px 300px;
 }
 
 .error {
-    background-color: yellow;
+    background-color: bisque;
     padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

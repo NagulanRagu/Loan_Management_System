@@ -44,6 +44,12 @@ public class BorrowerDetails {
     @Column(name = "EmailId", unique = true)
     private String emailId;
 
+    @Column(name = "Aadhaar Card")
+    private String aadhaarCard;
+
+    @Column(name = "Pan Card")
+    private String panCard;
+
     @Column(name = "Address")
     private String address;
 
@@ -52,13 +58,15 @@ public class BorrowerDetails {
     private List<String> roles = new ArrayList<>();
 
     public BorrowerDetails(String fname, String lname, String uname, String password, String phoneno, String emailId,
-            String address) {
+            String aadhaarCard, String panCard, String address) {
         this.fname = fname;
         this.lname = lname;
         this.uname = uname;
         this.password = password;
         this.phoneno = phoneno;
         this.emailId = emailId;
+        this.aadhaarCard = aadhaarCard;
+        this.panCard = panCard;
         this.address = address;
     }
 }
