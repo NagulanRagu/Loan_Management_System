@@ -1,14 +1,17 @@
 .main {
     background-color: aqua;
-    width: 25%;
+    width: 20%;
     padding: 10px 10px 10px 10px;
     margin: 100px 50px 50px 50px;
     float: right;
 }
 
+div {
+    margin: 10px;
+}
+
 input {
     width: 100%;
-    margin: 10px;
     padding: 10px;
     border: 2px solid transparent;
     border-bottom-color: #777;
@@ -17,7 +20,6 @@ input {
 }
 
 input:focus, input:hover {
-    margin: 10px;
     padding: 10px;
     border-radius: 1rem;
     border-color: cadetblue;

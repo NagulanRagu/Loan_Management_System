@@ -2,8 +2,7 @@
     <form>
         <div><input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" placeholder="User name" required></div>
         <div><input type="password" name="password" [(ngModel)]="this.loginCredentails.password" placeholder="Password" required></div>
-        <div><button type="submit" (click)="login()">Login</button>
-            New Register<a routerLink="/signup"> Click here</a>
-        </div>
+        <div><button class="btn btn-success" type="submit" (click)="login()">Login</button></div>
+        <div><strong>New Registeration<a routerLink="/signup"> Click here</a></strong></div> 
     </form>
 </div>
