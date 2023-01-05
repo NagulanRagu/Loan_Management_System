@@ -9,7 +9,13 @@
 			"name": "Get All",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/all-loan",
 					"protocol": "http",
@@ -28,7 +34,13 @@
 			"name": "GetById",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/loan-by-id/2",
 					"protocol": "http",
@@ -48,7 +60,13 @@
 			"name": "Get By Loan Type",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/loan-by-loanType/Personal",
 					"protocol": "http",
@@ -68,7 +86,13 @@
 			"name": "Get By Loan No",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/loan-by-loanNo/L1001",
 					"protocol": "http",
@@ -88,7 +112,13 @@
 			"name": "Add Loan",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"loanNo\" : \"L1004\",\r\n    \"loanType\" : \"Gold\",\r\n    \"rateOfInterest\" : \"6\"\r\n}",
@@ -116,7 +146,13 @@
 			"name": "Delete",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8090/delete-loan/1",
 					"protocol": "http",

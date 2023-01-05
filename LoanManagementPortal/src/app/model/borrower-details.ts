@@ -1,3 +1,5 @@
+import { Address } from "./address";
+
 export class BorrowerDetails {
 
     public id!: number;
@@ -9,7 +11,7 @@ export class BorrowerDetails {
     public emailId!: string;
     public aadhaarCard!: string;
     public panCard!: string;
-    public address!: string;
+    public address!: Address;
     
     getName(): string {
         return `${this.fname} ${this.lname}`;

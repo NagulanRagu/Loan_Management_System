@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,8 @@ public class BorrowerDetailsController {
     TokenService tokenService;
 
     @GetMapping("/user-by-id/{id}")
-    public ResponseEntity<BorrowerDetails> getById(@RequestHeader("Authorization") String token, @PathVariable int id) {
+    public ResponseEntity<BorrowerDetails> getById(@RequestHeader("Authorization") String token, 
+                                                    @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             try {
@@ -45,7 +47,8 @@ public class BorrowerDetailsController {
     }
 
     @GetMapping("/user-by-uname/{uname}")
-    public ResponseEntity<BorrowerDetails> getByUname(@RequestHeader("Authorization") String token, @PathVariable String uname) {
+    public ResponseEntity<BorrowerDetails> getByUname(@RequestHeader("Authorization") String token, 
+                                                        @PathVariable String uname) {
 
         if(tokenService.checkValidation(token)) {
             try {
@@ -76,29 +79,10 @@ public class BorrowerDetailsController {
     public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 
         try {
-            return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
+            return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), 
+                                        HttpStatus.CREATED);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/login-call")
-    public ResponseEntity<HttpCall> login(@RequestBody LoginCredentails loginCredentails) {
-
-        HttpCall httpCall = new HttpCall();
-        httpCall.setRequest("Login call is Requested.");
-        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(loginCredentails.getUname());
-        try {
-            if(borrowerDetails.getPassword().equals(loginCredentails.getPassword())) {
-                httpCall.setReponse("Login is Successfull.");
-                return new ResponseEntity<>(httpCall, HttpStatus.OK);
-            }else {
-                httpCall.setReponse("Password is Wrong.");
-                return new ResponseEntity<>(httpCall, HttpStatus.FORBIDDEN);
-            }
-        }catch(IllegalArgumentException e) {
-            httpCall.setReponse("Username is Wrong.");
-            return new ResponseEntity<>(httpCall, HttpStatus.FORBIDDEN);
         }
     }
 
@@ -112,8 +96,25 @@ public class BorrowerDetailsController {
         return loginCredentails;
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<BorrowerDetails> updateEntity(@RequestHeader("Authorization") String token, 
+                                                        @RequestBody BorrowerDetails borrowerDetails) {
+
+        if(tokenService.checkValidation(token)) {
+            try {
+                return new ResponseEntity<>(borrowerDetailsService.updateBorrowerDetail(borrowerDetails), 
+                                            HttpStatus.OK);
+            }catch(Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
     @DeleteMapping("/delete-by-id/{id}")
-    public ResponseEntity<HttpCall> deletEntity(@RequestHeader("Authorization") String token, @PathVariable int id) {
+    public ResponseEntity<HttpCall> deletEntity(@RequestHeader("Authorization") String token, 
+                                                @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             HttpCall httpCall = new HttpCall();

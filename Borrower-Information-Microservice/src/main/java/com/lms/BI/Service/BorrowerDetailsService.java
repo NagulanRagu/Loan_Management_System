@@ -62,6 +62,16 @@ public class BorrowerDetailsService {
         return borrowerDetailsRepository.save(nBorrowerDetails);
     }
 
+    public BorrowerDetails updateBorrowerDetail(BorrowerDetails uBorrowerDetails) {
+
+        log.info("Updating Detail to the Database: {}", uBorrowerDetails);
+        deleteBorrowerDetail(uBorrowerDetails.getId());
+        log.info("Old Detail is Deleted.");
+        BorrowerDetails addedDetails = saveBorrowerDetail(uBorrowerDetails);
+        log.info("New Detail is Updated.");
+        return addedDetails;
+    }
+
     public void deleteBorrowerDetail(int id) {
 
         log.info("Deleting the Detail from Database for Id: {}", id);

@@ -1,4 +1,4 @@
-package com.lms.RI.Model;
+package com.lms.BI.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class GuarantorAddress {
-    
+public class BorrowerAddress {
+        
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Address Id")
     private int id;
 
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "guarantor_id")
-    private GuarantorInfo info;
+    @PrimaryKeyJoinColumn(name = "borrower_id")
+    private BorrowerDetails borrower;
 
     @Column(name = "House Number")
     private String houseNo;
@@ -41,7 +41,7 @@ public class GuarantorAddress {
     @Column(name = "Pincode")
     private String pincode;
 
-    public GuarantorAddress(String houseNo, String street, String city, String state, String pincode) {
+    public BorrowerAddress(String houseNo, String street, String city, String state, String pincode) {
         this.houseNo = houseNo;
         this.street = street;
         this.city = city;

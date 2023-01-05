@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fname\" : \"Nagulan\",\r\n    \"lname\" : \"R U\",\r\n    \"uname\" : \"Nagulan R U\",\r\n    \"password\" : \"1234\",\r\n    \"phoneno\" : \"8870323658\",\r\n    \"emailId\" : \"runagulan88@gmail.com\",\r\n    \"address\" : \"63B-72B Chinnarasingam Street, Vadasery, Nagercoil-629001\"\r\n}",
+					"raw": "{\r\n    \"uname\" : \"Admin\",\r\n    \"password\" : \"1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,7 +37,13 @@
 			"name": "Get All",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjgyMTY3MSwiaWF0IjoxNjcyODE5ODcxfQ.Pfse3egDy6-ZdKcjTQJx0aAOi_jc26lDCCmhK2WoAFo",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/all-user",
 					"protocol": "http",
@@ -47,6 +53,13 @@
 					"port": "8080",
 					"path": [
 						"all-user"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -56,7 +69,13 @@
 			"name": "Get By Id",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/user-by-id/2",
 					"protocol": "http",
@@ -73,40 +92,18 @@
 			"response": []
 		},
 		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"uname\" : \"Nagulan R U\",\r\n    \"password\" : \"1234\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/login-call",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"login-call"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Delete",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjkxODc1NCwiaWF0IjoxNjcyOTE2OTU0fQ.ajun9CCCjAH0fjit57nPMAAs3C6qxLHhuh45NdGFiCA",
+						"type": "default"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/delete-by-id/2",
+					"raw": "http://localhost:8080/delete-by-id/152",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,7 +111,7 @@
 					"port": "8080",
 					"path": [
 						"delete-by-id",
-						"2"
+						"152"
 					]
 				}
 			},
@@ -124,7 +121,13 @@
 			"name": "GetByUname",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/user-by-uname/Nagulan R U",
 					"protocol": "http",
@@ -135,6 +138,43 @@
 					"path": [
 						"user-by-uname",
 						"Nagulan R U"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update"
 					]
 				}
 			},

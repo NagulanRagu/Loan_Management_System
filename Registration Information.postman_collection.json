@@ -9,7 +9,13 @@
 			"name": "Get All",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8100/all-registration",
 					"protocol": "http",
@@ -28,7 +34,13 @@
 			"name": "Get by Loan Number",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8100/registration-by-loanNo/L1001",
 					"protocol": "http",
@@ -48,7 +60,13 @@
 			"name": "Get by Borrower Id",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8100/registration-by-BorrowerId/2",
 					"protocol": "http",
@@ -68,10 +86,16 @@
 			"name": "Save Registration",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"borrowerId\" : \"2\",\r\n    \"loanNo\" : \"1001\",\r\n    \"loanAmt\" : \"25000\",\r\n    \"paymentPeriod\" : \"10\",\r\n    \"emiAmt\" : \"2500\",\r\n    \"issuedDate\" : \"28/12/2022\",\r\n    \"propertyDetails\" : \"House\"\r\n}",
+					"raw": "{\r\n    \"borrowerId\" : \"2\",\r\n    \"loanType\" : \"Personal\",\r\n    \"loanAmt\" : \"25000\",\r\n    \"paymentPeriod\" : \"10\",\r\n    \"emiAmt\" : \"2500\",\r\n    \"issuedDate\" : \"28/12/2022\",\r\n    \"propertyDetails\" : \"House\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,9 +120,15 @@
 			"name": "Delete Registration",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjkwNTExOCwiaWF0IjoxNjcyOTAzMzE4fQ.A8GTfnow4pjphN8kpa2VmvG9eXEZ2p98SqPqbhqU7k0",
+						"type": "default"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8100/delete-registration/4",
+					"raw": "http://localhost:8100/delete-registration/152",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -106,7 +136,7 @@
 					"port": "8100",
 					"path": [
 						"delete-registration",
-						"4"
+						"152"
 					]
 				}
 			},
