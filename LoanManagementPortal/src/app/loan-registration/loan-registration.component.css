@@ -2,12 +2,12 @@
     background-color: ghostwhite;
     margin-top: 50px;
     width :unset;
-    padding: 20px 300px 20px 300px;
+    padding: 20px 200px 20px 200px;
 }
 
 h2 {
     color:crimson;
-    padding: 0px 150px 0px 250px;
+    padding: 0px 150px 0px 350px;
 }
 
 h4 {
@@ -19,15 +19,24 @@ hr {
     background-color: black;
 }
 
+.group {
+    padding: 10px 10px 10px 20px;
+}
+
+.sub-group {
+    margin: 15px 10px 15px 30px;
+}
+
+.sub-sub-group {
+    margin: 15px 10px 15px 1px;
+}
+
 .form-input {
-    width: 100%;
+    width: 30%;
     padding: 5px;
     border-radius: 5px;
     border-color: aliceblue;
-}
-
-.form-input:hover {
-    border-color: aliceblue;
+    /* float: right; */
 }
 
 .error {
