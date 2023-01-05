@@ -42,12 +42,12 @@ public class LoanRegisteredController {
         }
     }
 
-    @GetMapping("/registration-by-loanNo/{loanNo}")
-    public ResponseEntity<List<LoanRegistered>> getByLoanNo(@RequestHeader("Authorization") String token, @PathVariable String loanNo) {
+    @GetMapping("/registration-by-loanNo/{loanType}")
+    public ResponseEntity<List<LoanRegistered>> getByLoanNo(@RequestHeader("Authorization") String token, @PathVariable String loanType) {
 
         if(tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanRegisteredService.getByLoanNo(loanNo), HttpStatus.OK);
+                return new ResponseEntity<>(loanRegisteredService.getByLoanType(loanType), HttpStatus.OK);
             }catch(NullPointerException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

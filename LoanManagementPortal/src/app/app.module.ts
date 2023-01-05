@@ -21,6 +21,8 @@ import { AddLoanDetailsComponent } from './add-loan-details/add-loan-details.com
 import { SeeLoanRegistrationComponent } from './see-loan-registration/see-loan-registration.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
+import { GuarantorInfo } from './model/guarantor-info';
+import { Address } from './model/address';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     LoginCredentails,
     BorrowerDetails,
     LoanDetails,
-    HttpCall
+    HttpCall,
+    GuarantorInfo,
+    Address
   ],
   bootstrap: [AppComponent]
 })

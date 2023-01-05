@@ -4,11 +4,14 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +30,8 @@ public class LoanRegistered {
     @Column(name = "Borrower Id")
     private int borrowerId;
 
-    @Column(name = "Loan Number")
-    private String loanNo;
+    @Column(name = "Loan Type")
+    private String loanType;
 
     @Column(name = "Loan Amount")
     private String loanAmt;
@@ -43,18 +46,20 @@ public class LoanRegistered {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date issuedDate;
 
-    @Column(name = "Property Details")
-    private String propertyDetails;
+    @OneToOne(fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL,
+              mappedBy = "registered")
+    private GuarantorInfo guarantorInfo;
 
-    public LoanRegistered(int borrowerId, String loanNo, String loanAmt, int paymentPeriod, String emiAmt,
-            Date issuedDate, String propertyDetails) {
+    public LoanRegistered(int borrowerId, String loanType, String loanAmt, int paymentPeriod, String emiAmt,
+            Date issuedDate, GuarantorInfo guarantorInfo) {
         this.borrowerId = borrowerId;
-        this.loanNo = loanNo;
+        this.loanType = loanType;
         this.loanAmt = loanAmt;
         this.paymentPeriod = paymentPeriod;
         this.emiAmt = emiAmt;
         this.issuedDate = issuedDate;
-        this.propertyDetails = propertyDetails;
+        this.guarantorInfo = guarantorInfo;
     }
 }
 

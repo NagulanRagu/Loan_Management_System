@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
+import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanRegistration } from '../model/loan-registration';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
@@ -15,10 +17,12 @@ export class LoanRegistrationComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    public loanRegistration: LoanRegistration, 
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService, 
-    private loginService: LoginServiceService) { }
+    private loginService: LoginServiceService,
+    public loanRegistration: LoanRegistration, 
+    public guarantorInfo: GuarantorInfo,
+    public guarantorAddress: Address) { }
 
   borrowerDetails!: BorrowerDetails;
   uname!: any;
@@ -26,6 +30,8 @@ export class LoanRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loanRegistration = new LoanRegistration();
+    this.loanRegistration.guarantorInfo = new GuarantorInfo();
+    this.loanRegistration.guarantorInfo.guarantorAddress = new Address();
     this.borrowerDetails = new BorrowerDetails();
     this.uname = this.loginService.getUserName()
     this.borrowerDetailsService.getBorrowerDetails(this.uname).subscribe(
