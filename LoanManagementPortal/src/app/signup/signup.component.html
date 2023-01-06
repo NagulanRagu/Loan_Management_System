@@ -1,44 +1,116 @@
 <div class="container">
     <h3><strong>Sign in</strong></h3>
-    <div class="error" *ngIf="signupForm.invalid && signupForm.touched">Please the fill the required field.</div>
-    <form #signupForm = "ngForm">
-        <div>
+    <form>
+        <div class="group">
             <label for="fname">First Name:*</label>
-            <input type="text" id="fname" name="fname" class="form-input" [(ngModel)]="this.borrowerDetails.fname" required>
+            <input type="text" id="fname" name="fname" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.fname" #fname="ngModel" required>
+            <div class="error" *ngIf="fname.invalid && (fname.touched || fname.dirty)">
+                First Name is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="lname">Last Name:*</label>
-            <input type="text" id="lname" name="lname" class="form-input" [(ngModel)]="this.borrowerDetails.lname" required>
+            <input type="text" id="lname" name="lname" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.lname" #lname="ngModel" required>
+            <div class="error" *ngIf="lname.invalid && (lname.touched || lname.dirty)">
+                Last Name is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="uname">User Name:*</label>
-            <input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="this.borrowerDetails.uname" required>
+            <input type="text" id="uname" name="uname" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.uname" #uname="ngModel" required>
+            <div class="error" *ngIf="uname.invalid && (uname.touched || uname.dirty)">
+                User Name is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="password">Create Password:*</label>
-            <input type="password" id="password" name="password" class="form-input" [(ngModel)]="this.borrowerDetails.password" required>
+            <input type="password" id="password" name="password" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.password" #password="ngModel" required>
+            <div class="error" *ngIf="password.invalid && (password.touched || password.dirty)">
+                Password is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="emailId">Email Id:*</label>
-            <input type="email" id="emailId" name="emailId" class="form-input" [(ngModel)]="this.borrowerDetails.emailId" required>
+            <input type="email" id="emailId" name="emailId" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.emailId" #emailId="ngModel" required>
+            <div class="error" *ngIf="emailId.invalid && (emailId.touched || emailId.dirty)">
+                Email Id is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="phoneno">Phone Number:*</label>
-            <input type="text" id="phoneno" name="phoneno" class="form-input" [(ngModel)]="this.borrowerDetails.phoneno" required>
+            <input type="text" id="phoneno" name="phoneno" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.phoneno" #phoneno="ngModel" required>
+            <div class="error" *ngIf="phoneno.invalid && (phoneno.touched || phoneno.dirty)">
+                Phone Number is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
+            <h4><strong>Address:</strong></h4>
+            <div class="sub-group">
+                <label for="houseNo">House Number:*</label>
+                <input type="text" name="houseNo" class="form-input" 
+                        [(ngModel)] = "this.borrowerDetails.address.houseNo" #houseNo="ngModel" required>
+                <div class="error" *ngIf="houseNo.invalid && (houseNo.touched || houseNo.dirty)">
+                    House Number required field.
+                </div>
+            </div>
+            <div class="sub-group">
+                <label for="street">Street:*</label>
+                <input type="text" name="street" class="form-input" 
+                        [(ngModel)] = "this.borrowerDetails.address.street" #street="ngModel" required>
+                <div class="error" *ngIf="street.invalid && (street.touched || street.dirty)">
+                    Street is required field.
+                </div>
+            </div>
+            <div class="sub-group">
+                <label for="city">City:*</label>
+                <input type="text" name="city" class="form-input" 
+                        [(ngModel)] = "this.borrowerDetails.address.city" #city="ngModel" required>
+                <div class="error" *ngIf="city.invalid && (city.touched || city.dirty)">
+                    City is required field.
+                </div>
+            </div>
+            <div class="sub-group">
+                <label for="state">State:*</label>
+                <input type="text" name="state" class="form-input" 
+                        [(ngModel)] = "this.borrowerDetails.address.state" #state="ngModel" required>
+                <div class="error" *ngIf="state.invalid && (state.touched || state.dirty)">
+                    State is required field.
+                </div>
+            </div>
+            <div class="sub-group">
+                <label for="pincode">Pincode:*</label>
+                <input type="text" name="pincode" class="form-input" 
+                        [(ngModel)] = "this.borrowerDetails.address.pincode" #pincode="ngModel" required>
+                <div class="error" *ngIf="pincode.invalid && (pincode.touched || pincode.dirty)">
+                    Pincode is required field.
+                </div>
+            </div>
+        </div>
+        <div class="group">
             <label for="uname">Aadhaar Card:*</label>
-            <input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="this.borrowerDetails.aadhaarCard" required>
+            <input type="text" id="uname" name="uname" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.aadhaarCard" #aadhaarCard="ngModel" required>
+            <div class="error" *ngIf="aadhaarCard.invalid && (aadhaarCard.touched || aadhaarCard.dirty)">
+                Aadhaar Number is required field.
+            </div>
         </div>
-        <div>
+        <div class="group">
             <label for="uname">Pan Card:*</label>
-            <input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="this.borrowerDetails.panCard" required>
+            <input type="text" id="uname" name="uname" class="form-input" 
+                    [(ngModel)]="this.borrowerDetails.panCard" #panCard="ngModel" required>
+            <div class="error" *ngIf="panCard.invalid && (panCard.touched || panCard.dirty)">
+                Pan Number is required field.
+            </div>
         </div>
-        <div>
-            <label for="address">Address:*</label>
-            <textarea id="address" name="address" class="form-input" [(ngModel)]="this.borrowerDetails.address" rows="5" required></textarea>
+        <div class="group">
+            <button class="btn btn-primary btn-block mb-4" type="submit" (click)="signup()">Signup</button>
+            <div><strong>Already Register<a routerLink="/login">Click here</a></strong></div>
         </div>
-        <button class="btn btn-primary btn-block mb-4" type="submit" (click)="signup()">Signup</button>
-        <div><strong>Already Register<a routerLink="/login">Click here</a></strong></div>
     </form>
 </div>

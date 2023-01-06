@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { LoginServiceService } from '../service/login-service.service';
 
@@ -10,12 +11,14 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private router: Router, private loginService: LoginServiceService) { }
-
-  public borrowerDetails!: BorrowerDetails;
+  constructor(private router: Router, 
+              private loginService: LoginServiceService,
+              public borrowerDetails: BorrowerDetails,
+              public address: Address) { }
 
   ngOnInit(): void {
     this.borrowerDetails = new BorrowerDetails();
+    this.borrowerDetails.address = new Address();
   }
 
   signup(){

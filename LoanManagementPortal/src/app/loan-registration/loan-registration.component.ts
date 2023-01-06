@@ -20,11 +20,11 @@ export class LoanRegistrationComponent implements OnInit {
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService, 
     private loginService: LoginServiceService,
+    public borrowerDetails: BorrowerDetails,
     public loanRegistration: LoanRegistration, 
     public guarantorInfo: GuarantorInfo,
     public guarantorAddress: Address) { }
 
-  borrowerDetails!: BorrowerDetails;
   uname!: any;
   borrowerName!: string;
 
@@ -33,6 +33,7 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo = new GuarantorInfo();
     this.loanRegistration.guarantorInfo.guarantorAddress = new Address();
     this.borrowerDetails = new BorrowerDetails();
+    this.borrowerDetails.address = new Address();
     this.uname = this.loginService.getUserName()
     this.borrowerDetailsService.getBorrowerDetails(this.uname).subscribe(
       data => {

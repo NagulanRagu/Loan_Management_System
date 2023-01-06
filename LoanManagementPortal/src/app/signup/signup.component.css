@@ -5,6 +5,19 @@
     padding: 20px 300px 20px 300px;
 }
 
+.error {
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h3 {
+    padding: 0px 150px 0px 300px;
+}
+
+label {
+    padding: 8px 0px 0px 0px;
+}
+
 .form-input {
     width: 100%;
     padding: 5px;
@@ -12,25 +25,15 @@
     border-color: aliceblue;
 }
 
-.form-input:hover {
-    border-color: aliceblue;
+.group {
+    margin: 10px;
 }
 
-h3 {
-    padding: 0px 150px 0px 300px;
-}
-
-.error {
-    background-color: bisque;
-    padding: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-label {
-    padding: 8px 0px 0px 0px;
+.sub-group {
+    padding: 0px 10px 0px 10px;
 }
 
 button {
-    width: 25%;
+    width: 100%;
     margin: 10px 0px;
 }
