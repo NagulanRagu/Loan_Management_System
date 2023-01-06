@@ -33,7 +33,7 @@ public class BorrowerDetailsController {
 
     @GetMapping("/user-by-id/{id}")
     public ResponseEntity<BorrowerDetails> getById(@RequestHeader("Authorization") String token, 
-                                                    @PathVariable int id) {
+                                                    @PathVariable long id) {
 
         if(tokenService.checkValidation(token)) {
             try {
@@ -114,7 +114,7 @@ public class BorrowerDetailsController {
 
     @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity<HttpCall> deletEntity(@RequestHeader("Authorization") String token, 
-                                                @PathVariable int id) {
+                                                @PathVariable long id) {
 
         if(tokenService.checkValidation(token)) {
             HttpCall httpCall = new HttpCall();

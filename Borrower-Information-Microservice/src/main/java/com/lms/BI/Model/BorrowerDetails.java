@@ -7,7 +7,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,41 +20,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "BorrowerDetails")
+@Table(name = "borrower_details")
 public class BorrowerDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "BorrowerId")
-    private int id;
+    private long id;
 
-    @Column(name = "Firstname")
+    @Column(name = "firstname")
     private String fname;
 
-    @Column(name = "Lastname")
+    @Column(name = "lastname")
     private String lname;
 
-    @Column(name = "Username", unique = true)
+    @Column(name = "username", unique = true)
     private String uname;
 
-    @Column(name = "Password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "PhoneNumber")
+    @Column(name = "phone_number")
     private String phoneno;
 
-    @Column(name = "EmailId", unique = true)
+    @Column(name = "email_id", unique = true)
     private String emailId;
 
-    @Column(name = "Aadhaar Card")
+    @Column(name = "aadhaar_Card")
     private String aadhaarCard;
 
-    @Column(name = "Pan Card")
+    @Column(name = "pan_Card")
     private String panCard;
 
-    @OneToOne(fetch = FetchType.LAZY,
-              cascade = CascadeType.ALL,
-              mappedBy = "borrower")
+    @OneToOne(cascade = CascadeType.ALL)
     private BorrowerAddress borrowerAddress;
 
     @ElementCollection

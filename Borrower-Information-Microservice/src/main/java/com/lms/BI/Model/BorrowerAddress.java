@@ -5,8 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,18 +14,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "borrower_address")
 public class BorrowerAddress {
         
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Address Id")
-    private int id;
+    private long id;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "borrower_id")
-    private BorrowerDetails borrower;
-
-    @Column(name = "House Number")
+    @Column(name = "House_Number")
     private String houseNo;
 
     @Column(name = "Street")

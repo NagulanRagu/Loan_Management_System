@@ -30,7 +30,7 @@ public class BorrowerDetailsService {
         }
     }
 
-    public BorrowerDetails getById(int id) throws IllegalArgumentException {
+    public BorrowerDetails getById(long id) throws IllegalArgumentException {
 
         log.info("Getting Details from Database for Id: {}", id);
         BorrowerDetails getDetail = borrowerDetailsRepository.findById(id);
@@ -72,7 +72,7 @@ public class BorrowerDetailsService {
         return addedDetails;
     }
 
-    public void deleteBorrowerDetail(int id) {
+    public void deleteBorrowerDetail(long id) {
 
         log.info("Deleting the Detail from Database for Id: {}", id);
         borrowerDetailsRepository.deleteById(id);

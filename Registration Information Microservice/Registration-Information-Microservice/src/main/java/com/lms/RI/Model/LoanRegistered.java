@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,42 +20,44 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "loan_registered")
 public class LoanRegistered {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Registration Id")
     private int id;
 
-    @Column(name = "Borrower Id")
+    @Column(name = "borrower_id")
     private int borrowerId;
 
-    @Column(name = "Loan Type")
+    @Column(name = "loan_type")
     private String loanType;
 
-    @Column(name = "Loan Amount")
-    private String loanAmt;
+    @Column(name = "asked_loan_amount")
+    private String askedLoanAmt;
 
-    @Column(name = "Payment Period")
+    @Column(name = "provided_loan_amount")
+    private String providedLoanAmount;
+
+    @Column(name = "payment_period")
     private int paymentPeriod;
 
-    @Column(name = "EMI Amount")
+    @Column(name = "emi_amount")
     private String emiAmt;
 
-    @Column(name = "Issued Date")
+    @Column(name = "issued_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date issuedDate;
 
-    @OneToOne(fetch = FetchType.LAZY,
-              cascade = CascadeType.ALL,
-              mappedBy = "registered")
+    @OneToOne(cascade = CascadeType.ALL)
     private GuarantorInfo guarantorInfo;
 
-    public LoanRegistered(int borrowerId, String loanType, String loanAmt, int paymentPeriod, String emiAmt,
-            Date issuedDate, GuarantorInfo guarantorInfo) {
+    public LoanRegistered(int borrowerId, String loanType, String askedLoanAmt, String providedLoanAmount, 
+            int paymentPeriod, String emiAmt, Date issuedDate, GuarantorInfo guarantorInfo) {
         this.borrowerId = borrowerId;
         this.loanType = loanType;
-        this.loanAmt = loanAmt;
+        this.askedLoanAmt = askedLoanAmt;
+        this.providedLoanAmount = providedLoanAmount;
         this.paymentPeriod = paymentPeriod;
         this.emiAmt = emiAmt;
         this.issuedDate = issuedDate;
