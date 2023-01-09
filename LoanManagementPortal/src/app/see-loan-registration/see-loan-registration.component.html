@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th><a>Customer Name</a></th>
+                <th>Customer Name</th>
                 <th>Loan Type</th>
-                <th>Loan Amount</th>
+                <th>Asked Loan Amount</th>
                 <th>Payment Period</th>
                 <th>Emi Amount</th>
                 <th>Issued Date</th>
@@ -14,10 +14,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let registration of loanRegistration">
-                <td>{{registration.id}}</td>
-                <td>{{registration.borrowerId}}</td>
+                <td><a>{{registration.id}}</a></td>
+                <td>{{uname}}</td>
                 <td>{{registration.loanType}}</td>
-                <td>{{registration.loanAmt}}</td>
+                <td>{{registration.askedLoanAmt}}</td>
                 <td>{{registration.paymentPeriod}}</td>
                 <td>{{registration.emiAmt}}</td>
                 <td>{{registration.issuedDate}}</td>

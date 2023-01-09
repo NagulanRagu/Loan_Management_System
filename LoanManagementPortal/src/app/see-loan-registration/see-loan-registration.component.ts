@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanRegistration } from '../model/loan-registration';
 import { LoanRegistrationService } from '../service/loan-registration.service';
+import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
   selector: 'app-see-loan-registration',
@@ -9,7 +10,10 @@ import { LoanRegistrationService } from '../service/loan-registration.service';
 })
 export class SeeLoanRegistrationComponent implements OnInit {
 
-  constructor(private loanRegistrationService: LoanRegistrationService) { }
+  constructor(private loanRegistrationService: LoanRegistrationService,
+              private loginService: LoginServiceService) { }
+  
+  uname!: any;
   
   loanRegistration!: LoanRegistration[];
 
@@ -26,5 +30,6 @@ export class SeeLoanRegistrationComponent implements OnInit {
       error => {
         console.log(error);
       });
+    this.uname = this.loginService.getUserName();
   }
 }

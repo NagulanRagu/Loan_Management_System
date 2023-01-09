@@ -37,7 +37,7 @@ public class LoanRegistered {
     private String askedLoanAmt;
 
     @Column(name = "provided_loan_amount")
-    private String providedLoanAmount;
+    private String providedLoanAmt;
 
     @Column(name = "payment_period")
     private int paymentPeriod;
@@ -57,7 +57,7 @@ public class LoanRegistered {
         this.borrowerId = borrowerId;
         this.loanType = loanType;
         this.askedLoanAmt = askedLoanAmt;
-        this.providedLoanAmount = providedLoanAmount;
+        this.providedLoanAmt = providedLoanAmount;
         this.paymentPeriod = paymentPeriod;
         this.emiAmt = emiAmt;
         this.issuedDate = issuedDate;

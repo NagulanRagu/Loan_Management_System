@@ -1,116 +1,5 @@
 <div class="container">
     <form>
-        <!-- <h2><strong>Application Form</strong></h2>
-        <br><br>
-        <h4><strong>Borrower Details</strong></h4>
-        <hr>
-        <div class="group">
-            <div class="sub-group">
-                <label for="fname">First Name:</label>
-                <input type="text" name="fname" class="form-input" [(ngModel)] = "this.borrowerDetails.fname" required>
-            </div>
-            <div class="sub-group">
-                <label for="lname">Last Name:</label>
-                <input type="text" name="lname" class="form-input" [(ngModel)] = "this.borrowerDetails.lname" required>
-            </div>
-            <div class="sub-group">
-                <label for="aadhaarCard">Aadhaar Card:</label>
-                <input type="text" name="aadhaarCard" class="form-input" [(ngModel)] = "this.borrowerDetails.aadhaarCard" required>
-            </div>
-            <div class="sub-group">
-                <label for="panCard">Pan Card:</label>
-                <input type="text" name="panCard" class="form-input" [(ngModel)] = "this.borrowerDetails.panCard" required>
-            </div>
-            <div class="sub-group">
-                <h5><strong>Address:</strong></h5>
-                <div class="sub-group">
-                    <div class="sub-sub-group">
-                        <label for="houseNo">House Number:</label>
-                        <input type="text" name="houseNo" class="form-input" [(ngModel)] = "this.borrowerDetails.borrowerAddress.houseNo" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="street">Street:</label>
-                        <input type="text" name="street" class="form-input" [(ngModel)] = "this.borrowerDetails.borrowerAddress.street" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="city">City:</label>
-                        <input type="text" name="city" class="form-input" [(ngModel)] = "this.borrowerDetails.borrowerAddress.city" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="state">State:</label>
-                        <input type="text" name="state" class="form-input" [(ngModel)] = "this.borrowerDetails.borrowerAddress.state" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="pincode">Pincode:</label>
-                        <input type="text" name="pincode" class="form-input" [(ngModel)] = "this.borrowerDetails.borrowerAddress.pincode" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h4><strong>Loan Details</strong></h4>
-        <hr>
-        <div class="group">
-            <div class="sub-group">
-                <label for="loanType">Loan Type:</label>
-                <input type="text" name="loanType" class="form-input" [(ngModel)] = "this.loanRegistration.loanType" required>
-            </div>
-            <div class="sub-group">
-                <label for="loanAmt">Required Loan Amount:</label>
-                <input type="text" name="loanAmt" class="form-input" [(ngModel)] = "this.loanRegistration.loanAmt" required>
-            </div>
-            <div class="sub-group">
-                <label for="paymentPeriod">Payment Period:</label>
-                <input type="text" name="paymentPeriod" class="form-input" [(ngModel)] = "this.loanRegistration.paymentPeriod" required>
-            </div>
-            <div class="sub-group">
-                <label for="emiAmt">Emi Amount:</label>
-                <input type="text" name="emiAmt" class="form-input" [(ngModel)] = "this.loanRegistration.emiAmt" required>
-            </div>
-        </div>
-        <h4><strong>Guarantor Details</strong></h4>
-        <hr>
-        <div class="group">
-            <div class="sub-group">
-                <label for="guarantorName">Name:</label>
-                <input type="text" name="guarantorName" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorName" required>
-            </div>
-            <div class="sub-group">
-                <label for="guarantorPhoneNo">Phone Number:</label>
-                <input type="text" name="guarantorPhoneNo" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorPhoneNo" required>
-            </div>
-            <div class="sub-group">
-                <label for="guarantorEmailId">Email Id:</label>
-                <input type="text" name="guarantorEmailId" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorEmailId" required>
-            </div>
-            <div class="sub-group">
-                <h5><strong>Address:</strong></h5>
-                <div class="sub-group">
-                    <div class="sub-sub-group">
-                        <label for="houseNo">House Number:</label>
-                        <input type="text" name="houseNo" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="street">Street:</label>
-                        <input type="text" name="street" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.street" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="city">City:</label>
-                        <input type="text" name="city" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.city" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="state">State:</label>
-                        <input type="text" name="state" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.state" required>
-                    </div>
-                    <div class="sub-sub-group">
-                        <label for="pincode">Pincode:</label>
-                        <input type="text" name="pincode" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <button type="submit" (click)="sendOnClick()">Submit</button>
-        </div> -->
         <table>
             <caption><h2><strong>Application Form</strong></h2></caption>
             <tr>
@@ -150,10 +39,11 @@
             </tr>
             <tr>
                 <td><label for="loanType">Loan Type:</label></td>
+                <td><input type="text" name="loanType" class="form-input" [(ngModel)] = "this.loanRegistration.loanType" required></td>
             </tr>
             <tr>
                 <td><label for="loanAmt">Required Loan Amount:</label></td>
-                <td><input type="text" id="loanAmt" class="form-input" [(ngModel)] = "this.loanRegistration.loanAmt" required></td>
+                <td><input type="text" id="loanAmt" class="form-input" [(ngModel)] = "this.loanRegistration.askedLoanAmt" required></td>
             </tr>
             <tr>
                 <td><label for="paymentPeriod">Payment Period:</label></td>
@@ -183,17 +73,17 @@
             </tr>
             <tr>
                 <td>House Number:</td>
-                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.houseNo}}</td>
+                <td><input type="text" name="houseNo" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required></td>
                 <td>Street:</td>
-                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.street}}</td>
+                <td><input type="text" name="street" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.street" required></td>
             </tr>
             <tr>
                 <td>City:</td>
-                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.city}}</td>
+                <td><input type="text" name="state" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.city" required></td>
                 <td>State:</td>
-                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.state}}</td>
+                <td><input type="text" name="state" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.state" required></td>
                 <td>Pincode:</td>
-                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.pincode}}</td>
+                <td><input type="text" name="pincode" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required></td>
             </tr>
         </table>
         <div>
