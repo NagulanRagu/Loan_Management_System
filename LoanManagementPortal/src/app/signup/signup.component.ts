@@ -14,11 +14,11 @@ export class SignupComponent implements OnInit {
   constructor(private router: Router, 
               private loginService: LoginServiceService,
               public borrowerDetails: BorrowerDetails,
-              public address: Address) { }
+              public borrowerAddress: Address) { }
 
   ngOnInit(): void {
     this.borrowerDetails = new BorrowerDetails();
-    this.borrowerDetails.address = new Address();
+    this.borrowerDetails.borrowerAddress = new Address();
   }
 
   signup(){

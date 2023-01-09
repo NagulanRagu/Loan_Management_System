@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { GuarantorAddress } from "./guarantor-address";
 
 export class GuarantorInfo {
 
@@ -6,5 +6,5 @@ export class GuarantorInfo {
     public guarantorName!: string;
     public guarantorPhoneNo!: string;
     public guarantorEmailId!: string;
-    public guarantorAddress!: Address;
+    public guarantorAddress!: GuarantorAddress;
 }

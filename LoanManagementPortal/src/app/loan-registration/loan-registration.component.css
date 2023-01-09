@@ -2,7 +2,7 @@
     background-color: ghostwhite;
     margin-top: 50px;
     width :unset;
-    padding: 20px 200px 20px 200px;
+    padding: 20px 20px 20px 200px;
 }
 
 h2 {
@@ -32,7 +32,7 @@ hr {
 }
 
 .form-input {
-    width: 30%;
+    width: 100%;
     padding: 5px;
     border-radius: 5px;
     border-color: aliceblue;
@@ -57,4 +57,10 @@ button {
     background-color: rebeccapurple;
     font-size: medium;
     color: whitesmoke;
+}
+
+td {
+    padding: 10px;
+    margin-left: 10px;
+    font-size: larger;
 }

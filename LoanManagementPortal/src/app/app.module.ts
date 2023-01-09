@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { GuarantorInfo } from './model/guarantor-info';
 import { Address } from './model/address';
+import { GuarantorAddress } from './model/guarantor-address';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { Address } from './model/address';
     LoanDetails,
     HttpCall,
     GuarantorInfo,
-    Address
+    Address,
+    GuarantorAddress
   ],
   bootstrap: [AppComponent]
 })

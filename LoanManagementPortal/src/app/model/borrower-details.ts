@@ -11,7 +11,7 @@ export class BorrowerDetails {
     public emailId!: string;
     public aadhaarCard!: string;
     public panCard!: string;
-    public address!: Address;
+    public borrowerAddress!: Address;
     
     getName(): string {
         return `${this.fname} ${this.lname}`;
