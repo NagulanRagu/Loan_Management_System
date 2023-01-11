@@ -49,7 +49,7 @@ export class LoanRegistrationComponent implements OnInit {
   }
 
   sendOnClick() {
-
+    this.loanRegistration.borrowerName = this.borrowerDetails.uname;
     this.loanRegistrationService.sendLoanRegistration(this.loanRegistration).subscribe(
       data => {
         console.log(data);

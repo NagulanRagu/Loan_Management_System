@@ -1,15 +1,15 @@
 package com.lms.BI.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -54,12 +54,12 @@ public class BorrowerDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private BorrowerAddress borrowerAddress;
 
-    @ElementCollection
-    @Column(name = "Roles")
-    private List<String> roles = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "borrower_id", referencedColumnName = "id")
+    private Set<Role> roles;
 
     public BorrowerDetails(String fname, String lname, String uname, String password, String phoneno, String emailId,
-            String aadhaarCard, String panCard, BorrowerAddress borrowerAddress) {
+            String aadhaarCard, String panCard, BorrowerAddress borrowerAddress, Set<Role> roles) {
         this.fname = fname;
         this.lname = lname;
         this.uname = uname;
@@ -69,5 +69,6 @@ public class BorrowerDetails {
         this.aadhaarCard = aadhaarCard;
         this.panCard = panCard;
         this.borrowerAddress = borrowerAddress;
+        this.roles = roles;
     }
 }

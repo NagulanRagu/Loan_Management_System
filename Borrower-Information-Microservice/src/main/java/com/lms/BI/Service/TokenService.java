@@ -18,7 +18,8 @@ public class TokenService {
     public boolean checkValidation(String token) {
 
         log.info("Checking the Token Validation for Token: {}", token);
-        AuthResponse authResponse = feignAuthorization.getValidity(token).getBody();
+
+        AuthResponse authResponse =  feignAuthorization.getValidity(token).getBody();
         if(authResponse.isValid()) {
             log.info("Token is Valid.");
             return true;

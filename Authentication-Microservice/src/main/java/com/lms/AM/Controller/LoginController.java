@@ -1,8 +1,11 @@
 package com.lms.AM.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lms.AM.FeignClient.AuthClient;
 import com.lms.AM.Pojo.AuthResponse;
 import com.lms.AM.Pojo.JwtResponse;
 import com.lms.AM.Pojo.LoginCredentails;
@@ -32,6 +36,9 @@ public class LoginController {
     JWTUtility jwtUtility;
 
     @Autowired
+    AuthClient authClient;
+
+    @Autowired
     AuthenticationManager authenticationManager;
 
     /**
@@ -41,6 +48,7 @@ public class LoginController {
     @Autowired
     UserService userService;
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/")
     public String healthCheck(){
         return "Authentication Microservice working";
@@ -69,7 +77,8 @@ public class LoginController {
 
         final UserDetails userDetails = userService.loadUserByUsername(loginCredentails.getUname());
         final String token = jwtUtility.generateToken(userDetails);
-        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
+        final List<String> roles = authClient.login(loginCredentails.getUname()).getRole();
+        return new ResponseEntity<>(new JwtResponse(token, roles), HttpStatus.OK);
     }
 
     @GetMapping("/validate")

@@ -5,22 +5,15 @@
                 <th>Id</th>
                 <th>Customer Name</th>
                 <th>Loan Type</th>
-                <th>Asked Loan Amount</th>
-                <th>Payment Period</th>
-                <th>Emi Amount</th>
-                <th>Issued Date</th>
-                <th>Property Details</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let registration of loanRegistration">
-                <td><a>{{registration.id}}</a></td>
-                <td>{{uname}}</td>
+            <tr *ngFor="let registration of loanRegistrations">
+                <td><a routerLink="/registeredForm/{{registration.id}}">{{registration.id}}</a></td>
+                <td>{{registration.borrowerName}}</td>
                 <td>{{registration.loanType}}</td>
-                <td>{{registration.askedLoanAmt}}</td>
-                <td>{{registration.paymentPeriod}}</td>
-                <td>{{registration.emiAmt}}</td>
-                <td>{{registration.issuedDate}}</td>
+                <td>{{registration.status}}</td>
             </tr>
         </tbody>
     </table>
