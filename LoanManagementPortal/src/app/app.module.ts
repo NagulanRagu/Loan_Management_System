@@ -24,6 +24,7 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
 import { GuarantorInfo } from './model/guarantor-info';
 import { Address } from './model/address';
 import { GuarantorAddress } from './model/guarantor-address';
+import { RegisteredFormComponent } from './registered-form/registered-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GuarantorAddress } from './model/guarantor-address';
     RegistrationSuccessfullComponent,
     AddLoanDetailsComponent,
     SeeLoanRegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisteredFormComponent,
   ],
   imports: [
     BrowserModule,

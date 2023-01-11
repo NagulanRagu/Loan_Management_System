@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanRegistration } from '../model/loan-registration';
+import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
 import { LoginServiceService } from '../service/login-service.service';
 
@@ -11,11 +12,10 @@ import { LoginServiceService } from '../service/login-service.service';
 export class SeeLoanRegistrationComponent implements OnInit {
 
   constructor(private loanRegistrationService: LoanRegistrationService,
-              private loginService: LoginServiceService) { }
-  
-  uname!: any;
-  
-  loanRegistration!: LoanRegistration[];
+              private loginService: LoginServiceService,
+              private borrowerDetailsService: BorrowerDetailsService) { }
+    
+  loanRegistrations!: LoanRegistration[];
 
   ngOnInit(): void {
     this.refreshRegistrationPage();
@@ -25,11 +25,10 @@ export class SeeLoanRegistrationComponent implements OnInit {
     this.loanRegistrationService.getAll().subscribe(
       data => {
         console.log(data);
-        this.loanRegistration = data;
+        this.loanRegistrations = data;
       },
       error => {
         console.log(error);
-      });
-    this.uname = this.loginService.getUserName();
+      });    
   }
 }

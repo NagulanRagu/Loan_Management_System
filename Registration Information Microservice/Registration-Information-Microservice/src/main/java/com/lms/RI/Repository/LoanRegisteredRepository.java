@@ -8,7 +8,7 @@ import com.lms.RI.Model.LoanRegistered;
 
 public interface LoanRegisteredRepository extends JpaRepository<LoanRegistered, Integer> {
     
-    List<LoanRegistered> findByLoanType(String loanType);
+    LoanRegistered findById(int id);
 
-    List<LoanRegistered> findByBorrowerId(int id);
+    List<LoanRegistered> findByBorrowerName(String borrowerName);
 }

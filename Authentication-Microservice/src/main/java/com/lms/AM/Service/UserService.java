@@ -1,8 +1,11 @@
 package com.lms.AM.Service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,7 +34,10 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("Username is not found: " + username);
         }else {
             log.info("End: loadUserByUsername Method.");
-            return new User(loginCredentails.getUname(),loginCredentails.getPassword(),new ArrayList<>());
+            List<GrantedAuthority> grantedAuthorities = loginCredentails.getRole().stream().map(r -> {
+                return new SimpleGrantedAuthority(r);
+            }).collect(Collectors.toList());
+            return new User(loginCredentails.getUname(),loginCredentails.getPassword(),grantedAuthorities);
         }
     }
     

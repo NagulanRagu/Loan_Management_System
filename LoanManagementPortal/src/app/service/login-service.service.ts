@@ -21,6 +21,7 @@ export class LoginServiceService {
               data => {
                 sessionStorage.setItem('Authenticated User', loginCredentails.uname);
                 sessionStorage.setItem('Token',data.jwtToken);
+                sessionStorage.setItem('Roles', JSON.stringify(data.roles));
                 return data;
               }
             ));
@@ -44,8 +45,13 @@ export class LoginServiceService {
     return sessionStorage.getItem('Token');
   }
 
+  getRoles() {
+    return sessionStorage.getItem('Roles');
+  }
+
   logout(): void {
     sessionStorage.removeItem('Authenticated User');
     sessionStorage.removeItem('Token');
+    sessionStorage.removeItem('Roles');
   }
 }

@@ -41,26 +41,26 @@ public class LoanRegisteredService {
         loanRegisteredRepository.deleteById(id);
     }
 
-    public List<LoanRegistered> getByLoanType(String loanType) throws IllegalArgumentException {
+    public LoanRegistered getById(int id) throws IllegalArgumentException {
 
-        log.info("Getting Details by Loan Number: {}", loanType);
-        if(loanRegisteredRepository.findByLoanType(loanType).isEmpty()) {
-            log.error("No Details found for Loan Number: {}", loanType);
-            return loanRegisteredRepository.findByLoanType(loanType);
+        log.info("Getting Details by Loan Id: {}", id);
+        if(loanRegisteredRepository.findById(id) != null) {
+            log.error("No Details found for Loan Id: {}", id);
+            return loanRegisteredRepository.findById(id);
         }else {
-            log.info("All Details are found for Loan Number: {}", loanType);
+            log.info("All Details are found for Loan Id: {}", id);
             throw new IllegalArgumentException();
         }
     }
 
-    public List<LoanRegistered> getByBorrowerId(int id) throws IllegalArgumentException {
+    public List<LoanRegistered> getByBorrowerName(String borrowerName) throws IllegalArgumentException {
 
-        log.info("Getting Details by Borrower Id: {}", id);
-        if(loanRegisteredRepository.findByBorrowerId(id).isEmpty()) {
-            log.error("No Details found for Borrower Id: {}", id);
-            return loanRegisteredRepository.findByBorrowerId(id);
+        log.info("Getting Details by Borrower Name: {}", borrowerName);
+        if(loanRegisteredRepository.findByBorrowerName(borrowerName).isEmpty()) {
+            log.error("No Details found for Borrower Name: {}", borrowerName);
+            return loanRegisteredRepository.findByBorrowerName(borrowerName);
         }else {
-            log.info("All Details are found for Borrower Id: {}", id);
+            log.info("All Details are found for Borrower borrowerName: {}", borrowerName);
             throw new IllegalArgumentException();
         }
     }

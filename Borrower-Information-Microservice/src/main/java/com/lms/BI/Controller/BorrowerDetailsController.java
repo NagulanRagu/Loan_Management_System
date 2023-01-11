@@ -1,6 +1,9 @@
 package com.lms.BI.Controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Model.Role;
 import com.lms.BI.Pojo.HttpCall;
 import com.lms.BI.Pojo.LoginCredentails;
 import com.lms.BI.Service.BorrowerDetailsService;
@@ -61,6 +65,7 @@ public class BorrowerDetailsController {
         }
     }
 
+    
     @GetMapping("/all-user")
     public ResponseEntity<List<BorrowerDetails>> getAllUsers(@RequestHeader("Authorization") String token) {
 
@@ -79,6 +84,11 @@ public class BorrowerDetailsController {
     public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 
         try {
+            Role role = new Role();
+            role.setName("ROLE_USER");
+            Set<Role> roles = new HashSet<>();
+            roles.add(role);
+            nBorrowerDetails.setRoles(roles);
             return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), 
                                         HttpStatus.CREATED);
         }catch(IllegalArgumentException e) {
@@ -93,6 +103,7 @@ public class BorrowerDetailsController {
         BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(uname);
         loginCredentails.setUname(borrowerDetails.getUname());
         loginCredentails.setPassword(borrowerDetails.getPassword());
+        loginCredentails.setRole(borrowerDetails.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
         return loginCredentails;
     }
 

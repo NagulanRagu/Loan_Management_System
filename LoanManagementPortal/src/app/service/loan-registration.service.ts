@@ -18,4 +18,8 @@ export class LoanRegistrationService {
   getAll() {
     return this.http.get<LoanRegistration[]>(`${this.baseUrl}/all-registration`);
   }
+
+  getById(id: number) {
+    return this.http.get<LoanRegistration>(`${this.baseUrl}/registration-by-id/${id}`);
+  }
 }

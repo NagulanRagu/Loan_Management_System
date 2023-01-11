@@ -1,0 +1,26 @@
+.container {
+    background-color: ghostwhite;
+    margin-top: 50px;
+    width :unset;
+    padding: 20px 20px 20px 100px;
+}
+
+h2 {
+    color:crimson;
+    padding: 0px 150px 0px 350px;
+}
+
+h4 {
+    margin-bottom: 0;
+}
+
+hr {
+    margin: 0;
+    background-color: black;
+}
+
+td {
+    padding: 10px;
+    margin-left: 10px;
+    font-size: larger;
+}

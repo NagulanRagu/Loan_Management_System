@@ -42,12 +42,13 @@ public class LoanRegisteredController {
         }
     }
 
-    @GetMapping("/registration-by-loanNo/{loanType}")
-    public ResponseEntity<List<LoanRegistered>> getByLoanNo(@RequestHeader("Authorization") String token, @PathVariable String loanType) {
+    @GetMapping("/registration-by-id/{id}")
+    public ResponseEntity<LoanRegistered> getByLoanNo(@RequestHeader("Authorization") String token, 
+                                                      @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanRegisteredService.getByLoanType(loanType), HttpStatus.OK);
+                return new ResponseEntity<>(loanRegisteredService.getById(id), HttpStatus.OK);
             }catch(NullPointerException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -56,12 +57,13 @@ public class LoanRegisteredController {
         }
     }
 
-    @GetMapping("/registration-by-BorrowerId/{borrowerId}")
-    public ResponseEntity<List<LoanRegistered>> getByBorrowerId(@RequestHeader("Authorization") String token, @PathVariable int borrowerId) {
+    @GetMapping("/registration-by-BorrowerName/{borrowerName}")
+    public ResponseEntity<List<LoanRegistered>> getByBorrowerId(@RequestHeader("Authorization") String token, 
+                                                                @PathVariable String borrowerName) {
 
         if(tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanRegisteredService.getByBorrowerId(borrowerId), HttpStatus.OK);
+                return new ResponseEntity<>(loanRegisteredService.getByBorrowerName(borrowerName), HttpStatus.OK);
             }catch(NullPointerException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -71,7 +73,8 @@ public class LoanRegisteredController {
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<LoanRegistered> saveEntity(@RequestHeader("Authorization") String token, @RequestBody LoanRegistered newLoanRegistered) {
+    public ResponseEntity<LoanRegistered> saveEntity(@RequestHeader("Authorization") String token, 
+                                                     @RequestBody LoanRegistered newLoanRegistered) {
 
         if(tokenService.checkValidation(token)) {
             try {
@@ -85,7 +88,8 @@ public class LoanRegisteredController {
     }
 
     @DeleteMapping("/delete-registration/{id}")
-    public ResponseEntity<String> deleteEntity(@RequestHeader("Authorization") String token, @PathVariable int id) {
+    public ResponseEntity<String> deleteEntity(@RequestHeader("Authorization") String token, 
+                                                @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             loanRegisteredService.deleteDetails(id);

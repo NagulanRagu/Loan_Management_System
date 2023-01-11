@@ -14,4 +14,8 @@ export class BorrowerDetailsService {
   getBorrowerDetails(uname: string) {
     return this.http.get<BorrowerDetails>(`${this.baseUrl}/user-by-uname/${uname}`);
   }
+
+  getById(id: number) {
+    return this.http.get<BorrowerDetails>(`${this.baseUrl}/user-by-id/${id}`);
+  }
 }

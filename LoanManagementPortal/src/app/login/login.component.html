@@ -1,5 +1,5 @@
 <div class="main">
-    <form #loginForm="ngForm" (ngSubmit)="!loginForm.invalid && login()">
+    <form #loginForm="ngForm" (ngSubmit)= "login()">
         <div>
             <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" 
                     placeholder="User name" required>
@@ -8,8 +8,9 @@
             <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" 
                     placeholder="Password" required>
         </div>
+        <div *ngIf="loginForm.invalid"><p>Please fill all the required fields</p></div>
         <div>
-            <button class="btn btn-success" type="submit">Login</button>
+            <button class="btn btn-success" [disabled]="loginForm.invalid" type="submit">Login</button>
         </div>
         <div>
             <strong>New Registeration<a routerLink="/signup"> Click here</a></strong>

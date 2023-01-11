@@ -27,8 +27,8 @@ public class LoanRegistered {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "borrower_id")
-    private int borrowerId;
+    @Column(name = "borrower_name")
+    private String borrowerName;
 
     @Column(name = "loan_type")
     private String loanType;
@@ -52,9 +52,12 @@ public class LoanRegistered {
     @OneToOne(cascade = CascadeType.ALL)
     private GuarantorInfo guarantorInfo;
 
-    public LoanRegistered(int borrowerId, String loanType, String askedLoanAmt, String providedLoanAmount, 
-            int paymentPeriod, String emiAmt, Date issuedDate, GuarantorInfo guarantorInfo) {
-        this.borrowerId = borrowerId;
+    @Column(name = "Status")
+    private String status;
+
+    public LoanRegistered(String borrowerName, String loanType, String askedLoanAmt, String providedLoanAmount, 
+            int paymentPeriod, String emiAmt, Date issuedDate, GuarantorInfo guarantorInfo, String status) {
+        this.borrowerName = borrowerName;
         this.loanType = loanType;
         this.askedLoanAmt = askedLoanAmt;
         this.providedLoanAmt = providedLoanAmount;
@@ -62,6 +65,7 @@ public class LoanRegistered {
         this.emiAmt = emiAmt;
         this.issuedDate = issuedDate;
         this.guarantorInfo = guarantorInfo;
+        this.status = status;
     }
 }
 

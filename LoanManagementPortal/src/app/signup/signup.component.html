@@ -1,6 +1,6 @@
 <div class="container">
     <h3><strong>Sign in</strong></h3>
-    <form #signupForm = ngForm (ngSubmit)="signupForm.invalid && signup()">
+    <form #signupForm = ngForm (ngSubmit)="signup()">
         <div class="group">
             <label for="fname">First Name:*</label>
             <input type="text" id="fname" name="fname" class="form-input" 
@@ -108,8 +108,9 @@
                 Pan Number is required field.
             </div>
         </div>
+        <div *ngIf="signupForm.invalid"><p>Please fill all the required fields</p></div>
         <div class="group">
-            <button class="btn btn-primary btn-block mb-4" type="submit">Signup</button>
+            <button class="btn btn-primary btn-block mb-4" [disabled]="signupForm.invalid" type="submit">Signup</button>
             <div><strong>Already Register<a routerLink="/login">Click here</a></strong></div>
         </div>
     </form>

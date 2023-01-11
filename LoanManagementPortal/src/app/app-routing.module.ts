@@ -6,6 +6,7 @@ import { LoanDetailsComponent } from './loan-details/loan-details.component';
 import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisteredFormComponent } from './registered-form/registered-form.component';
 import { SeeLoanRegistrationComponent } from './see-loan-registration/see-loan-registration.component';
 import { RouterGuardService } from './service/router-guard.service';
 import { SignupComponent } from './signup/signup.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path : "loan-registration", component : LoanRegistrationComponent, canActivate: [RouterGuardService]},
   {path : "registration-success", component : RegistrationSuccessfullComponent, canActivate: [RouterGuardService]},
   {path : "all-registration", component : SeeLoanRegistrationComponent, canActivate: [RouterGuardService]},
-  {path : "profile/:uname", component : ProfileComponent, canActivate: [RouterGuardService]}
+  {path : "profile/:uname", component : ProfileComponent, canActivate: [RouterGuardService]},
+  {path : "registeredForm/:id", component : RegisteredFormComponent, canActivate : [RouterGuardService]}
 ];
 
 @NgModule({
