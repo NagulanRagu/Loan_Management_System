@@ -56,6 +56,10 @@ public class BorrowerDetailsService {
         }
     }
 
+    public boolean checkUname(String uname) {
+        return borrowerDetailsRepository.existsByUname(uname);
+    }
+
     public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);

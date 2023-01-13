@@ -18,4 +18,12 @@ export class BorrowerDetailsService {
   getById(id: number) {
     return this.http.get<BorrowerDetails>(`${this.baseUrl}/user-by-id/${id}`);
   }
+
+  checkUniqueValue(uname: string) {
+    return this.http.post<boolean>(`${this.baseUrl}/user-by-uname`, uname);
+  }
+
+  getAllUsers() {
+    return this.http.get<BorrowerDetails[]>(`${this.baseUrl}/all-user`);
+  }
 }

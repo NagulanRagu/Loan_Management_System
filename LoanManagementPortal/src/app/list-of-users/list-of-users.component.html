@@ -1,0 +1,18 @@
+<div class="container">
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>EmailId</th>
+            <th>Phone Number</th>
+        </tr>
+        <tr *ngFor="let borrowerDetail of borrowerDetails">
+            <td><a routerLink="/profile/{{this.borrowerDetail.uname}}">{{this.borrowerDetail.uname}}</a></td>
+            <td>{{this.borrowerDetail.fname}}</td>
+            <td>{{this.borrowerDetail.lname}}</td>
+            <td>{{this.borrowerDetail.emailId}}</td>
+            <td>{{this.borrowerDetail.phoneno}}</td>
+        </tr>
+    </table>
+</div>

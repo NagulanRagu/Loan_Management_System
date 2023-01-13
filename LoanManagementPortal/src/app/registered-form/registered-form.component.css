@@ -1,16 +1,14 @@
 .container {
     background-color: ghostwhite;
     margin-top: 50px;
-    width :unset;
-    padding: 20px 20px 20px 100px;
+    margin-bottom: 50px;
 }
 
 h2 {
     color:crimson;
-    padding: 0px 150px 0px 350px;
 }
 
-h4 {
+h6 {
     margin-bottom: 0;
 }
 
@@ -19,8 +17,18 @@ hr {
     background-color: black;
 }
 
-td {
+td, th {
     padding: 10px;
     margin-left: 10px;
-    font-size: larger;
+    font-size: medium;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
 }

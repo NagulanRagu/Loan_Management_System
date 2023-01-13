@@ -25,6 +25,8 @@ import { GuarantorInfo } from './model/guarantor-info';
 import { Address } from './model/address';
 import { GuarantorAddress } from './model/guarantor-address';
 import { RegisteredFormComponent } from './registered-form/registered-form.component';
+import { UniqueValidationDirective } from './validation/unique-validation.directive';
+import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { RegisteredFormComponent } from './registered-form/registered-form.compo
     SeeLoanRegistrationComponent,
     ProfileComponent,
     RegisteredFormComponent,
+    UniqueValidationDirective,
+    ListOfUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { RegisteredFormComponent } from './registered-form/registered-form.compo
     HttpCall,
     GuarantorInfo,
     Address,
-    GuarantorAddress
+    GuarantorAddress, 
+    UniqueValidationDirective
   ],
   bootstrap: [AppComponent]
 })

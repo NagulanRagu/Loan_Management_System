@@ -1,3 +1,24 @@
 .container {
-    margin-top: 100px;
+    margin-top: 50px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border: black 1px solid;
+    font-size: medium;
+}
+
+th, td {
+    padding: 10px;
+}
+
+a:hover {
+ color: darkseagreen;
+ text-decoration: none;   
 }

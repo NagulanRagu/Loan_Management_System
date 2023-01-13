@@ -80,6 +80,12 @@ public class BorrowerDetailsController {
         }
     }
 
+    @PostMapping("/user-by-uname")
+    public ResponseEntity<Boolean> checkingUniqueEntity(@RequestBody String uname) {
+
+        return new ResponseEntity<>(borrowerDetailsService.checkUname(uname), HttpStatus.OK);
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 

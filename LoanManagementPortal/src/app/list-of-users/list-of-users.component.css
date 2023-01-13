@@ -1,0 +1,18 @@
+.container {
+    margin-top: 50px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+table, td, th {
+    border: black 1px solid;
+    
+}
+
+td, th {
+    padding: 10px;
+}
