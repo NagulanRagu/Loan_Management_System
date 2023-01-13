@@ -1,17 +1,27 @@
 <div class="container">
     <table>
-        <caption><h2><strong>User Profile</strong></h2></caption>
+        <caption><h2><strong>User Details</strong></h2></caption>
         <tr>
             <td>First Name:</td>
             <td>{{this.borrowerDetails.fname}}</td>
             <td>Last Name:</td>
-            <td>{{this.borrowerDetails.lname}}</td>
+            <td colspan="3">{{this.borrowerDetails.lname}}</td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td colspan="5">{{this.borrowerDetails.phoneno}}</td>
+        </tr>
+        <tr>
+            <td>Email Id:</td>
+            <td colspan="5">{{this.borrowerDetails.emailId}}</td>
         </tr>
         <tr>
             <td>Aadhaar Card:</td>
-            <td>{{this.borrowerDetails.aadhaarCard}}</td>
+            <td colspan="5">{{this.borrowerDetails.aadhaarCard}}</td>
+        </tr>
+        <tr>
             <td>Pan Card:</td>
-            <td>{{this.borrowerDetails.panCard}}</td>
+            <td colspan="5">{{this.borrowerDetails.panCard}}</td>
         </tr>
         <tr>
             <td><h4><strong>Address:</strong></h4></td>
@@ -20,7 +30,7 @@
             <td>House Number:</td>
             <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
             <td>Street:</td>
-            <td>{{this.borrowerDetails.borrowerAddress.street}}</td>
+            <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
         </tr>
         <tr>
             <td>City:</td>

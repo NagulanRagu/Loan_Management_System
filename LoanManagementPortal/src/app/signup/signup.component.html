@@ -22,7 +22,7 @@
             <input type="text" id="uname" name="uname" class="form-input" 
                     [(ngModel)]="this.borrowerDetails.uname" #uname="ngModel" required>
             <div class="error" *ngIf="uname.invalid && (uname.touched || uname.dirty)">
-                User Name is required field.
+                <div *ngIf="uname.errors?.['required']">User Name is required field.</div>
             </div>
         </div>
         <div class="group">
@@ -93,16 +93,16 @@
             </div>
         </div>
         <div class="group">
-            <label for="uname">Aadhaar Card:*</label>
-            <input type="text" id="uname" name="uname" class="form-input" 
+            <label for="aadhaarCard">Aadhaar Card:*</label>
+            <input type="text" id="aadhaarCard" name="aadhaarCard" class="form-input" 
                     [(ngModel)]="this.borrowerDetails.aadhaarCard" #aadhaarCard="ngModel" required>
             <div class="error" *ngIf="aadhaarCard.invalid && (aadhaarCard.touched || aadhaarCard.dirty)">
                 Aadhaar Number is required field.
             </div>
         </div>
         <div class="group">
-            <label for="uname">Pan Card:*</label>
-            <input type="text" id="uname" name="uname" class="form-input" 
+            <label for="panCard">Pan Card:*</label>
+            <input type="text" id="panCard" name="panCard" class="form-input" 
                     [(ngModel)]="this.borrowerDetails.panCard" #panCard="ngModel" required>
             <div class="error" *ngIf="panCard.invalid && (panCard.touched || panCard.dirty)">
                 Pan Number is required field.

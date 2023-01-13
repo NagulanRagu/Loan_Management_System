@@ -7,6 +7,7 @@
                 <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan">Loan Details</a></li>
                 <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan-registration">Apply Loan</a></li>
                 <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/all-registration">View Registrated</a></li>
+                <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/allUsers">Users</a></li>
             <!-- </ul>
         </li> -->
         <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="#" (click)="logout()">Logout</a></li>

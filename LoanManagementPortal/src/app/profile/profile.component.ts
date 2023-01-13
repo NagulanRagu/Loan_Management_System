@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
 
@@ -17,6 +18,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.uname = this.route.snapshot.params['uname'];
+    this.borrowerDetails = new BorrowerDetails;
+    this.borrowerDetails.borrowerAddress = new Address;
     this.getDetails();
   }
   

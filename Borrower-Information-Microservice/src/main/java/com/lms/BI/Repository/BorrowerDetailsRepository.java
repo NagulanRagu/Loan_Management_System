@@ -9,4 +9,6 @@ public interface BorrowerDetailsRepository extends JpaRepository<BorrowerDetails
     BorrowerDetails findById(long id);  
     
     BorrowerDetails findByUname(String uname);
+
+    boolean existsByUname(String uname);
 }

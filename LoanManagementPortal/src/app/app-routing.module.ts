@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddLoanDetailsComponent } from './add-loan-details/add-loan-details.component';
 import { HomeComponent } from './home/home.component';
+import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { LoanDetailsComponent } from './loan-details/loan-details.component';
 import { LoanRegistrationComponent } from './loan-registration/loan-registration.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path : "registration-success", component : RegistrationSuccessfullComponent, canActivate: [RouterGuardService]},
   {path : "all-registration", component : SeeLoanRegistrationComponent, canActivate: [RouterGuardService]},
   {path : "profile/:uname", component : ProfileComponent, canActivate: [RouterGuardService]},
-  {path : "registeredForm/:id", component : RegisteredFormComponent, canActivate : [RouterGuardService]}
+  {path : "registeredForm/:id", component : RegisteredFormComponent, canActivate : [RouterGuardService]},
+  {path : "allUsers", component : ListOfUsersComponent, canActivate : [RouterGuardService]}
 ];
 
 @NgModule({
