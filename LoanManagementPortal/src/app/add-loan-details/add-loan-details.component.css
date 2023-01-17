@@ -1,3 +1,23 @@
 .container {
     margin-top: 100px;
 }
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: coral;
+}
+
+td {
+    padding: 10px;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 1px solid;
+}

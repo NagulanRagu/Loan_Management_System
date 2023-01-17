@@ -12,13 +12,6 @@ export class RegistrationSuccessfullComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    // let count = 0;
-    // for(let i=0; i<=4; i++) {
-    //   count = count+1
-    // }
-    // if(count>=5) {
-    //   this.router.navigate(['home']);
-    // }
   }
 
 }

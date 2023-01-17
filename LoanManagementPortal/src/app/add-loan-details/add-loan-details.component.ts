@@ -14,16 +14,20 @@ export class AddLoanDetailsComponent implements OnInit {
     private loanDetailsService: LoanDetailsService, private router: Router) { }
 
   id!: number;
+  addOrUpdate!: string;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.loanDetails = new LoanDetails();
     if (this.id != -1) {
+      this.addOrUpdate = "Update";
       this.loanDetailsService.getLoanDetailsById(this.id).subscribe(
         data => {
           console.log(data);
           this.loanDetails = data;
         });
+    } else {
+      this.addOrUpdate = "Add";
     }
   }
 

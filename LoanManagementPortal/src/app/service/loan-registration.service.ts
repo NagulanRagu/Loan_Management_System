@@ -22,4 +22,8 @@ export class LoanRegistrationService {
   getById(id: number) {
     return this.http.get<LoanRegistration>(`${this.baseUrl}/registration-by-id/${id}`);
   }
+
+  update(loanRegistration: LoanRegistration) {
+    return this.http.put<LoanRegistration>(`${this.baseUrl}/update-registration`, loanRegistration);
+  }
 }

@@ -19,6 +19,7 @@ export class NavBarComponent implements OnInit {
     this.router.events.subscribe(
       data => {
         this.uname = this.loginService.getUserName();
+        this.isUserAdmin();
       });
   }
 

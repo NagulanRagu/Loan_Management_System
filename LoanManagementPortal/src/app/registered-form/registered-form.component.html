@@ -63,7 +63,7 @@
             <td colspan="5">{{this.loanRegistration.askedLoanAmt}}</td>
         </tr>
         <tr>
-            <td><label for="providedLoanAmt">Provide Loan Amount:</label></td>
+            <td><label for="providedLoanAmt">Provide Loan Amount:*</label></td>
             <td colspan="5"><input type="text" id="providedLoanAmt" class="form-input"
                     [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
         </tr>
@@ -72,12 +72,12 @@
             <td colspan="5">{{this.loanRegistration.paymentPeriod}}</td>
         </tr>
         <tr>
-            <td><label for="emiAmt">Emi Amount:</label></td>
+            <td><label for="emiAmt">Emi Amount:*</label></td>
             <td colspan="5"><input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
                     required></td>
         </tr>
         <tr>
-            <td><label for="issuedData">Issue Date:</label></td>
+            <td><label for="issuedData">Issue Date:*</label></td>
             <td colspan="5"><input type="date" id="issuedData" class="form-input"
                     [(ngModel)]="this.loanRegistration.issuedDate" required></td>
         </tr>
@@ -116,6 +116,13 @@
             <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.state}}</td>
             <td>Pincode:</td>
             <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.pincode}}</td>
+        </tr>
+        <tr *ngIf="this.adminRole && this.isLoanAccepted(this.loanRegistration.status)">
+            <td><button (click)="loanAccepted()">Accept</button></td>
+            <td><button (click)="loanRejected()">Reject</button></td>
+        </tr>
+        <tr *ngIf="this.isLoanAccepted(this.loanRegistration.status)">
+            <td>Loan Accepted</td>
         </tr>
     </table>
 </div>

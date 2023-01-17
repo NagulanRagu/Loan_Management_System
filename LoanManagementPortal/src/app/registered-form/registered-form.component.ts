@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { GuarantorAddress } from '../model/guarantor-address';
@@ -7,6 +7,7 @@ import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanRegistration } from '../model/loan-registration';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
+import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
   selector: 'app-registered-form',
@@ -16,8 +17,10 @@ import { LoanRegistrationService } from '../service/loan-registration.service';
 export class RegisteredFormComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService,
+    private loginService: LoginServiceService,
     public loanRegistration: LoanRegistration,
     public guarantorInfo: GuarantorInfo,
     public guarantorAddress: GuarantorAddress,
@@ -26,6 +29,8 @@ export class RegisteredFormComponent implements OnInit {
 
   id!: number;
   borrowerName!: string;
+  roles!: any;
+  adminRole!: boolean;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -54,5 +59,45 @@ export class RegisteredFormComponent implements OnInit {
       error => {
         console.log(error);
       });
+  }
+
+  loanAccepted() {
+    this.loanRegistration.status = "Accepted";
+    this.updatingLoan();
+  }
+
+  loanRejected() {
+    this.loanRegistration.status = "Rejected";
+    this.updatingLoan();
+  }
+
+  updatingLoan() {
+    this.loanRegistrationService.update(this.loanRegistration).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['all-registration']);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  isUserAdmin() {
+    if (this.loginService.isUserLoggedIn()) {
+      this.roles = this.loginService.getRoles();
+    }
+    if (this.roles.includes("ROLE_ADMIN")) {
+      this.adminRole = true;
+    } else {
+      this.adminRole = false;
+    }
+  }
+
+  isLoanAccepted(status: string): boolean {
+    if(status == "Accepted") {
+      return true;
+    }else {
+      return false;
+    }
   }
 }

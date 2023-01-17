@@ -1,19 +1,23 @@
 <div class="container">
     <form>
-        <div>
-            <label for="loanNo">Loan Number</label>
-            <input name="loanNo" id="loanNo" [(ngModel)]="this.loanDetails.loanNo" required>
-        </div>
-        <div>
-            <label for="loanType">Loan Type</label>
-            <input name="loanType" id="loanType" [(ngModel)]="this.loanDetails.loanType" required>
-        </div>
-        <div>
-            <label for="rateOfInterest">Rate of Interest</label>
-            <input name="rateOfInterest" id="rateOfInterest" [(ngModel)]="this.loanDetails.rateOfInterest" required>
-        </div>
-        <div>
-            <button class="btn btn-success" type="submit" (click)="addLoanDetails()">Submit</button>
-        </div>
+        <table>
+            <tr>
+                <td><label for="loanNo">Loan Number:</label></td>
+                <td><input name="loanNo" id="loanNo" [(ngModel)]="this.loanDetails.loanNo" required></td>
+            </tr>
+            <tr>
+                <td><label for="loanType">Loan Type:</label></td>
+                <td><input name="loanType" id="loanType" [(ngModel)]="this.loanDetails.loanType" required></td>
+            </tr>
+            <tr>
+                <td><label for="rateOfInterest">Rate of Interest:</label></td>
+                <td><input name="rateOfInterest" id="rateOfInterest" [(ngModel)]="this.loanDetails.rateOfInterest"
+                        required></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-success" type="submit"
+                        (click)="addLoanDetails()">{{this.addOrUpdate}}</button></td>
+            </tr>
+        </table>
     </form>
 </div>

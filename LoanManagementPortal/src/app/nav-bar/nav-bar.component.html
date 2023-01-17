@@ -5,10 +5,10 @@
         <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan">Loan Details</a></li>
         <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan-registration">Apply Loan</a></li>
         <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/all-registration">View Registrated</a></li>
-        <li><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/allUsers">Users</a></li>
+        <li><a *ngIf="this.loginService.isUserLoggedIn() && this.adminRole" routerLink="/allUsers">Users</a></li>
         <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="#"
                 (click)="logout()">Logout</a></li>
-        <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()"
+        <li style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" 
                 routerLink="/profile/{{uname}}">{{uname}}</a></li>
         <li style="float:right"><a *ngIf="!this.loginService.isUserLoggedIn()" routerLink="/login">Login</a></li>
         <li style="float:right"><a *ngIf="!this.loginService.isUserLoggedIn()" routerLink="/signup">Signup</a></li>
