@@ -11,17 +11,17 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private router: Router, 
-              private loginService: LoginServiceService,
-              public borrowerDetails: BorrowerDetails,
-              public borrowerAddress: Address) { }
+  constructor(private router: Router,
+    private loginService: LoginServiceService,
+    public borrowerDetails: BorrowerDetails,
+    public borrowerAddress: Address) { }
 
   ngOnInit(): void {
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
   }
 
-  signup(){
+  signup() {
     this.loginService.signup(this.borrowerDetails).subscribe(
       data => {
         console.log(data);

@@ -14,18 +14,18 @@ import { SignupComponent } from './signup/signup.component';
 import { RegistrationSuccessfullComponent } from './submitted/registration-successfull/registration-successfull.component';
 
 const routes: Routes = [
-  {path : "", component : LoginComponent},
-  {path : "signup", component : SignupComponent},
-  {path : "login", component : LoginComponent},
-  {path : "home", component : HomeComponent, canActivate: [RouterGuardService]},
-  {path : "loan", component : LoanDetailsComponent, canActivate: [RouterGuardService]},
-  {path : "update-loan/:id", component : AddLoanDetailsComponent, canActivate: [RouterGuardService]},
-  {path : "loan-registration", component : LoanRegistrationComponent, canActivate: [RouterGuardService]},
-  {path : "registration-success", component : RegistrationSuccessfullComponent, canActivate: [RouterGuardService]},
-  {path : "all-registration", component : SeeLoanRegistrationComponent, canActivate: [RouterGuardService]},
-  {path : "profile/:uname", component : ProfileComponent, canActivate: [RouterGuardService]},
-  {path : "registeredForm/:id", component : RegisteredFormComponent, canActivate : [RouterGuardService]},
-  {path : "allUsers", component : ListOfUsersComponent, canActivate : [RouterGuardService]}
+  { path: "", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
+  { path: "login", component: LoginComponent },
+  { path: "home", component: HomeComponent, canActivate: [RouterGuardService] },
+  { path: "loan", component: LoanDetailsComponent, canActivate: [RouterGuardService] },
+  { path: "update-loan/:id", component: AddLoanDetailsComponent, canActivate: [RouterGuardService] },
+  { path: "loan-registration", component: LoanRegistrationComponent, canActivate: [RouterGuardService] },
+  { path: "registration-success", component: RegistrationSuccessfullComponent, canActivate: [RouterGuardService] },
+  { path: "all-registration", component: SeeLoanRegistrationComponent, canActivate: [RouterGuardService] },
+  { path: "profile/:uname", component: ProfileComponent, canActivate: [RouterGuardService] },
+  { path: "registeredForm/:id", component: RegisteredFormComponent, canActivate: [RouterGuardService] },
+  { path: "allUsers", component: ListOfUsersComponent, canActivate: [RouterGuardService] }
 ];
 
 @NgModule({

@@ -12,9 +12,9 @@ import { LoginServiceService } from '../service/login-service.service';
 export class SeeLoanRegistrationComponent implements OnInit {
 
   constructor(private loanRegistrationService: LoanRegistrationService,
-              private loginService: LoginServiceService,
-              private borrowerDetailsService: BorrowerDetailsService) { }
-    
+    private loginService: LoginServiceService,
+    private borrowerDetailsService: BorrowerDetailsService) { }
+
   loanRegistrations!: LoanRegistration[];
 
   ngOnInit(): void {
@@ -29,6 +29,6 @@ export class SeeLoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
-      });    
+      });
   }
 }

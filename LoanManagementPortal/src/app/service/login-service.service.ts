@@ -17,14 +17,14 @@ export class LoginServiceService {
   login(loginCredentails: LoginCredentails) {
 
     return this.http.post<HttpCall>('http://localhost:8083/authenticate', loginCredentails)
-            .pipe(map(
-              data => {
-                sessionStorage.setItem('Authenticated User', loginCredentails.uname);
-                sessionStorage.setItem('Token',data.jwtToken);
-                sessionStorage.setItem('Roles', JSON.stringify(data.roles));
-                return data;
-              }
-            ));
+      .pipe(map(
+        data => {
+          sessionStorage.setItem('Authenticated User', loginCredentails.uname);
+          sessionStorage.setItem('Token', data.jwtToken);
+          sessionStorage.setItem('Roles', JSON.stringify(data.roles));
+          return data;
+        }
+      ));
   }
 
   signup(borrowerDetails: BorrowerDetails) {
@@ -34,7 +34,7 @@ export class LoginServiceService {
 
   isUserLoggedIn(): boolean {
     let user = sessionStorage.getItem('Authenticated User');
-    return user!=null;
+    return user != null;
   }
 
   getUserName() {

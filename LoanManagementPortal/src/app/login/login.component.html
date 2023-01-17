@@ -1,14 +1,16 @@
 <div class="main">
     <div class="main-form-div">
-        <form #loginForm="ngForm" (ngSubmit)= "login()">
-            <div class="form-div"><h2><strong>Log In</strong></h2></div>
+        <form #loginForm="ngForm" (ngSubmit)="login()">
             <div class="form-div">
-                <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" 
-                        placeholder="User name" required>
+                <h2><strong>Log In</strong></h2>
             </div>
             <div class="form-div">
-                <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" 
-                        placeholder="Password" required>
+                <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" placeholder="User name"
+                    required>
+            </div>
+            <div class="form-div">
+                <input type="password" name="password" [(ngModel)]="this.loginCredentails.password"
+                    placeholder="Password" required>
             </div>
             <div class="error" *ngIf="this.isError">{{this.message}}</div>
             <div class="form-div">
@@ -16,7 +18,7 @@
             </div>
             <div class="form-div">
                 <strong>New Registeration<a routerLink="/signup"> Click here</a></strong>
-            </div> 
+            </div>
         </form>
     </div>
 </div>

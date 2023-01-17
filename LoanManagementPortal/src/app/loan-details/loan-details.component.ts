@@ -41,6 +41,6 @@ export class LoanDetailsComponent implements OnInit {
     this.loanDetailsService.deleteLoanDetails(id).subscribe(
       response => {
         this.refreshPage();
-    });
+      });
   }
 }
