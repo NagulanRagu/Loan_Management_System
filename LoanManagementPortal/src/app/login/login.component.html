@@ -1,19 +1,22 @@
 <div class="main">
-    <form #loginForm="ngForm" (ngSubmit)= "login()">
-        <div>
-            <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" 
-                    placeholder="User name" required>
-        </div>
-        <div>
-            <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" 
-                    placeholder="Password" required>
-        </div>
-        <div *ngIf="loginForm.invalid"><p>Please fill all the required fields</p></div>
-        <div>
-            <button class="btn btn-success" [disabled]="loginForm.invalid" type="submit">Login</button>
-        </div>
-        <div>
-            <strong>New Registeration<a routerLink="/signup"> Click here</a></strong>
-        </div> 
-    </form>
+    <div class="main-form-div">
+        <form #loginForm="ngForm" (ngSubmit)= "login()">
+            <div class="form-div"><h2><strong>Log In</strong></h2></div>
+            <div class="form-div">
+                <input type="text" name="uname" [(ngModel)]="this.loginCredentails.uname" 
+                        placeholder="User name" required>
+            </div>
+            <div class="form-div">
+                <input type="password" name="password" [(ngModel)]="this.loginCredentails.password" 
+                        placeholder="Password" required>
+            </div>
+            <div class="error" *ngIf="this.isError">{{this.message}}</div>
+            <div class="form-div">
+                <button class="btn btn-success" [disabled]="loginForm.invalid" type="submit">Login</button>
+            </div>
+            <div class="form-div">
+                <strong>New Registeration<a routerLink="/signup"> Click here</a></strong>
+            </div> 
+        </form>
+    </div>
 </div>

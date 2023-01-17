@@ -64,8 +64,8 @@ public class LoginController {
 	 */
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtResponse> authenticate(@RequestBody LoginCredentails loginCredentails) throws BadCredentialsException {
-        
+    public ResponseEntity<JwtResponse> authenticate(@RequestBody LoginCredentails loginCredentails) 
+                                                    throws BadCredentialsException {
         try {
             authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
