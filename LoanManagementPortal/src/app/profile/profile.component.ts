@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     this.borrowerDetails.borrowerAddress = new Address;
     this.getDetails();
   }
-  
+
   getDetails() {
     this.borrowerDetailsService.getBorrowerDetails(this.uname).subscribe(
       data => {

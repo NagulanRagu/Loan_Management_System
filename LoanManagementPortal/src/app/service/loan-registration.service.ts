@@ -10,7 +10,7 @@ export class LoanRegistrationService {
   constructor(private http: HttpClient) { }
 
   private baseUrl = 'http://localhost:8100';
-  
+
   sendLoanRegistration(loanRegistration: LoanRegistration) {
     return this.http.post<LoanRegistration>(`${this.baseUrl}/apply`, loanRegistration);
   }

@@ -10,7 +10,7 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginServiceService, private router: Router, 
+  constructor(private loginService: LoginServiceService, private router: Router,
     public loginCredentails: LoginCredentails) { }
 
   message: string = '';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.loginCredentails = new LoginCredentails();
   }
 
-  login(){
+  login() {
 
     this.loginService.login(this.loginCredentails).subscribe(
       data => {

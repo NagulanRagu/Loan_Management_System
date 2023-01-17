@@ -1,15 +1,18 @@
 <div class="container">
     <table>
-        <caption><h4><strong>Registered Loan</strong></h4></caption>
-            <tr>
-                <th>Customer Name</th>
-                <th>Loan Type</th>
-                <th>Status</th>
-            </tr>    
-            <tr *ngFor="let registration of loanRegistrations">
-                <td><strong><a routerLink="/registeredForm/{{registration.id}}">{{registration.borrowerName}}</a></strong></td>
-                <td>{{registration.loanType}}</td>
-                <td>{{registration.status}}</td>
-            </tr>
+        <caption>
+            <h4><strong>Registered Loan</strong></h4>
+        </caption>
+        <tr>
+            <th>Customer Name</th>
+            <th>Loan Type</th>
+            <th>Status</th>
+        </tr>
+        <tr *ngFor="let registration of loanRegistrations">
+            <td><strong><a routerLink="/registeredForm/{{registration.id}}">{{registration.borrowerName}}</a></strong>
+            </td>
+            <td>{{registration.loanType}}</td>
+            <td>{{registration.status}}</td>
+        </tr>
     </table>
 </div>

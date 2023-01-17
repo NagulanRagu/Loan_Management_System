@@ -16,13 +16,13 @@ import { LoanRegistrationService } from '../service/loan-registration.service';
 export class RegisteredFormComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private loanRegistrationService: LoanRegistrationService,
-              private borrowerDetailsService: BorrowerDetailsService,
-              public loanRegistration: LoanRegistration,
-              public guarantorInfo: GuarantorInfo,
-              public guarantorAddress: GuarantorAddress,
-              public borrowerDetails: BorrowerDetails,
-              public borrowerAddress: Address) { }
+    private loanRegistrationService: LoanRegistrationService,
+    private borrowerDetailsService: BorrowerDetailsService,
+    public loanRegistration: LoanRegistration,
+    public guarantorInfo: GuarantorInfo,
+    public guarantorAddress: GuarantorAddress,
+    public borrowerDetails: BorrowerDetails,
+    public borrowerAddress: Address) { }
 
   id!: number;
   borrowerName!: string;

@@ -22,10 +22,10 @@ export class LoanDetailsService {
   }
 
   addLoanDetails(loanDetails: LoanDetails) {
-    return this.http.post<LoanDetails>(`${this.baseUrl}/add-loan`,loanDetails);
+    return this.http.post<LoanDetails>(`${this.baseUrl}/add-loan`, loanDetails);
   }
 
-  updateLoanDetails(id: number,loanDetails: LoanDetails) {
+  updateLoanDetails(id: number, loanDetails: LoanDetails) {
     return this.http.put<LoanDetails>(`${this.baseUrl}/update-loan/${id}`, loanDetails).pipe();
   }
 

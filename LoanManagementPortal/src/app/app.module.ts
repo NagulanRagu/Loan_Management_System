@@ -52,7 +52,7 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     LoanRegistration,
     LoginCredentails,
     BorrowerDetails,
@@ -60,7 +60,7 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
     HttpCall,
     GuarantorInfo,
     Address,
-    GuarantorAddress, 
+    GuarantorAddress,
     UniqueValidationDirective
   ],
   bootstrap: [AppComponent]

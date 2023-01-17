@@ -1,7 +1,7 @@
 import { GuarantorInfo } from "./guarantor-info";
 
 export class LoanRegistration {
-    
+
     public id!: number;
     public borrowerName!: string;
     public loanType!: string;

@@ -13,10 +13,10 @@ export class CustomValidationService {
   userNameValidator(userControl: AbstractControl): Promise<{ [Key: string]: any }> | Observable<{ [Key: string]: any }> {
     return new Promise(resolve => {
       setTimeout(() => {
-        if(this.validateUserName(userControl.value)) {
-          resolve({ uniqueValidation: true});
-        }else {
-          resolve({ uniqueValidation: false});
+        if (this.validateUserName(userControl.value)) {
+          resolve({ uniqueValidation: true });
+        } else {
+          resolve({ uniqueValidation: false });
         }
       }, 1000);
     });
@@ -26,7 +26,7 @@ export class CustomValidationService {
     let isUnamePresent: boolean = false;
     this.borrowerDetailsService.checkUniqueValue(uname).subscribe(
       data => {
-        console.log(data); 
+        console.log(data);
         isUnamePresent = data;
       });
     return isUnamePresent;

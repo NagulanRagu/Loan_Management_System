@@ -1,9 +1,14 @@
 <div class="container">
-    <form #registrationForm = "ngForm" (ngSubmit)="sendOnClick()">
+    <form #registrationForm="ngForm" (ngSubmit)="sendOnClick()">
         <table>
-            <caption><h1><strong>Application Form</strong></h1></caption>
+            <caption>
+                <h1><strong>Application Form</strong></h1>
+            </caption>
             <tr>
-                <th scope="col" colspan="6"><h2><strong>Borrower Details</strong></h2><hr></th>
+                <th scope="col" colspan="6">
+                    <h2><strong>Borrower Details</strong></h2>
+                    <hr>
+                </th>
             </tr>
             <tr>
                 <td>First Name:</td>
@@ -18,7 +23,9 @@
                 <td colspan="3">{{this.borrowerDetails.panCard}}</td>
             </tr>
             <tr>
-                <td><h4><strong>Address:</strong></h4></td>
+                <td>
+                    <h4><strong>Address:</strong></h4>
+                </td>
             </tr>
             <tr>
                 <td>House Number:</td>
@@ -35,51 +42,70 @@
                 <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
             </tr>
             <tr>
-                <th scope="col" colspan="6"><h2><strong>Loan Details</strong></h2><hr></th>
+                <th scope="col" colspan="6">
+                    <h2><strong>Loan Details</strong></h2>
+                    <hr>
+                </th>
             </tr>
             <tr>
                 <td><label for="loanType">Loan Type:</label></td>
-                <td><input type="text" name="loanType" class="form-input" [(ngModel)] = "this.loanRegistration.loanType" required></td>
+                <td><input type="text" name="loanType" class="form-input" [(ngModel)]="this.loanRegistration.loanType"
+                        required></td>
             </tr>
             <tr>
                 <td><label for="loanAmt">Required Loan Amount:</label></td>
-                <td><input type="text" id="loanAmt" class="form-input" [(ngModel)] = "this.loanRegistration.askedLoanAmt" required></td>
+                <td><input type="text" id="loanAmt" class="form-input" [(ngModel)]="this.loanRegistration.askedLoanAmt"
+                        required></td>
             </tr>
             <tr>
                 <td><label for="paymentPeriod">Payment Period:</label></td>
-                <td><input type="text" id="paymentPeriod" class="form-input" [(ngModel)] = "this.loanRegistration.paymentPeriod" required></td>
+                <td><input type="text" id="paymentPeriod" class="form-input"
+                        [(ngModel)]="this.loanRegistration.paymentPeriod" required></td>
             </tr>
             <tr>
-                <th scope="col" colspan="6"><h2><strong>Guarantor Details</strong></h2><hr></th>
+                <th scope="col" colspan="6">
+                    <h2><strong>Guarantor Details</strong></h2>
+                    <hr>
+                </th>
             </tr>
             <tr>
                 <td><label for="guarantorName">Name:</label></td>
-                <td><input type="text" id="guarantorName" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorName" required></td>
+                <td><input type="text" id="guarantorName" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" required></td>
             </tr>
             <tr>
                 <td><label for="guarantorPhoneNo">Phone Number:</label></td>
-                <td><input type="text" name="guarantorPhoneNo" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorPhoneNo" required></td>
+                <td><input type="text" name="guarantorPhoneNo" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" required></td>
             </tr>
             <tr>
                 <td><label for="guarantorEmailId">Email Id:</label></td>
-                <td><input type="text" name="guarantorEmailId" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorEmailId" required></td>
+                <td><input type="text" name="guarantorEmailId" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" required></td>
             </tr>
             <tr>
-                <td><h4><strong>Address:</strong></h4></td>
+                <td>
+                    <h4><strong>Address:</strong></h4>
+                </td>
             </tr>
             <tr>
                 <td>House Number:</td>
-                <td><input type="text" name="houseNo" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required></td>
+                <td><input type="text" name="houseNo" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required></td>
                 <td>Street:</td>
-                <td><input type="text" name="street" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.street" required></td>
+                <td><input type="text" name="street" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.street" required></td>
             </tr>
             <tr>
                 <td>City:</td>
-                <td><input type="text" name="state" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.city" required></td>
+                <td><input type="text" name="state" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.city" required></td>
                 <td>State:</td>
-                <td><input type="text" name="state" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.state" required></td>
+                <td><input type="text" name="state" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.state" required></td>
                 <td>Pincode:</td>
-                <td><input type="text" name="pincode" class="form-input" [(ngModel)] = "this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required></td>
+                <td><input type="text" name="pincode" class="form-input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required></td>
             </tr>
         </table>
         <div>
