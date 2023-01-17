@@ -89,17 +89,12 @@ public class BorrowerDetailsController {
     @PostMapping("/signup")
     public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 
-        try {
-            Role role = new Role();
-            role.setName("ROLE_USER");
-            Set<Role> roles = new HashSet<>();
-            roles.add(role);
-            nBorrowerDetails.setRoles(roles);
-            return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), 
-                                        HttpStatus.CREATED);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Role role = new Role();
+        role.setName("ROLE_USER");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        nBorrowerDetails.setRoles(roles);
+        return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

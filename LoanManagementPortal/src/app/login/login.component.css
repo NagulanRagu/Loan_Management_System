@@ -1,28 +1,52 @@
 .main {
-    background-color: aqua;
-    width: 20%;
-    padding: 10px 10px 10px 10px;
-    margin: 100px 50px 50px 50px;
-    float: right;
+    height: 100%;
+    margin: 50px 0px 0px 0px;
+    background-image: url('~src/assets/images/loan-management.jpg');
+    min-height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
-div {
-    margin: 10px;
+.main-form-div {
+    padding: 15px 20px 5px 20px;
+    position: absolute;
+    margin: 100px 100px;
+    background-color: white;
+}
+
+h2 {
+    padding-left: 50px;
+}
+
+.error {
+    color: red;
+    padding: 2px;
+    padding-left: 10px;
+}
+
+.form-div {
+    margin: 20px;
 }
 
 input {
     width: 100%;
     padding: 10px;
     border: 2px solid transparent;
-    border-bottom-color: #777;
+    border-bottom-color: black;
     background-color: transparent;
     transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+input::placeholder {
+    color: black;
 }
 
 input:focus, input:hover {
     padding: 10px;
     border-radius: 1rem;
-    border-color: cadetblue;
+    border-color: rgb(0, 9, 9);
 }
 
 a {

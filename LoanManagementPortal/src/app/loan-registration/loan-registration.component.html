@@ -1,21 +1,21 @@
 <div class="container">
     <form #registrationForm = "ngForm" (ngSubmit)="sendOnClick()">
         <table>
-            <caption><h2><strong>Application Form</strong></h2></caption>
+            <caption><h1><strong>Application Form</strong></h1></caption>
             <tr>
-                <th scope="col"><h4><strong>Borrower Details</strong></h4><hr></th>
+                <th scope="col" colspan="6"><h2><strong>Borrower Details</strong></h2><hr></th>
             </tr>
             <tr>
                 <td>First Name:</td>
                 <td>{{this.borrowerDetails.fname}}</td>
                 <td>Last Name:</td>
-                <td>{{this.borrowerDetails.lname}}</td>
+                <td colspan="3">{{this.borrowerDetails.lname}}</td>
             </tr>
             <tr>
                 <td>Aadhaar Card:</td>
                 <td>{{this.borrowerDetails.aadhaarCard}}</td>
                 <td>Pan Card:</td>
-                <td>{{this.borrowerDetails.panCard}}</td>
+                <td colspan="3">{{this.borrowerDetails.panCard}}</td>
             </tr>
             <tr>
                 <td><h4><strong>Address:</strong></h4></td>
@@ -24,7 +24,7 @@
                 <td>House Number:</td>
                 <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
                 <td>Street:</td>
-                <td>{{this.borrowerDetails.borrowerAddress.street}}</td>
+                <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
             </tr>
             <tr>
                 <td>City:</td>
@@ -35,7 +35,7 @@
                 <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
             </tr>
             <tr>
-                <th scope="col"><h4><strong>Loan Details</strong></h4><hr></th>
+                <th scope="col" colspan="6"><h2><strong>Loan Details</strong></h2><hr></th>
             </tr>
             <tr>
                 <td><label for="loanType">Loan Type:</label></td>
@@ -50,7 +50,7 @@
                 <td><input type="text" id="paymentPeriod" class="form-input" [(ngModel)] = "this.loanRegistration.paymentPeriod" required></td>
             </tr>
             <tr>
-                <th scope="col"><h4><strong>Guarantor Details</strong></h4><hr></th>
+                <th scope="col" colspan="6"><h2><strong>Guarantor Details</strong></h2><hr></th>
             </tr>
             <tr>
                 <td><label for="guarantorName">Name:</label></td>

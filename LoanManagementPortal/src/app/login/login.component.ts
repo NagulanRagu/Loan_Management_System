@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginServiceService, private router: Router, 
     public loginCredentails: LoginCredentails) { }
 
-  
+  message: string = '';
+  isError: boolean = false;
 
   ngOnInit(): void {
     this.loginCredentails = new LoginCredentails();
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.router.navigate(['login']);
+        this.isError = true;
+        this.message = 'Username or Password are invalid';
       })
   }
 }
