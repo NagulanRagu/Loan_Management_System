@@ -16,7 +16,8 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class RegisteredFormComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService,
@@ -25,7 +26,8 @@ export class RegisteredFormComponent implements OnInit {
     public guarantorInfo: GuarantorInfo,
     public guarantorAddress: GuarantorAddress,
     public borrowerDetails: BorrowerDetails,
-    public borrowerAddress: Address) { }
+    public borrowerAddress: Address
+    ) { }
 
   id!: number;
   borrowerName!: string;
@@ -40,6 +42,7 @@ export class RegisteredFormComponent implements OnInit {
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
     this.getDetails();
+    this.isUserAdmin();
   }
 
   getDetails() {
@@ -93,8 +96,8 @@ export class RegisteredFormComponent implements OnInit {
     }
   }
 
-  isLoanAccepted(status: string): boolean {
-    if(status == "Accepted") {
+  isLoanAcceptedOrRejected(status: string): boolean {
+    if(status == "Pending") {
       return true;
     }else {
       return false;

@@ -1,4 +1,7 @@
 <div class="container">
+    <div>
+        <input type="text" [(ngModel)]="searchName" placeholder="Search">
+    </div>
     <table>
         <caption>
             <h4><strong>Registered Loan</strong></h4>
@@ -8,7 +11,7 @@
             <th>Loan Type</th>
             <th>Status</th>
         </tr>
-        <tr *ngFor="let registration of loanRegistrations">
+        <tr *ngFor="let registration of filteredLoanRegistration">
             <td><strong><a routerLink="/registeredForm/{{registration.id}}">{{registration.borrowerName}}</a></strong>
             </td>
             <td>{{registration.loanType}}</td>

@@ -95,6 +95,7 @@ export class LoanRegistrationComponent implements OnInit {
       this.loanRegistration.status = "Accepted";
     }
     this.loanRegistration.borrowerName = this.borrowerDetails.uname;
+    console.log(this.loanRegistration);
     this.loanRegistrationService.sendLoanRegistration(this.loanRegistration).subscribe(
       data => {
         console.log(data);
