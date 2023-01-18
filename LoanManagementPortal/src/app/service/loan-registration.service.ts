@@ -23,6 +23,10 @@ export class LoanRegistrationService {
     return this.http.get<LoanRegistration>(`${this.baseUrl}/registration-by-id/${id}`);
   }
 
+  getByBorrowerName(borrowerName: string) {
+    return this.http.get<LoanRegistration[]>(`${this.baseUrl}/registration-by-BorrowerName/${borrowerName}`);
+  }
+
   update(loanRegistration: LoanRegistration) {
     return this.http.put<LoanRegistration>(`${this.baseUrl}/update-registration`, loanRegistration);
   }

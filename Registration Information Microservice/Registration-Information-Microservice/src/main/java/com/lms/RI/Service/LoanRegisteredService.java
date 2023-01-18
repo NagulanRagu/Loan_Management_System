@@ -45,10 +45,10 @@ public class LoanRegisteredService {
 
         log.info("Getting Details by Loan Id: {}", id);
         if(loanRegisteredRepository.findById(id) != null) {
-            log.error("No Details found for Loan Id: {}", id);
+            log.info("All Details are found for Loan Id: {}", id);
             return loanRegisteredRepository.findById(id);
         }else {
-            log.info("All Details are found for Loan Id: {}", id);
+            log.error("No Details found for Loan Id: {}", id);
             throw new IllegalArgumentException();
         }
     }
@@ -57,11 +57,11 @@ public class LoanRegisteredService {
 
         log.info("Getting Details by Borrower Name: {}", borrowerName);
         if(loanRegisteredRepository.findByBorrowerName(borrowerName).isEmpty()) {
-            log.error("No Details found for Borrower Name: {}", borrowerName);
-            return loanRegisteredRepository.findByBorrowerName(borrowerName);
-        }else {
             log.info("All Details are found for Borrower borrowerName: {}", borrowerName);
             throw new IllegalArgumentException();
+        }else {
+            log.error("No Details found for Borrower Name: {}", borrowerName);
+            return loanRegisteredRepository.findByBorrowerName(borrowerName);
         }
     }
 
