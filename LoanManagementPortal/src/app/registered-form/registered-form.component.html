@@ -58,7 +58,7 @@
             <td>Loan Type:</td>
             <td colspan="5">{{this.loanRegistration.loanType}}</td>
         </tr>
-        <tr *ngIf="!this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+        <tr>
             <td>Asked Loan Amount:</td>
             <td colspan="5">{{this.loanRegistration.askedLoanAmt}}</td>
         </tr>
@@ -67,7 +67,7 @@
             <td colspan="5"><input type="text" id="providedLoanAmt" class="form-input"
                     [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
         </tr>
-        <tr *ngIf="!this.adminRole">
+        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
             <td>Provided Loan Amount:</td>
             <td colspan="5">{{this.loanRegistration.providedLoanAmt}}</td>
         </tr>
@@ -80,16 +80,16 @@
             <td colspan="5"><input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
                     required></td>
         </tr>
-        <tr *ngIf="!this.adminRole">
+        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
             <td>Emi Amount:</td>
             <td colspan="5">{{this.loanRegistration.emiAmt}}</td>
         </tr>
         <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td><label for="issuedData">Issue Date:*</label></td>
-            <td colspan="5"><input type="date" id="issuedData" class="form-input"
+            <td><label for="issuedDate">Issue Date:*</label></td>
+            <td colspan="5"><input type="date" id="issuedDate" class="form-input"
                     [(ngModel)]="this.loanRegistration.issuedDate" required></td>
         </tr>
-        <tr *ngIf="!this.adminRole">
+        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
             <td>Issue Date:</td>
             <td colspan="5">{{this.loanRegistration.issuedDate}}</td>
         </tr>

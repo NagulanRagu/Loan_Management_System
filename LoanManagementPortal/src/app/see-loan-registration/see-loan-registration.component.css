@@ -9,16 +9,28 @@ table {
     margin-right: auto;
 }
 
-table, th, td {
+th, td {
     border: black 1px solid;
     font-size: medium;
+    padding: 10px;
 }
 
-th, td {
-    padding: 10px;
+hr {
+    margin: 0;
+    border: black 2px solid;
 }
 
 a:hover {
  color: darkseagreen;
  text-decoration: none;   
+}
+
+.input {
+    padding: 5px;
+    border-radius: 5px;
+    border-color: aliceblue;
+}
+
+.searchField {
+    border: 0;
 }

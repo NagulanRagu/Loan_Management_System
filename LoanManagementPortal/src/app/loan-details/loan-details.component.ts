@@ -26,6 +26,7 @@ export class LoanDetailsComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.router.navigate(['internal-server-error']);
       });
   }
 

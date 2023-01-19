@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoanRegistration } from '../model/loan-registration';
 import { LoanRegistrationService } from '../service/loan-registration.service';
 import { LoginServiceService } from '../service/login-service.service';
@@ -11,7 +12,8 @@ import { LoginServiceService } from '../service/login-service.service';
 export class SeeLoanRegistrationComponent implements OnInit {
 
   constructor(private loanRegistrationService: LoanRegistrationService,
-    private loginService: LoginServiceService) { }
+    private loginService: LoginServiceService,
+    private router: Router) { }
 
   loanRegistrations!: LoanRegistration[];
   filteredLoanRegistration!: LoanRegistration[];
@@ -50,6 +52,7 @@ export class SeeLoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.router.navigate(['internal-server-error']);
       });
   }
 
@@ -62,6 +65,7 @@ export class SeeLoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.router.navigate(['internal-server-error']);
       });
   }
 

@@ -8,11 +8,26 @@ table {
     width: 100%;
 }
 
-table, td, th {
-    border: black 1px solid;
-    
+hr {
+    margin: 0;
+    border: black 2px solid;
 }
 
 td, th {
+    border: black 1px solid;
     padding: 10px;
+}
+
+button {
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    background-color: lawngreen;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: yellow;
 }

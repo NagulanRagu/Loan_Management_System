@@ -18,22 +18,31 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class LoanRegistrationComponent implements OnInit {
 
-  constructor(
-    private router: Router, 
+  constructor(private router: Router, 
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService, 
     private loginService: LoginServiceService,
-    private loanDetailsService: LoanDetailsService,
-    public borrowerDetails: BorrowerDetails,
-    public borrowerAddress: Address,
-    public loanRegistration: LoanRegistration, 
-    public guarantorInfo: GuarantorInfo,
-    public guarantorAddress: GuarantorAddress) { }
+    private loanDetailsService: LoanDetailsService) { }
 
+  
+  borrowerDetails!: BorrowerDetails;
+  borrowerAddress!: Address;
+  loanRegistration!: LoanRegistration; 
+  guarantorInfo!: GuarantorInfo;
+  guarantorAddress!: GuarantorAddress;
   uname!: any;
   loanDetails!: LoanDetails[];
   roles!: any;
   adminRole!: boolean;
+  private _borrowerName!: string;
+  get borrowerName(): string {
+    return this._borrowerName;
+  }
+
+  set borrowerName(value: string) {
+    this._borrowerName = value;
+    this.getBorrowerDetails(value);
+  }
 
   ngOnInit(): void {
     this.loanRegistration = new LoanRegistration();
@@ -41,40 +50,8 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
-    this.whenToGetBorrowerDetails();
-    this.getLoanDetails();
     this.isUserAdmin();
-  }
-
-  whenToGetBorrowerDetails() {
-    if(this.adminRole) {
-      this.uname = this.borrowerDetails.uname;
-      this.getBorrowerDetails();
-    }else {
-      this.uname = this.loginService.getUserName();
-      this.getBorrowerDetails();
-    }
-  }
-
-  getBorrowerDetails() {
-    this.borrowerDetailsService.getBorrowerDetails(this.uname).subscribe(
-      data => {
-        console.log(data);
-        this.borrowerDetails = data;
-        console.log(this.loanRegistration);
-      });
-  }
-
-  getLoanDetails() {
-    this.loanDetailsService.getLoanDetails().subscribe(
-      data => {
-        console.log(data);
-        this.loanDetails = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    this.getLoanDetails();
   }
 
   isUserAdmin() {
@@ -85,7 +62,34 @@ export class LoanRegistrationComponent implements OnInit {
       this.adminRole = true;
     } else {
       this.adminRole = false;
+      this.uname = this.loginService.getUserName();
+      this.getBorrowerDetails(this.uname);
     }
+  }
+
+  getLoanDetails() {
+    this.loanDetailsService.getLoanDetails().subscribe(
+      data => {
+        console.log(data);
+        this.loanDetails = data;
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['internal-server-error']);
+      }
+    )
+  }
+
+  getBorrowerDetails(value: string) {
+    this.borrowerDetailsService.getBorrowerDetails(value).subscribe(
+      data => {
+        console.log(data);
+        this.borrowerDetails = data;
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['internal-server-error']);
+      });
   }
 
   sendOnClick() {
@@ -103,6 +107,7 @@ export class LoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.router.navigate(['internal-server-error']);
       });
   }
 }

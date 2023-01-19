@@ -22,13 +22,13 @@ export class RegisteredFormComponent implements OnInit {
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService,
     private loginService: LoginServiceService,
-    public loanRegistration: LoanRegistration,
-    public guarantorInfo: GuarantorInfo,
-    public guarantorAddress: GuarantorAddress,
-    public borrowerDetails: BorrowerDetails,
-    public borrowerAddress: Address
     ) { }
 
+  loanRegistration!: LoanRegistration
+  guarantorInfo!: GuarantorInfo
+  guarantorAddress!: GuarantorAddress
+  borrowerDetails!: BorrowerDetails
+  borrowerAddress!: Address
   id!: number;
   borrowerName!: string;
   roles!: any;
@@ -101,6 +101,19 @@ export class RegisteredFormComponent implements OnInit {
       return true;
     }else {
       return false;
+    }
+  }
+
+  whenToShow(value: string): boolean {
+    if(!this.adminRole) {
+      return true;
+    }else {
+      if(!this.isLoanAcceptedOrRejected(value)) {
+          return true;
+      }else {
+        
+        return false;
+      }
     }
   }
 }

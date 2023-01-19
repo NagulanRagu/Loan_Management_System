@@ -27,6 +27,7 @@ import { GuarantorAddress } from './model/guarantor-address';
 import { RegisteredFormComponent } from './registered-form/registered-form.component';
 import { UniqueValidationDirective } from './validation/unique-validation.directive';
 import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
+import { InternalServerErrorComponent } from './errors/internal-server-error/internal-server-error.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
     RegisteredFormComponent,
     UniqueValidationDirective,
     ListOfUsersComponent,
+    InternalServerErrorComponent,
   ],
   imports: [
     BrowserModule,
