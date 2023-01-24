@@ -30,6 +30,7 @@ export class LoanRegistrationComponent implements OnInit {
   loanRegistration!: LoanRegistration; 
   guarantorInfo!: GuarantorInfo;
   guarantorAddress!: GuarantorAddress;
+  errorMessage!: any;
   uname!: any;
   loanDetails!: LoanDetails[];
   roles!: any;
@@ -85,10 +86,11 @@ export class LoanRegistrationComponent implements OnInit {
       data => {
         console.log(data);
         this.borrowerDetails = data;
+        this.errorMessage = null;
       },
       error => {
         console.log(error);
-        this.router.navigate(['internal-server-error']);
+        this.errorMessage = error.error;
       });
   }
 

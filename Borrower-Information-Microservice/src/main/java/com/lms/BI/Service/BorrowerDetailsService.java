@@ -30,13 +30,13 @@ public class BorrowerDetailsService {
         }
     }
 
-    public BorrowerDetails getById(long id) throws IllegalArgumentException {
+    public BorrowerDetails getById(int id) throws IllegalArgumentException {
 
         log.info("Getting Details from Database for Id: {}", id);
         BorrowerDetails getDetail = borrowerDetailsRepository.findById(id);
         if(getDetail == null) {
             log.error("No Borrower Detail found for Id: {}", id);
-            throw new IllegalArgumentException("No Details is found for this Id.");
+            throw new IllegalArgumentException("No Details is found for this Id");
         }else {
             log.info("Details are fetched for Id: {}", id);
             return getDetail;
@@ -76,7 +76,7 @@ public class BorrowerDetailsService {
         return addedDetails;
     }
 
-    public void deleteBorrowerDetail(long id) {
+    public void deleteBorrowerDetail(int id) {
 
         log.info("Deleting the Detail from Database for Id: {}", id);
         borrowerDetailsRepository.deleteById(id);

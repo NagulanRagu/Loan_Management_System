@@ -13,17 +13,17 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class LoanRegisteredService {
-    
+
     @Autowired
     LoanRegisteredRepository loanRegisteredRepository;
 
     public List<LoanRegistered> getAllDetails() throws NullPointerException {
 
         log.info("Getting all Details from Database.");
-        if(loanRegisteredRepository.findAll().isEmpty()) {
+        if (loanRegisteredRepository.findAll().isEmpty()) {
             log.error("No Details is found in Database.");
-            throw new NullPointerException();
-        }else {
+            throw new NullPointerException("No Details Present");
+        } else {
             log.info("All Details are fetched.");
             return loanRegisteredRepository.findAll();
         }
@@ -44,23 +44,23 @@ public class LoanRegisteredService {
     public LoanRegistered getById(int id) throws IllegalArgumentException {
 
         log.info("Getting Details by Loan Id: {}", id);
-        if(loanRegisteredRepository.findById(id) != null) {
+        if (loanRegisteredRepository.findById(id) != null) {
             log.info("All Details are found for Loan Id: {}", id);
             return loanRegisteredRepository.findById(id);
-        }else {
-            log.error("No Details found for Loan Id: {}", id);
-            throw new IllegalArgumentException();
+        } else {
+            log.error("No Detail found for Loan Id: {}", id);
+            throw new IllegalArgumentException("No Detail found for the Loan Id");
         }
     }
 
     public List<LoanRegistered> getByBorrowerName(String borrowerName) throws IllegalArgumentException {
 
         log.info("Getting Details by Borrower Name: {}", borrowerName);
-        if(loanRegisteredRepository.findByBorrowerName(borrowerName).isEmpty()) {
-            log.info("All Details are found for Borrower borrowerName: {}", borrowerName);
-            throw new IllegalArgumentException();
-        }else {
+        if (loanRegisteredRepository.findByBorrowerName(borrowerName).isEmpty()) {
             log.error("No Details found for Borrower Name: {}", borrowerName);
+            throw new IllegalArgumentException("No Details found for Borrower Name");
+        } else {
+            log.info("All Details are found for Borrower borrowerName: {}", borrowerName);
             return loanRegisteredRepository.findByBorrowerName(borrowerName);
         }
     }

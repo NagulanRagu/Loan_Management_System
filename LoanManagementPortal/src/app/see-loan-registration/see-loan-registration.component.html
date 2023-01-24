@@ -12,13 +12,16 @@
         <tr>
             <th scope="col">Customer Name</th>
             <th scope="col">Loan Type</th>
+            <th scope="col">Issue Date</th>
             <th scope="col">Status</th>
         </tr>
         <tr *ngFor="let registration of filteredLoanRegistration">
             <td><strong><a routerLink="/registeredForm/{{registration.id}}">{{registration.borrowerName}}</a></strong>
             </td>
             <td>{{registration.loanType}}</td>
+            <td>{{registration.issuedDate}}</td>
             <td>{{registration.status}}</td>
         </tr>
+        <div *ngIf="this.errorMessage">{{this.errorMessage}}</div>
     </table>
 </div>

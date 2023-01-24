@@ -1,7 +1,6 @@
 package com.lms.BI.Controller;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,14 +35,14 @@ public class BorrowerDetailsController {
     TokenService tokenService;
 
     @GetMapping("/user-by-id/{id}")
-    public ResponseEntity<BorrowerDetails> getById(@RequestHeader("Authorization") String token, 
-                                                    @PathVariable long id) {
+    public ResponseEntity<?> getById(@RequestHeader("Authorization") String token, 
+                                                    @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             try {
                 return new ResponseEntity<>(borrowerDetailsService.getById(id), HttpStatus.OK);
             }catch(IllegalArgumentException e) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
             }
         }else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -51,14 +50,14 @@ public class BorrowerDetailsController {
     }
 
     @GetMapping("/user-by-uname/{uname}")
-    public ResponseEntity<BorrowerDetails> getByUname(@RequestHeader("Authorization") String token, 
+    public ResponseEntity<?> getByUname(@RequestHeader("Authorization") String token, 
                                                         @PathVariable String uname) {
 
         if(tokenService.checkValidation(token)) {
             try {
                 return new ResponseEntity<>(borrowerDetailsService.getByUname(uname), HttpStatus.OK);
             }catch(IllegalArgumentException e) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
             }
         }else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -67,13 +66,13 @@ public class BorrowerDetailsController {
 
     
     @GetMapping("/all-user")
-    public ResponseEntity<List<BorrowerDetails>> getAllUsers(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> getAllUsers(@RequestHeader("Authorization") String token) {
 
         if(tokenService.checkValidation(token)) {
             try {
                 return new ResponseEntity<>(borrowerDetailsService.getAllDetails(), HttpStatus.OK);
             }catch(NullPointerException e) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
             }
         }else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -87,8 +86,7 @@ public class BorrowerDetailsController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<BorrowerDetails> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
-
+    public ResponseEntity<?> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
         Role role = new Role();
         role.setName("ROLE_USER");
         Set<Role> roles = new HashSet<>();
@@ -109,7 +107,7 @@ public class BorrowerDetailsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<BorrowerDetails> updateEntity(@RequestHeader("Authorization") String token, 
+    public ResponseEntity<?> updateEntity(@RequestHeader("Authorization") String token, 
                                                         @RequestBody BorrowerDetails borrowerDetails) {
 
         if(tokenService.checkValidation(token)) {
@@ -117,7 +115,7 @@ public class BorrowerDetailsController {
                 return new ResponseEntity<>(borrowerDetailsService.updateBorrowerDetail(borrowerDetails), 
                                             HttpStatus.OK);
             }catch(Exception e) {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -126,7 +124,7 @@ public class BorrowerDetailsController {
 
     @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity<HttpCall> deletEntity(@RequestHeader("Authorization") String token, 
-                                                @PathVariable long id) {
+                                                @PathVariable int id) {
 
         if(tokenService.checkValidation(token)) {
             HttpCall httpCall = new HttpCall();

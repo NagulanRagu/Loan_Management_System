@@ -14,6 +14,7 @@
                 <td><label for="uname">Username:*</label></td>
                 <td><input type="text" id="uname" name="uname" class="form-input"
                         [(ngModel)]="borrowerName"></td>
+                <td colspan="3" *ngIf="this.errorMessage">{{this.errorMessage}}</td>
             </tr>
             <tr>
                 <td>First Name:</td>

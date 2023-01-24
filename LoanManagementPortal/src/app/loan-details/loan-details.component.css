@@ -5,19 +5,19 @@
 table {
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid;
+    width: 100%;
 }
 
 caption {
     font-size: large;
 }
 
-td {
-    padding: 15px 15px;
-    border-bottom: 1px solid;
-}
-
-th {
+td,th {
     padding: 15px 15px;
     border: 1px solid;
+}
+
+.buttonRow {
+    padding: 15px 15px;
+    border: 0;
 }

@@ -6,7 +6,6 @@
                 <th>Loan Number</th>
                 <th>Loan Type</th>
                 <th>Rate Of Interest</th>
-                <th colspan="3"></th>
             </tr>
         </thead>
         <tbody>
@@ -14,14 +13,17 @@
                 <td>{{loanDetail.loanNo}}</td>
                 <td>{{loanDetail.loanType}}</td>
                 <td>{{loanDetail.rateOfInterest}}</td>
-                <td><button (click)="updateLoanDetails(loanDetail.id)" class="btn btn-success"
-                        type="button">Update</button></td>
-                <td><button (click)="deleteLoanDetails(loanDetail.id)" class="btn btn-warning"
-                        type="button">Delete</button></td>
+                <div>
+                    <td class="buttonRow" *ngIf="this.adminRole"><button (click)="updateLoanDetails(loanDetail.id)" class="btn btn-success"
+                            type="button">Update</button></td>
+                    <td class="buttonRow" *ngIf="this.adminRole"><button (click)="deleteLoanDetails(loanDetail.id)" class="btn btn-warning"
+                            type="button">Delete</button></td>
+                </div>
             </tr>
-            <tr>
-                <td><button (click)="addLoanDetails()" class="btn btn-success">Add</button></td>
-            </tr>
+            <div *ngIf="this.adminRole">
+                <td class="buttonRow"><button (click)="addLoanDetails()" class="btn btn-success">Add</button></td>
+            </div>
         </tbody>
+        <div *ngIf="this.errorMessage">{{this.errorMessage}}</div>
     </table>
 </div>

@@ -22,7 +22,7 @@ public class LoanDetailsService {
         log.info("Getting all Details from Database.");
         if(loanDetailsRepository.findAll().isEmpty()) {
             log.error("No Details is found in Database.");
-            throw new NullPointerException();
+            throw new NullPointerException("No Details Present");
         }else {
             log.info("All Details are fetched.");
             return loanDetailsRepository.findAll();
@@ -34,7 +34,7 @@ public class LoanDetailsService {
         log.info("Getting Details from Database for Loan Id: {}.", id);
         if(loanDetailsRepository.findById(id) == null) {
             log.error("No Details is found in Database for Loan id: {}.", id);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("No Details is found for Loan id.");
         }else {
             log.info("Details are fetched for Loan id: {}.", id);
             return loanDetailsRepository.findById(id);
@@ -46,7 +46,7 @@ public class LoanDetailsService {
         log.info("Getting all Details from Database for Loan Type: {}.",loanType);
         if(loanDetailsRepository.findByLoanType(loanType) == null) {
             log.error("No Details is found in Database for Loan Type: {}.", loanType);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("No Details is found for Loan Type");
         }else {
             log.info("All Details are fetched for Loan Type: {}.", loanType);
             return loanDetailsRepository.findByLoanType(loanType);
@@ -58,7 +58,7 @@ public class LoanDetailsService {
         log.info("Getting all Details from Database for Loan Number: {}.", loanNo);
         if(loanDetailsRepository.findByLoanNo(loanNo) == null) {
             log.error("No Details is found in Database for Loan Number: {}.", loanNo);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("No Details is found for Loan Number");
         }else {
             log.info("All Details are fetched for Loan Number: {}.", loanNo);
             return loanDetailsRepository.findByLoanNo(loanNo);

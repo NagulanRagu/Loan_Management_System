@@ -15,6 +15,7 @@ export class SeeLoanRegistrationComponent implements OnInit {
     private loginService: LoginServiceService,
     private router: Router) { }
 
+  errorMessage!: any;
   loanRegistrations!: LoanRegistration[];
   filteredLoanRegistration!: LoanRegistration[];
   borrowerName!: any;
@@ -28,6 +29,9 @@ export class SeeLoanRegistrationComponent implements OnInit {
   set searchName(value: string) {
     this._searchName = value;
     this.filteredLoanRegistration = this.filter(value);
+    if(this.filteredLoanRegistration == null) {
+      this.errorMessage = "No Data found";
+    }
   }
 
   ngOnInit(): void {
@@ -49,10 +53,11 @@ export class SeeLoanRegistrationComponent implements OnInit {
         console.log(data);
         this.loanRegistrations = data;
         this.filteredLoanRegistration = this.loanRegistrations;
+        this.errorMessage = null;
       },
       error => {
-        console.log(error);
-        this.router.navigate(['internal-server-error']);
+        console.log(error.error);
+        this.errorMessage = error.error;
       });
   }
 
@@ -62,10 +67,11 @@ export class SeeLoanRegistrationComponent implements OnInit {
         console.log(data);
         this.loanRegistrations = data;
         this.filteredLoanRegistration = this.loanRegistrations;
+        this.errorMessage = null;
       },
       error => {
-        console.log(error);
-        this.router.navigate(['internal-server-error']);
+        console.log(error.error);
+        this.errorMessage = error.error;
       });
   }
 

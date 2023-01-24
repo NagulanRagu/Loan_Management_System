@@ -19,7 +19,7 @@ public class BorrowerAddress {
         
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column(name = "House_Number")
     private String houseNo;

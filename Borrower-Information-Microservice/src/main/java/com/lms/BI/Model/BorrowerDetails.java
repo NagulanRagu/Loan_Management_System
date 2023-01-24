@@ -25,7 +25,7 @@ public class BorrowerDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column(name = "firstname")
     private String fname;
