@@ -1,5 +1,5 @@
 <div class="container">
-    <form #registrationForm="ngForm" (ngSubmit)="sendOnClick()">
+    <form #registrationForm="ngForm">
         <table>
             <caption>
                 <h1><strong>Application Form</strong></h1>
@@ -12,8 +12,7 @@
             </tr>
             <tr *ngIf="this.adminRole">
                 <td><label for="uname">Username:*</label></td>
-                <td><input type="text" id="uname" name="uname" class="form-input"
-                        [(ngModel)]="borrowerName"></td>
+                <td><input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="borrowerName"></td>
                 <td colspan="3" *ngIf="this.errorMessage">{{this.errorMessage}}</td>
             </tr>
             <tr>
@@ -65,23 +64,26 @@
             </tr>
             <tr *ngIf="!this.adminRole">
                 <td><label for="loanAmt">Required Loan Amount:*</label></td>
-                <td><input type="text" id="loanAmt" name="loanAmt" class="form-input"
+                <td>Rs. <input type="text" id="loanAmt" name="loanAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.askedLoanAmt" required></td>
             </tr>
             <tr *ngIf="this.adminRole">
                 <td><label for="loanAmt">Provide Loan Amount:*</label></td>
-                <td><input type="text" id="loanAmt" name="loanAmt" class="form-input"
+                <td>Rs. <input type="text" id="loanAmt" name="loanAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
             </tr>
             <tr>
-                <td><label for="paymentPeriod">Payment Period:*</label></td>
+                <td><label for="paymentPeriod">Payment Period in Month:*</label></td>
                 <td><input type="text" id="paymentPeriod" name="paymentPeriod" class="form-input"
                         [(ngModel)]="this.loanRegistration.paymentPeriod" required></td>
             </tr>
             <tr *ngIf="this.adminRole">
                 <td><label for="emiAmt">EMI Amount:*</label></td>
-                <td><input type="text" id="emiAmt" name="emiAmt" class="form-input"
+                <td>Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.emiAmt" required></td>
+                <td colspan="4"><button
+                        (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanRegistration.loanType)">Calculate</button>
+                </td>
             </tr>
             <tr *ngIf="this.adminRole">
                 <td><label for="issuedDate">Issue Date:*</label></td>
@@ -135,7 +137,7 @@
             </tr>
         </table>
         <div>
-            <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
+            <button type="submit" [disabled]="registrationForm.invalid" (click)="sendOnClick()">Submit</button>
         </div>
     </form>
 </div>

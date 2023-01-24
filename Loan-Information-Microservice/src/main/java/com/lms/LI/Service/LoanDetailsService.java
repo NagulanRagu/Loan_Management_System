@@ -41,7 +41,7 @@ public class LoanDetailsService {
         }
     }
 
-    public List<LoanDetails> getByType(String loanType) throws IllegalArgumentException {
+    public LoanDetails getByType(String loanType) throws IllegalArgumentException {
 
         log.info("Getting all Details from Database for Loan Type: {}.",loanType);
         if(loanDetailsRepository.findByLoanType(loanType) == null) {

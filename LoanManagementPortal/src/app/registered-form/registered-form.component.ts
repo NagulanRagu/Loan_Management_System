@@ -4,8 +4,10 @@ import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { GuarantorAddress } from '../model/guarantor-address';
 import { GuarantorInfo } from '../model/guarantor-info';
+import { LoanDetails } from '../model/loan-details';
 import { LoanRegistration } from '../model/loan-registration';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
+import { LoanDetailsService } from '../service/loan-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
 import { LoginServiceService } from '../service/login-service.service';
 
@@ -22,6 +24,7 @@ export class RegisteredFormComponent implements OnInit {
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService,
     private loginService: LoginServiceService,
+    private loanDetailsService: LoanDetailsService
     ) { }
 
   loanRegistration!: LoanRegistration
@@ -29,6 +32,7 @@ export class RegisteredFormComponent implements OnInit {
   guarantorAddress!: GuarantorAddress
   borrowerDetails!: BorrowerDetails
   borrowerAddress!: Address
+  loanDetails!: LoanDetails
   id!: number;
   borrowerName!: string;
   roles!: any;
@@ -41,6 +45,7 @@ export class RegisteredFormComponent implements OnInit {
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
+    this.loanDetails = new LoanDetails();
     this.getDetails();
     this.isUserAdmin();
   }
@@ -58,10 +63,25 @@ export class RegisteredFormComponent implements OnInit {
           error => {
             console.log(error);
           });
+        this.loanDetailsService.getLoanDetailByType(data.loanType).subscribe(
+          data => {
+            console.log(data);
+            this.loanDetails = data;
+          },
+          error => {
+            console.log(error.error);
+          });
       },
       error => {
-        console.log(error);
+        console.log(error.error);
       });
+  }
+
+  emiCalculation(providedLoanAmt: string, n: number, rateOfInterest: number) {
+    let p: number = Number(providedLoanAmt);
+    let r: number = rateOfInterest/(12*100);
+    let emi: number = Math.round((p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+    this.loanRegistration.emiAmt = String(emi);
   }
 
   loanAccepted() {

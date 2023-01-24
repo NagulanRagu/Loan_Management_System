@@ -26,13 +26,7 @@ table {
 }
 
 #status {
-    background-color: green;
-    color: white;
     text-align: center;
-}
-
-.status {
-    border: 0;
 }
 
 button {
@@ -43,3 +37,13 @@ button {
     background-color: red;
     color: white;
 }
+
+button:hover {
+    background-color: blue;
+}
+
+.noBorder {
+    border: 0;
+    padding: 2px;
+}
+

@@ -60,29 +60,33 @@
         </tr>
         <tr>
             <td>Asked Loan Amount:</td>
-            <td colspan="5">{{this.loanRegistration.askedLoanAmt}}</td>
+            <td colspan="5">Rs. {{this.loanRegistration.askedLoanAmt}}</td>
         </tr>
         <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
             <td><label for="providedLoanAmt">Provide Loan Amount:*</label></td>
-            <td colspan="5"><input type="text" id="providedLoanAmt" class="form-input"
+            <td colspan="5">Rs. <input type="text" id="providedLoanAmt" class="form-input"
                     [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
         </tr>
         <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
             <td>Provided Loan Amount:</td>
-            <td colspan="5">{{this.loanRegistration.providedLoanAmt}}</td>
+            <td colspan="5">Rs. {{this.loanRegistration.providedLoanAmt}}</td>
         </tr>
         <tr>
-            <td>Payment Period:</td>
+            <td>Payment Period in Months:</td>
             <td colspan="5">{{this.loanRegistration.paymentPeriod}}</td>
         </tr>
         <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
             <td><label for="emiAmt">Emi Amount:*</label></td>
-            <td colspan="5"><input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
-                    required></td>
+            <td>Rs. <input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
+                    required>
+            </td>
+            <td colspan="4"><button
+                    (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanDetails.rateOfInterest)">Calculate</button>
+            </td>
         </tr>
         <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
             <td>Emi Amount:</td>
-            <td colspan="5">{{this.loanRegistration.emiAmt}}</td>
+            <td colspan="5">Rs. {{this.loanRegistration.emiAmt}}</td>
         </tr>
         <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
             <td><label for="issuedDate">Issue Date:*</label></td>
@@ -133,8 +137,10 @@
             <td colspan="6" id="status">Loan {{this.loanRegistration.status}}</td>
         </tr>
         <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td class="status"><button (click)="loanAccepted()">Accept</button></td>
-            <td class="status"><button (click)="loanRejected()">Reject</button></td>
+            <td colspan="6" class="noBorder"><button id="accept" (click)="loanAccepted()">Accept</button></td>
+        </tr>
+        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+            <td colspan="6" class="noBorder"><button id="reject" (click)="loanRejected()">Reject</button></td>
         </tr>
     </table>
 </div>

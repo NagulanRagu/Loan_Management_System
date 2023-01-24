@@ -75,8 +75,7 @@ export class LoanRegistrationComponent implements OnInit {
         this.loanDetails = data;
       },
       error => {
-        console.log(error);
-        this.router.navigate(['internal-server-error']);
+        console.log(error.error);
       }
     )
   }
@@ -94,6 +93,23 @@ export class LoanRegistrationComponent implements OnInit {
       });
   }
 
+  getRateOfInterest(loanType: string) {
+    let rateOfInterest: any
+    this.loanDetails.forEach(function(loanDetail){
+      if(loanDetail.loanType == loanType){
+        rateOfInterest = loanDetail.rateOfInterest
+      }
+    })
+    return rateOfInterest;
+  }
+
+  emiCalculation(providedLoanAmt: string, n: number, loanType: string) {
+    let p: number = Number(providedLoanAmt);
+    let r: number = this.getRateOfInterest(loanType)/(12*100);
+    let emi: number = Math.round((p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+    this.loanRegistration.emiAmt = String(emi);
+  }
+
   sendOnClick() {
     if(!this.adminRole) {
       this.loanRegistration.status = "Pending";
@@ -109,7 +125,6 @@ export class LoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.router.navigate(['internal-server-error']);
       });
   }
 }

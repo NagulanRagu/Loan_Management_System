@@ -21,6 +21,10 @@ export class LoanDetailsService {
     return this.http.get<LoanDetails>(`${this.baseUrl}/loan-by-id/${id}`);
   }
 
+  getLoanDetailByType(loanType: string) {
+    return this.http.get<LoanDetails>(`${this.baseUrl}/loan-by-loanType/${loanType}`)
+  }
+
   addLoanDetails(loanDetails: LoanDetails) {
     return this.http.post<LoanDetails>(`${this.baseUrl}/add-loan`, loanDetails);
   }

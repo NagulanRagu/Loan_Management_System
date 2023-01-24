@@ -37,7 +37,7 @@ hr {
 }
 
 .form-input {
-    width: 100%;
+    /* width: 100%; */
     padding: 5px;
     border-radius: 5px;
     border-color: aliceblue;
