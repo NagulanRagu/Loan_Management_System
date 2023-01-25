@@ -1,21 +1,25 @@
 .main-body {
     background-color: ghostwhite;
     margin-top: 50px;
-    padding: 20px 300px 20px 300px;
     background-image: url('~src/assets/images/SignupBackgroundImg.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
+form {
+    width: 25%;
+    margin: 0px auto 0 auto;
+}
+
+h3 {
+    text-align: center;   
+}
+
 .error {
     padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;
-}
-
-h3 {
-    padding: 0px 150px 0px 300px;
 }
 
 label {
@@ -25,8 +29,8 @@ label {
 .form-input {
     width: 100%;
     padding: 5px;
-    border: transparent;
-    border-bottom: 2px solid;
+    border: black 2px solid;
+    border-radius: 5px;
     background-color: transparent;
 }
 
@@ -48,10 +52,15 @@ input.ng-invalid.ng-touched {
 }
 
 .sub-group {
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px 0px 30px;
+    width: 90%;
 }
 
 button {
     width: 100%;
     margin: 10px 0px;
+}
+
+button:hover {
+    background-color: red;
 }

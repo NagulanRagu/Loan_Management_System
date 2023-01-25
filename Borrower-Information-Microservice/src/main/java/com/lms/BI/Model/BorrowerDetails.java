@@ -71,4 +71,5 @@ public class BorrowerDetails {
         this.borrowerAddress = borrowerAddress;
         this.roles = roles;
     }
+
 }

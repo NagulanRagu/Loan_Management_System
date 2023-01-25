@@ -60,7 +60,7 @@ public class BorrowerDetailsService {
         return borrowerDetailsRepository.existsByUname(uname);
     }
 
-    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
+    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails){
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);
         return borrowerDetailsRepository.save(nBorrowerDetails);

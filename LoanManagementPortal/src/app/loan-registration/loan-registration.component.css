@@ -1,7 +1,7 @@
 .container {
     background-color: ghostwhite;
     margin-top: 50px;
-    width :unset;
+    width: unset;
     padding: 20px 20px 20px 10px;
 }
 
@@ -11,7 +11,7 @@ form {
 }
 
 h1 {
-    color:crimson;
+    color: crimson;
     padding: 0px 150px 0px 350px;
 }
 
@@ -37,7 +37,6 @@ hr {
 }
 
 .form-input {
-    /* width: 100%; */
     padding: 5px;
     border-radius: 5px;
     border-color: aliceblue;
@@ -61,6 +60,10 @@ button {
     background-color: rebeccapurple;
     font-size: medium;
     color: whitesmoke;
+}
+
+button:hover {
+    background-color: chocolate;
 }
 
 td {

@@ -86,6 +86,7 @@ public class BorrowerDetailsController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
+
         if (nBorrowerDetails.getRoles() == null) {
             Role role = new Role();
             role.setName("ROLE_USER");
