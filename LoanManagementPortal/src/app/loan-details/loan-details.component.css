@@ -1,4 +1,4 @@
-.main-table {
+.container {
     margin-top: 100px;
 }
 
@@ -10,6 +10,11 @@ table {
 
 caption {
     font-size: large;
+}
+
+hr {
+    margin-top: 0;
+    border: black 2px solid;
 }
 
 td,th {

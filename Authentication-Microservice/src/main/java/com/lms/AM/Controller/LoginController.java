@@ -73,6 +73,7 @@ public class LoginController {
             );
         }catch(BadCredentialsException e) {
             throw new BadCredentialsException("Invalid_Credentails", e);
+
         }
 
         final UserDetails userDetails = userService.loadUserByUsername(loginCredentails.getUname());

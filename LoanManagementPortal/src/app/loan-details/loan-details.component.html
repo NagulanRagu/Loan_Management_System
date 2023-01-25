@@ -1,29 +1,28 @@
-<div class="main-table">
+<div class="container">
     <table>
-        <caption><strong>Loan Details</strong></caption>
-        <thead>
-            <tr>
-                <th>Loan Number</th>
-                <th>Loan Type</th>
-                <th>Rate Of Interest</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let loanDetail of loanDetails">
-                <td>{{loanDetail.loanNo}}</td>
-                <td>{{loanDetail.loanType}}</td>
-                <td>{{loanDetail.rateOfInterest}}</td>
-                <div>
-                    <td class="buttonRow" *ngIf="this.adminRole"><button (click)="updateLoanDetails(loanDetail.id)" class="btn btn-success"
-                            type="button">Update</button></td>
-                    <td class="buttonRow" *ngIf="this.adminRole"><button (click)="deleteLoanDetails(loanDetail.id)" class="btn btn-warning"
-                            type="button">Delete</button></td>
-                </div>
-            </tr>
-            <div *ngIf="this.adminRole">
-                <td class="buttonRow"><button (click)="addLoanDetails()" class="btn btn-success">Add</button></td>
+        <caption>
+            <h4><strong>Loan Details</strong></h4>
+            <hr>
+        </caption>
+        <tr>
+            <th>Loan Number</th>
+            <th>Loan Type</th>
+            <th>Rate Of Interest</th>
+        </tr>
+        <tr *ngFor="let loanDetail of loanDetails">
+            <td>{{loanDetail.loanNo}}</td>
+            <td>{{loanDetail.loanType}}</td>
+            <td>{{loanDetail.rateOfInterest}}</td>
+            <div>
+                <td class="buttonRow" *ngIf="this.adminRole"><button (click)="updateLoanDetails(loanDetail.id)"
+                        class="btn btn-success" type="button">Update</button></td>
+                <td class="buttonRow" *ngIf="this.adminRole"><button (click)="deleteLoanDetails(loanDetail.id)"
+                        class="btn btn-warning" type="button">Delete</button></td>
             </div>
-        </tbody>
+        </tr>
+        <div *ngIf="this.adminRole">
+            <td class="buttonRow"><button (click)="addLoanDetails()" class="btn btn-success">Add</button></td>
+        </div>
         <div *ngIf="this.errorMessage">{{this.errorMessage}}</div>
     </table>
 </div>

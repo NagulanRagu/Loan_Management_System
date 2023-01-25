@@ -63,24 +63,28 @@
                 </td>
             </tr>
             <tr *ngIf="!this.adminRole">
-                <td><label for="loanAmt">Required Loan Amount:*</label></td>
-                <td>Rs. <input type="text" id="loanAmt" name="loanAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.askedLoanAmt" required></td>
+                <td><label for="aLoanAmt">Required Loan Amount:*</label></td>
+                <td colspan="2">Rs. <input type="text" id="aLoanAmt" name="aLoanAmt" class="form-input"
+                        [(ngModel)]="this.loanRegistration.askedLoanAmt" #aLoanAmt="ngModel" required></td>
+                <td colspan="3" *ngIf="aLoanAmt.invalid && (aLoanAmt.dirty || aLoanAmt.touched)">This Field is required</td>
             </tr>
             <tr *ngIf="this.adminRole">
-                <td><label for="loanAmt">Provide Loan Amount:*</label></td>
-                <td>Rs. <input type="text" id="loanAmt" name="loanAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
+                <td><label for="pLoanAmt">Provide Loan Amount:*</label></td>
+                <td colspan="2">Rs. <input type="text" id="pLoanAmt" name="pLoanAmt" class="form-input"
+                        [(ngModel)]="this.loanRegistration.providedLoanAmt" #pLoanAmt="ngModel" required></td>
+                <td *ngIf="pLoanAmt.invalid && (pLoanAmt.dirty || pLoanAmt.touched)">This Field is required</td>
             </tr>
             <tr>
                 <td><label for="paymentPeriod">Payment Period in Month:*</label></td>
-                <td><input type="text" id="paymentPeriod" name="paymentPeriod" class="form-input"
-                        [(ngModel)]="this.loanRegistration.paymentPeriod" required></td>
+                <td colspan="2"><input type="text" id="paymentPeriod" name="paymentPeriod" class="form-input"
+                        [(ngModel)]="this.loanRegistration.paymentPeriod" #paymentPeriod="ngModel" required></td>
+                <td colspan="3" *ngIf="paymentPeriod.invalid && (paymentPeriod.dirty || paymentPeriod.touched)">This Field is
+                    required</td>
             </tr>
             <tr *ngIf="this.adminRole">
                 <td><label for="emiAmt">EMI Amount:*</label></td>
-                <td>Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.emiAmt" required></td>
+                <td colspan="2">Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
+                        [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required></td>
                 <td colspan="4"><button
                         (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanRegistration.loanType)">Calculate</button>
                 </td>
@@ -88,7 +92,8 @@
             <tr *ngIf="this.adminRole">
                 <td><label for="issuedDate">Issue Date:*</label></td>
                 <td><input type="date" id="issuedDate" name="issuedDate" class="form-input"
-                        [(ngModel)]="this.loanRegistration.issuedDate" required></td>
+                        [(ngModel)]="this.loanRegistration.issuedDate" #issuedDate="ngModel" required></td>
+                <td colspan="3" *ngIf="issuedDate.invalid && (issuedDate.dirty || issuedDate.touched)">This Field is required</td>
             </tr>
             <tr>
                 <th scope="col" colspan="6">
@@ -99,17 +104,26 @@
             <tr>
                 <td><label for="guarantorName">Name:*</label></td>
                 <td><input type="text" id="guarantorName" name="guarantorName" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" required></td>
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" #guarantorName="ngModel"
+                        required></td>
+                <td colspan="3" *ngIf="guarantorName.invalid && (guarantorName.dirty || guarantorName.touched)">This Field is
+                    required</td>
             </tr>
             <tr>
                 <td><label for="guarantorPhoneNo">Phone Number:*</label></td>
                 <td><input type="text" id="guarantorPhoneNo" name="guarantorPhoneNo" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" required></td>
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel"
+                        required></td>
+                <td colspan="3" *ngIf="guarantorPhoneNo.invalid && (guarantorPhoneNo.dirty || guarantorPhoneNo.touched)">This Field
+                    is required</td>
             </tr>
             <tr>
                 <td><label for="guarantorEmailId">Email Id:*</label></td>
                 <td><input type="text" id="guarantorEmailId" name="guarantorEmailId" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" required></td>
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel"
+                        required></td>
+                <td colspan="3" *ngIf="guarantorEmailId.invalid && (guarantorEmailId.dirty || guarantorEmailId.touched)">This Field
+                    is required</td>
             </tr>
             <tr>
                 <td>
