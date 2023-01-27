@@ -26,19 +26,19 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
+
         log.info("Start: loadUserByUsername Method.");
-        LoginCredentails loginCredentails = authClient.login(username);
-        if(loginCredentails == null) {
+        LoginCredentails loginCredentails = authClient.login(username).getBody();
+        if (loginCredentails.getUname().equals("No Details is found for this User Name")) {
             log.error("End: loadUserByUsername Method with Username is not found");
-            throw new UsernameNotFoundException("Username is not found: " + username);
-        }else {
+            throw new UsernameNotFoundException("Username is not found.");
+        } else {
             log.info("End: loadUserByUsername Method.");
             List<GrantedAuthority> grantedAuthorities = loginCredentails.getRole().stream().map(r -> {
                 return new SimpleGrantedAuthority(r);
             }).collect(Collectors.toList());
-            return new User(loginCredentails.getUname(),loginCredentails.getPassword(),grantedAuthorities);
+            return new User(loginCredentails.getUname(), loginCredentails.getPassword(), grantedAuthorities);
         }
     }
-    
+
 }

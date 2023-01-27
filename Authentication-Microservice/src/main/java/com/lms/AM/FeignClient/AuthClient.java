@@ -1,6 +1,7 @@
 package com.lms.AM.FeignClient;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -10,5 +11,5 @@ import com.lms.AM.Pojo.LoginCredentails;
 public interface AuthClient {
     
     @PostMapping("/login")
-    public LoginCredentails login(@RequestBody String uname);
+    public ResponseEntity<LoginCredentails> login(@RequestBody String uname);
 }

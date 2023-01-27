@@ -1,43 +1,43 @@
-.main-body {
-    background-color: ghostwhite;
+.container {
+    background-color: rgb(101, 99, 99);
     margin-top: 50px;
-    background-image: url('~src/assets/images/SignupBackgroundImg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    width: 100%;
 }
 
 form {
-    width: 25%;
-    margin: 0px auto 0 auto;
+    width: 50%;
+    margin: 50px auto 0 auto;
 }
 
 h3 {
+    margin-top: 50px;
     text-align: center;   
+    color: rgb(232, 228, 221);
 }
 
 .error {
     padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
+    color: rgb(222, 196, 196);
 }
 
 label {
     padding: 8px 0px 0px 0px;
+    color: white;
 }
 
 .form-input {
     width: 100%;
     padding: 5px;
-    border: black 2px solid;
+    border: white 2px solid;
     border-radius: 5px;
-    background-color: transparent;
+    background-color: rgb(225, 190, 209);
 }
 
 .form-input:focus, .form-input:hover {
     border: 2px solid;
     border-radius: 5px;
-    background-color: transparent;
+    background-color: rgb(214, 208, 218);
     transition:cubic-bezier(5, 5, 5, 5)
 }
 

@@ -1,4 +1,4 @@
-<div class="main-body">
+<div class="container">
     <form #signupForm=ngForm (ngSubmit)="signup()">
         <h3><strong>Sign in</strong></h3>
         <div class="group">
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="group">
-            <h4><strong>Address:</strong></h4>
+            <h4 style="color: white;"><strong>Address:</strong></h4>
             <div class="sub-group">
                 <label for="houseNo">House Number:*</label>
                 <input type="text" name="houseNo" class="form-input"
@@ -115,7 +115,7 @@
         </div>
         <div class="group">
             <button class="btn btn-primary btn-block mb-4" [disabled]="signupForm.invalid" type="submit">Signup</button>
-            <div><strong>Already Register<a routerLink="/login"> Click here</a></strong></div>
+            <div style="color: white;"><strong>Already Register<a routerLink="/login"> Click here</a></strong></div>
         </div>
     </form>
 </div>

@@ -104,14 +104,19 @@ public class BorrowerDetailsController {
     }
 
     @PostMapping("/login")
-    public LoginCredentails login(@RequestBody String uname) {
+    public ResponseEntity<LoginCredentails> login(@RequestBody String uname) {
 
         LoginCredentails loginCredentails = new LoginCredentails();
-        BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(uname);
-        loginCredentails.setUname(borrowerDetails.getUname());
-        loginCredentails.setPassword(borrowerDetails.getPassword());
-        loginCredentails.setRole(borrowerDetails.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
-        return loginCredentails;
+        try {
+            BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(uname);
+            loginCredentails.setUname(borrowerDetails.getUname());
+            loginCredentails.setPassword(borrowerDetails.getPassword());
+            loginCredentails.setRole(borrowerDetails.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
+            return new ResponseEntity<>(loginCredentails, HttpStatus.OK);
+        }catch(IllegalArgumentException e) {
+            loginCredentails.setUname(e.getLocalizedMessage());
+            return new ResponseEntity<>(loginCredentails, HttpStatus.OK);
+        }
     }
 
     @PutMapping("/update")

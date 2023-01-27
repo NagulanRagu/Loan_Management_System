@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +27,9 @@ import com.lms.AM.Utility.JWTUtility;
 public class LoginController {
 
     /**
-	 * This is a private field of type {@link JwtUtil} class which provides the
-	 * utilities for the token like get token, validate token, expiration time etc.
-	 */
+     * This is a private field of type {@link JwtUtil} class which provides the
+     * utilities for the token like get token, validate token, expiration time etc.
+     */
     @Autowired
     JWTUtility jwtUtility;
 
@@ -42,44 +40,42 @@ public class LoginController {
     AuthenticationManager authenticationManager;
 
     /**
-	 * This is a private field of type {@link ManagerDetailsService} class which is
-	 * used to fetch the user credentials from the database
-	 */
+     * This is a private field of type {@link ManagerDetailsService} class which is
+     * used to fetch the user credentials from the database
+     */
     @Autowired
     UserService userService;
-    
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/")
-    public String healthCheck(){
+    public String healthCheck() {
         return "Authentication Microservice working";
     }
 
     /**
-	 * This method is used to check the credentials whether the provided credentials
-	 * are correct or not. For this we will call authenticate method. If user
-	 * credentials are correct then we will fetch the data from database based on
-	 * userid and return it to the user with a token
-	 * 
-	 
-	 */
+     * This method is used to check the credentials whether the provided credentials
+     * are correct or not. For this we will call authenticate method. If user
+     * credentials are correct then we will fetch the data from database based on
+     * userid and return it to the user with a token
+     * 
+     * 
+     */
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtResponse> authenticate(@RequestBody LoginCredentails loginCredentails) 
-                                                    throws BadCredentialsException {
-        try {
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    loginCredentails.getUname(), loginCredentails.getPassword())
-            );
-        }catch(BadCredentialsException e) {
-            throw new BadCredentialsException("Invalid_Credentails", e);
-
+    public ResponseEntity<?> authenticate(@RequestBody LoginCredentails loginCredentails) {
+        
+        try{
+            final UserDetails userDetails = userService.loadUserByUsername(loginCredentails.getUname());
+            if (userDetails.getPassword().equals(loginCredentails.getPassword())) {
+                final String token = jwtUtility.generateToken(userDetails);
+                final List<String> roles = authClient.login(loginCredentails.getUname()).getBody().getRole();
+                return new ResponseEntity<>(new JwtResponse(token, roles), HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Password is Wrong", HttpStatus.UNAUTHORIZED);
+            }
+        }catch(Exception e) {
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.UNAUTHORIZED);
         }
-
-        final UserDetails userDetails = userService.loadUserByUsername(loginCredentails.getUname());
-        final String token = jwtUtility.generateToken(userDetails);
-        final List<String> roles = authClient.login(loginCredentails.getUname()).getRole();
-        return new ResponseEntity<>(new JwtResponse(token, roles), HttpStatus.OK);
     }
 
     @GetMapping("/validate")
@@ -87,12 +83,12 @@ public class LoginController {
         AuthResponse authResponse = new AuthResponse();
         token = token.substring(7);
         try {
-            if(jwtUtility.validateToken(token)) {
+            if (jwtUtility.validateToken(token)) {
                 authResponse.setUserId(jwtUtility.extractUsername(token));
                 authResponse.setValid(true);
                 authResponse.setMessage("Token is Good.");
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             authResponse.setValid(false);
             authResponse.setMessage("Token is not valid.");
             return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.FORBIDDEN);
