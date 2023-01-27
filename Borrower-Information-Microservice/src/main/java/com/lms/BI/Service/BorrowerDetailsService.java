@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class BorrowerDetailsService {
-    
+
     @Autowired
     BorrowerDetailsRepository borrowerDetailsRepository;
 
@@ -21,10 +21,10 @@ public class BorrowerDetailsService {
 
         log.info("Getting all Borrower Details From Database.");
         List<BorrowerDetails> allDetails = borrowerDetailsRepository.findAll();
-        if(allDetails.isEmpty()) {
+        if (allDetails.isEmpty()) {
             log.error("No Borrower Details found from Database.");
             throw new NullPointerException("No Details Present");
-        }else {
+        } else {
             log.info("All Details are fetched from Database.");
             return allDetails;
         }
@@ -34,23 +34,23 @@ public class BorrowerDetailsService {
 
         log.info("Getting Details from Database for Id: {}", id);
         BorrowerDetails getDetail = borrowerDetailsRepository.findById(id);
-        if(getDetail == null) {
+        if (getDetail == null) {
             log.error("No Borrower Detail found for Id: {}", id);
             throw new IllegalArgumentException("No Details is found for this Id");
-        }else {
+        } else {
             log.info("Details are fetched for Id: {}", id);
             return getDetail;
         }
     }
 
     public BorrowerDetails getByUname(String uname) throws IllegalArgumentException {
-         
+
         log.info("Getting Details from Database for User Name: {}", uname);
         BorrowerDetails getDetail = borrowerDetailsRepository.findByUname(uname);
-        if(getDetail == null) {
+        if (getDetail == null) {
             log.error("No Borrower Detail found for User Name: {}", uname);
             throw new IllegalArgumentException("No Details is found for this User Name");
-        }else {
+        } else {
             log.info("Details are fetched for User Name: {}", uname);
             return getDetail;
         }
@@ -60,7 +60,11 @@ public class BorrowerDetailsService {
         return borrowerDetailsRepository.existsByUname(uname);
     }
 
-    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails){
+    public boolean checkEmailId(String emailId) {
+        return borrowerDetailsRepository.existsByEmailId(emailId);
+    }
+
+    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);
         return borrowerDetailsRepository.save(nBorrowerDetails);

@@ -20,9 +20,10 @@
         <div class="group">
             <label for="uname">User Name:*</label>
             <input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="this.borrowerDetails.uname"
-                #uname="ngModel" required>
+                #uname="ngModel" uniqueUsernameValidation required>
             <div class="error" *ngIf="uname.invalid && (uname.touched || uname.dirty)">
                 <div *ngIf="uname.errors?.['required']">User Name is required field.</div>
+                <div *ngIf="uname.errors?.['uniqueUsernameValidation']">User Name is already exist.</div>
             </div>
         </div>
         <div class="group">
@@ -36,9 +37,10 @@
         <div class="group">
             <label for="emailId">Email Id:*</label>
             <input type="email" id="emailId" name="emailId" class="form-input"
-                [(ngModel)]="this.borrowerDetails.emailId" #emailId="ngModel" required>
+                [(ngModel)]="this.borrowerDetails.emailId" #emailId="ngModel" uniqueEmailValidation required>
             <div class="error" *ngIf="emailId.invalid && (emailId.touched || emailId.dirty)">
-                Email Id is required field.
+                <div *ngIf="emailId.errors?.['required']">Email Id is required field.</div>
+                <div *ngIf="emailId.errors?.['uniqueEmailValidation']">EmailId is already exist.</div>
             </div>
         </div>
         <div class="group">

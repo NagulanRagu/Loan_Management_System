@@ -79,9 +79,15 @@ public class BorrowerDetailsController {
     }
 
     @PostMapping("/user-by-uname")
-    public ResponseEntity<Boolean> checkingUniqueEntity(@RequestBody String uname) {
+    public ResponseEntity<Boolean> checkingUniqueUsername(@RequestBody String uname) {
 
         return new ResponseEntity<>(borrowerDetailsService.checkUname(uname), HttpStatus.OK);
+    }
+
+    @PostMapping("/user-by-emailId")
+    public ResponseEntity<Boolean> checkingUniqueEmailId(@RequestBody String emailId) {
+
+        return new ResponseEntity<>(borrowerDetailsService.checkEmailId(emailId), HttpStatus.OK);
     }
 
     @PostMapping("/signup")

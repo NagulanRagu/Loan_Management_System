@@ -24,10 +24,11 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
 import { GuarantorInfo } from './model/guarantor-info';
 import { Address } from './model/address';
 import { GuarantorAddress } from './model/guarantor-address';
-import { RegisteredFormComponent } from './registered-form/registered-form.component';
-import { UniqueValidationDirective } from './validation/unique-validation.directive';
+import { RegisteredFormComponent } from './registered-form/registered-form.component'
 import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { InternalServerErrorComponent } from './errors/internal-server-error/internal-server-error.component';
+import { UniqueUsernameValidationDirective } from './validation/unique-username-validation.directive';
+import { UniqueEmailValidationDirective } from './validation/unique-email-validation.directive';
 
 @NgModule({
   declarations: [
@@ -43,9 +44,10 @@ import { InternalServerErrorComponent } from './errors/internal-server-error/int
     SeeLoanRegistrationComponent,
     ProfileComponent,
     RegisteredFormComponent,
-    UniqueValidationDirective,
     ListOfUsersComponent,
     InternalServerErrorComponent,
+    UniqueUsernameValidationDirective,
+    UniqueEmailValidationDirective,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,6 @@ import { InternalServerErrorComponent } from './errors/internal-server-error/int
     GuarantorInfo,
     Address,
     GuarantorAddress,
-    UniqueValidationDirective
   ],
   bootstrap: [AppComponent]
 })
