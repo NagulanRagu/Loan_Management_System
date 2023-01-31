@@ -1,4 +1,4 @@
-package com.lms.BI.Model;
+package com.lms.BDM.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,9 +16,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class BorrowerDocument {
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "borrower_name")
+    private String borrowerName;
 
     @Column(name = "file_name")
     private String fileName;
@@ -27,9 +31,11 @@ public class BorrowerDocument {
     private String fileType;
 
     @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] file;
 
-    public BorrowerDocument(String fileName, String fileType, byte[] file) {
+    public BorrowerDocument(String borrowerName, String fileName, String fileType, byte[] file) {
+        this.borrowerName = borrowerName;
         this.fileName = fileName;
         this.fileType = fileType;
         this.file = file;

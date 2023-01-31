@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "borrower_details")
 public class BorrowerDetails {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

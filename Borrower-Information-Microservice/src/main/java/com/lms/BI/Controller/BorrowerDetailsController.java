@@ -1,7 +1,5 @@
 package com.lms.BI.Controller;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,13 +91,6 @@ public class BorrowerDetailsController {
     @PostMapping("/signup")
     public ResponseEntity<?> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
 
-        if (nBorrowerDetails.getRoles() == null) {
-            Role role = new Role();
-            role.setName("ROLE_USER");
-            Set<Role> roles = new HashSet<>();
-            roles.add(role);
-            nBorrowerDetails.setRoles(roles);
-        }
         return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
     }
 
@@ -111,9 +102,10 @@ public class BorrowerDetailsController {
             BorrowerDetails borrowerDetails = borrowerDetailsService.getByUname(uname);
             loginCredentails.setUname(borrowerDetails.getUname());
             loginCredentails.setPassword(borrowerDetails.getPassword());
-            loginCredentails.setRole(borrowerDetails.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
+            loginCredentails
+                    .setRole(borrowerDetails.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
             return new ResponseEntity<>(loginCredentails, HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             loginCredentails.setUname(e.getLocalizedMessage());
             return new ResponseEntity<>(loginCredentails, HttpStatus.OK);
         }

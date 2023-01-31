@@ -6,7 +6,9 @@ import { GuarantorAddress } from '../model/guarantor-address';
 import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanDetails } from '../model/loan-details';
 import { LoanRegistration } from '../model/loan-registration';
+import { ResponseFile } from '../model/response-file';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
+import { BorrowerDocumentServiceService } from '../service/borrower-document-service.service';
 import { LoanDetailsService } from '../service/loan-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
 import { LoginServiceService } from '../service/login-service.service';
@@ -22,7 +24,8 @@ export class LoanRegistrationComponent implements OnInit {
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService, 
     private loginService: LoginServiceService,
-    private loanDetailsService: LoanDetailsService) { }
+    private loanDetailsService: LoanDetailsService,
+    private borrowerDocumentService: BorrowerDocumentServiceService) { }
 
   
   borrowerDetails!: BorrowerDetails;
@@ -30,11 +33,15 @@ export class LoanRegistrationComponent implements OnInit {
   loanRegistration!: LoanRegistration; 
   guarantorInfo!: GuarantorInfo;
   guarantorAddress!: GuarantorAddress;
+  responseFile!: ResponseFile;
   errorMessage!: any;
   uname!: any;
   loanDetails!: LoanDetails[];
   roles!: any;
   adminRole!: boolean;
+  aadhaarFile!: File;
+  panCardFile!: File;
+  uploadSuccessMessage!: string;
   private _borrowerName!: string;
   get borrowerName(): string {
     return this._borrowerName;
@@ -51,6 +58,7 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
+    this.responseFile = new ResponseFile();
     this.isUserAdmin();
     this.getLoanDetails();
   }
@@ -68,18 +76,6 @@ export class LoanRegistrationComponent implements OnInit {
     }
   }
 
-  getLoanDetails() {
-    this.loanDetailsService.getLoanDetails().subscribe(
-      data => {
-        console.log(data);
-        this.loanDetails = data;
-      },
-      error => {
-        console.log(error.error);
-      }
-    )
-  }
-
   getBorrowerDetails(value: string) {
     this.borrowerDetailsService.getBorrowerDetails(value).subscribe(
       data => {
@@ -91,6 +87,40 @@ export class LoanRegistrationComponent implements OnInit {
         console.log(error);
         this.errorMessage = error.error;
       });
+  }
+
+  onAadhaarFileChange(event: any) {
+    this.aadhaarFile = event.target.files[0];
+  }
+
+  onPanCardFileChange(event: any) {
+    this.panCardFile = event.target.files[0];
+  }
+
+  onUpload(file: File, borrowerName: string) {
+    this.borrowerDocumentService.uploadFile(file, borrowerName).subscribe(
+      data => {
+        console.log(data);
+        this.responseFile = data;
+        this.uploadSuccessMessage = " File is Uploaded";
+      },
+      error => {
+        console.log(error.error);
+        this.uploadSuccessMessage = " File is not uploaded";
+      }
+    )
+  }
+
+  getLoanDetails() {
+    this.loanDetailsService.getLoanDetails().subscribe(
+      data => {
+        console.log(data);
+        this.loanDetails = data;
+      },
+      error => {
+        console.log(error.error);
+      }
+    )
   }
 
   getRateOfInterest(loanType: string) {

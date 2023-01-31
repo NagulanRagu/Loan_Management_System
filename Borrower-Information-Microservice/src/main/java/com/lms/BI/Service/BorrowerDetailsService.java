@@ -1,11 +1,14 @@
 package com.lms.BI.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Model.Role;
 import com.lms.BI.Repository.BorrowerDetailsRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -67,6 +70,12 @@ public class BorrowerDetailsService {
     public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);
+        if (nBorrowerDetails.getRoles() == null) {
+            log.info("Setting the role to ROLE_USER");
+            Set<Role> roles = new HashSet<>();
+            roles.add(new Role("ROLE_USER"));
+            nBorrowerDetails.setRoles(roles);
+        }
         return borrowerDetailsRepository.save(nBorrowerDetails);
     }
 

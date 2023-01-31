@@ -14,6 +14,9 @@
         },
         {
             "path": "Authentication-Microservice"
+        },
+        {
+            "path": "Borrower_Document_Microservice"
         }
     ],
     "settings": {
