@@ -6,7 +6,9 @@ import { GuarantorAddress } from '../model/guarantor-address';
 import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanDetails } from '../model/loan-details';
 import { LoanRegistration } from '../model/loan-registration';
+import { ResponseFile } from '../model/response-file';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
+import { BorrowerDocumentServiceService } from '../service/borrower-document-service.service';
 import { LoanDetailsService } from '../service/loan-details.service';
 import { LoanRegistrationService } from '../service/loan-registration.service';
 import { LoginServiceService } from '../service/login-service.service';
@@ -24,7 +26,8 @@ export class RegisteredFormComponent implements OnInit {
     private loanRegistrationService: LoanRegistrationService,
     private borrowerDetailsService: BorrowerDetailsService,
     private loginService: LoginServiceService,
-    private loanDetailsService: LoanDetailsService
+    private loanDetailsService: LoanDetailsService,
+    private borrowerDocumentService: BorrowerDocumentServiceService
     ) { }
 
   loanRegistration!: LoanRegistration
@@ -37,6 +40,8 @@ export class RegisteredFormComponent implements OnInit {
   borrowerName!: string;
   roles!: any;
   adminRole!: boolean;
+  aadhaarFile!: ResponseFile;
+  panCardFile!: ResponseFile;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -61,8 +66,24 @@ export class RegisteredFormComponent implements OnInit {
             this.borrowerDetails = data;
           },
           error => {
-            console.log(error);
+            console.log(error.error);
           });
+
+        this.borrowerDocumentService.downloadFileByBorrowerName(data.borrowerName).subscribe(
+          data => {
+            console.log(data);
+            data.forEach(element => {
+              if(element.fileDetail == "AadhaarCard") {
+                this.aadhaarFile = element;
+              }else {
+                this.panCardFile = element;
+              }
+            });
+          },
+          error => {
+            console.log(error.error)
+          });
+
         this.loanDetailsService.getLoanDetailByType(data.loanType).subscribe(
           data => {
             console.log(data);

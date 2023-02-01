@@ -19,11 +19,15 @@
         </tr>
         <tr>
             <td>Aadhaar Card:</td>
-            <td colspan="5">{{this.borrowerDetails.aadhaarCard}}</td>
+            <td>{{this.borrowerDetails.aadhaarCard}}</td>
+            <td *ngIf="this.aadhaarFile" colspan="4">View <a href="{{this.aadhaarFile.fileUri}}">{{this.aadhaarFile.fileDetail}}</a></td>
+            <td *ngIf="!this.aadhaarFile" colspan="4">No Document is found</td>
         </tr>
         <tr>
             <td>Pan Card:</td>
-            <td colspan="5">{{this.borrowerDetails.panCard}}</td>
+            <td>{{this.borrowerDetails.panCard}}</td>
+            <td *ngIf="this.panCardFile" colspan="4">View <a href="{{this.panCardFile.fileUri}}">{{this.panCardFile.fileDetail}}</a></td>
+            <td *ngIf="!this.panCardFile" colspan="4">No Document is found</td>
         </tr>
         <tr>
             <td>

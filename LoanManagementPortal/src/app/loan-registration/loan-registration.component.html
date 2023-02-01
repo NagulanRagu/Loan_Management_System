@@ -25,15 +25,15 @@
                 <td>Aadhaar Card:</td>
                 <td>{{this.borrowerDetails.aadhaarCard}}</td>
                 <td colspan="2"><input type="file" (change)="onAadhaarFileChange($event)"></td>
-                <td><button (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname)">Upload</button></td>
-                <td><a href='{{this.responseFile.fileUri}}'>{{this.responseFile.fileName}}</a>{{this.uploadSuccessMessage}}</td>
+                <td><button (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname, this.fileDetail[0])">Upload</button></td>
+                <td *ngIf="this.aadhaarCardResponse"><a target="_blank" href='{{this.aadhaarCardResponse.fileUri}}'>{{this.aadhaarCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
             </tr>
             <tr>
                 <td>Pan Card:</td>
                 <td>{{this.borrowerDetails.panCard}}</td>
                 <td colspan="2"><input type="file" (change)="onPanCardFileChange($event)"></td>
-                <td><button (click)="onUpload(this.panCardFile, this.borrowerDetails.uname)">Upload</button></td>
-                <td><a href='{{this.responseFile.fileUri}}'>{{this.responseFile.fileName}}</a>{{this.uploadSuccessMessage}}</td>
+                <td><button (click)="onUpload(this.panCardFile, this.borrowerDetails.uname, this.fileDetail[1])">Upload</button></td>
+                <td *ngIf="this.pancardCardResponse"><a target="_blank" href='{{this.pancardCardResponse.fileUri}}'>{{this.pancardCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
             </tr>
             <tr>
                 <td>
@@ -95,7 +95,7 @@
                 <td><label for="emiAmt">EMI Amount:*</label></td>
                 <td colspan="2">Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required></td>
-                <td colspan="4"><button
+                <td><button
                         (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanRegistration.loanType)">Calculate</button>
                 </td>
             </tr>

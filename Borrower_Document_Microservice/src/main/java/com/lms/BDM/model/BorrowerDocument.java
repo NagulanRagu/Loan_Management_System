@@ -24,6 +24,9 @@ public class BorrowerDocument {
     @Column(name = "borrower_name")
     private String borrowerName;
 
+    @Column(name = "file_detail")
+    private String fileDetail;
+
     @Column(name = "file_name")
     private String fileName;
 
@@ -34,10 +37,12 @@ public class BorrowerDocument {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] file;
 
-    public BorrowerDocument(String borrowerName, String fileName, String fileType, byte[] file) {
+    public BorrowerDocument(String borrowerName, String fileDetail, String fileName, String fileType, byte[] file) {
         this.borrowerName = borrowerName;
+        this.fileDetail = fileDetail;
         this.fileName = fileName;
         this.fileType = fileType;
         this.file = file;
     }
+
 }

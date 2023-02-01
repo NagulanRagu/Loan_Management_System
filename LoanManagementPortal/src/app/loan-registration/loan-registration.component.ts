@@ -33,14 +33,18 @@ export class LoanRegistrationComponent implements OnInit {
   loanRegistration!: LoanRegistration; 
   guarantorInfo!: GuarantorInfo;
   guarantorAddress!: GuarantorAddress;
-  responseFile!: ResponseFile;
   errorMessage!: any;
   uname!: any;
   loanDetails!: LoanDetails[];
   roles!: any;
   adminRole!: boolean;
+  fileDetail: string[] = ["AadhaarCard", "Pancard"];
   aadhaarFile!: File;
   panCardFile!: File;
+  aadhaarCardResponse!: ResponseFile;
+  pancardCardResponse!: ResponseFile;
+  aadhaarCardUploaded: boolean = false;
+  panCardUploaded: boolean = false;
   uploadSuccessMessage!: string;
   private _borrowerName!: string;
   get borrowerName(): string {
@@ -58,7 +62,8 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
-    this.responseFile = new ResponseFile();
+    this.aadhaarCardResponse = new ResponseFile();
+    this.pancardCardResponse = new ResponseFile();
     this.isUserAdmin();
     this.getLoanDetails();
   }
@@ -97,11 +102,15 @@ export class LoanRegistrationComponent implements OnInit {
     this.panCardFile = event.target.files[0];
   }
 
-  onUpload(file: File, borrowerName: string) {
-    this.borrowerDocumentService.uploadFile(file, borrowerName).subscribe(
+  onUpload(file: File, borrowerName: string, fileDetail: string) {
+    this.borrowerDocumentService.uploadFile(file, borrowerName, fileDetail).subscribe(
       data => {
         console.log(data);
-        this.responseFile = data;
+        if(data.fileDetail == "AadhaarCard") {
+          this.aadhaarCardResponse = data;
+        }else {
+          this.pancardCardResponse = data;
+        }
         this.uploadSuccessMessage = " File is Uploaded";
       },
       error => {

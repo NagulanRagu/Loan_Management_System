@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ResponseFile {
     
     private String fileName;
+    private String fileDetail;
     private String fileType;
     private String fileUri;
     private long fileSize;

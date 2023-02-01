@@ -20,12 +20,13 @@ public class BorrowerDocumentService {
     @Autowired
     BorrowerDocumentRepository borrowerDocumentRepository;
 
-    public BorrowerDocument saveBorrowerDocuments(MultipartFile document, String borrowerName) throws IOException {
+    public BorrowerDocument saveBorrowerDocuments(MultipartFile document, String borrowerName, String fileDetail)
+            throws IOException {
 
-        log.info("Adding new Borrower Document to Database: {} for Borrower Name: {}", document, borrowerName);
+        log.info("Adding new Borrower Document of {} for Borrower Name: {}", fileDetail, borrowerName);
         String fileName = StringUtils.cleanPath(document.getOriginalFilename());
-        BorrowerDocument borrowerDocuments = new BorrowerDocument(borrowerName, fileName, document.getContentType(),
-                document.getBytes());
+        BorrowerDocument borrowerDocuments = new BorrowerDocument(borrowerName, fileDetail, fileName,
+                document.getContentType(), document.getBytes());
         return borrowerDocumentRepository.save(borrowerDocuments);
     }
 

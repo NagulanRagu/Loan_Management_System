@@ -30,21 +30,22 @@ public class BorrowerDocumentController {
     @Autowired
     BorrowerDocumentService borrowerDocumentService;
 
-    @PostMapping("{borrowerName}/uploadFile")
+    @PostMapping("{borrowerName}/uploadFile/{fileDetail}")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile documents,
-            @PathVariable String borrowerName)
+            @PathVariable String borrowerName, @PathVariable String fileDetail)
             throws IOException {
 
         try {
             BorrowerDocument addedBorrowerDocument = borrowerDocumentService.saveBorrowerDocuments(documents,
-                    borrowerName);
+                    borrowerName, fileDetail);
             String fileUri = ServletUriComponentsBuilder
                     .fromCurrentContextPath()
                     .path("/downloadFile/")
                     .path("/{id}").build(addedBorrowerDocument.getId())
                     .toString();
             return new ResponseEntity<>(
-                    new ResponseFile(addedBorrowerDocument.getFileName(), addedBorrowerDocument.getFileType(), fileUri,
+                    new ResponseFile(addedBorrowerDocument.getFileName(), addedBorrowerDocument.getFileDetail(),
+                            addedBorrowerDocument.getFileType(), fileUri,
                             addedBorrowerDocument.getFile().length),
                     HttpStatus.CREATED);
         } catch (IOException e) {
@@ -56,14 +57,16 @@ public class BorrowerDocumentController {
     public ResponseEntity<?> downloadAllFiles() {
 
         try {
-            List<ResponseFile> responseFiles = borrowerDocumentService.getAllDocuments().stream().map(dbfile -> {
-                String fileUri = ServletUriComponentsBuilder
-                        .fromCurrentContextPath()
-                        .path("/downloadFile/")
-                        .path("/{id}").build(dbfile.getId())
-                        .toString();
-                return new ResponseFile(dbfile.getFileName(), dbfile.getFileType(), fileUri, dbfile.getFile().length);
-            }).collect(Collectors.toList());
+            List<ResponseFile> responseFiles = borrowerDocumentService.getAllDocuments().stream()
+                    .map(borrowerDocument -> {
+                        String fileUri = ServletUriComponentsBuilder
+                                .fromCurrentContextPath()
+                                .path("/downloadFile/")
+                                .path("/{id}").build(borrowerDocument.getId())
+                                .toString();
+                        return new ResponseFile(borrowerDocument.getFileName(), borrowerDocument.getFileDetail(),
+                                borrowerDocument.getFileType(), fileUri, borrowerDocument.getFile().length);
+                    }).collect(Collectors.toList());
             return new ResponseEntity<>(responseFiles, HttpStatus.OK);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NO_CONTENT);
@@ -91,14 +94,14 @@ public class BorrowerDocumentController {
 
         try {
             List<ResponseFile> responseFiles = borrowerDocumentService.getByBorrowerName(borrowerName).stream()
-                    .map(dbfile -> {
+                    .map(borrowerDocument -> {
                         String fileUri = ServletUriComponentsBuilder
                                 .fromCurrentContextPath()
                                 .path("/downloadFile/")
-                                .path("/{id}").build(dbfile.getId())
+                                .path("/{id}").build(borrowerDocument.getId())
                                 .toString();
-                        return new ResponseFile(dbfile.getFileName(), dbfile.getFileType(), fileUri,
-                                dbfile.getFile().length);
+                        return new ResponseFile(borrowerDocument.getFileName(), borrowerDocument.getFileDetail(),
+                                borrowerDocument.getFileType(), fileUri, borrowerDocument.getFile().length);
                     }).collect(Collectors.toList());
             return new ResponseEntity<>(responseFiles, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
