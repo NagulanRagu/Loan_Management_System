@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"uname\" : \"Admin\",\r\n    \"password\" : \"1234\"\r\n}",
+					"raw": "{\r\n    \"fname\" : \"Chandhru\",\r\n    \"lname\" : \"R U\",\r\n    \"uname\" : \"Chandhru R U\",\r\n    \"password\" : \"1234\",\r\n    \"phoneno\" : \"8870806373\",\r\n    \"emailId\" : \"chandhruragu6799@gmail.com\",\r\n    \"aadhaarCard\" : \"6101 8953 1282\",\r\n    \"panCard\" : \"AIUPU9900B\",\r\n    \"borrowerAddress\" : {\r\n        \"houseNo\" : \"63B-72B\",\r\n        \"street\" : \"Chinnarasingam Street, Vadasery\",\r\n        \"city\" : \"Nagercoil\",\r\n        \"state\" : \"TamilNadu\",\r\n        \"pincode\" : \"629001\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjgyMTY3MSwiaWF0IjoxNjcyODE5ODcxfQ.Pfse3egDy6-ZdKcjTQJx0aAOi_jc26lDCCmhK2WoAFo",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3NTA1ODU4NiwiaWF0IjoxNjc1MDU2Nzg2fQ.cEynoP7UXF6hbRIXJhWmosn5IzDBs4mJ5LqmdZbBH14",
 						"type": "default"
 					}
 				],
@@ -72,12 +72,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3NDIxODgzNCwiaWF0IjoxNjc0MjE3MDM0fQ.BR0Mp6zKx9agDLc9z63tncpbcLGDYLWM7zpUg-MOCSo",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/user-by-id/2",
+					"raw": "http://localhost:8080/user-by-id/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -85,7 +85,7 @@
 					"port": "8080",
 					"path": [
 						"user-by-id",
-						"2"
+						"10"
 					]
 				}
 			},
@@ -98,12 +98,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjkxODc1NCwiaWF0IjoxNjcyOTE2OTU0fQ.ajun9CCCjAH0fjit57nPMAAs3C6qxLHhuh45NdGFiCA",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3NTA1ODU4NiwiaWF0IjoxNjc1MDU2Nzg2fQ.cEynoP7UXF6hbRIXJhWmosn5IzDBs4mJ5LqmdZbBH14",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/delete-by-id/152",
+					"raw": "http://localhost:8080/delete-by-id/52",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +111,7 @@
 					"port": "8080",
 					"path": [
 						"delete-by-id",
-						"152"
+						"52"
 					]
 				}
 			},
@@ -124,7 +124,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MzAwOTkwNSwiaWF0IjoxNjczMDA4MTA1fQ.DcmwCfkFOsOWsaJTu1SR_mdYZDkjYa7SwvxvATxR9yw",
 						"type": "default"
 					}
 				],
@@ -145,21 +145,18 @@
 		},
 		{
 			"name": "Update Detail",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer ",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MzQyMTQyOCwiaWF0IjoxNjczNDE5NjI4fQ.3kOU9BOKEX3IIcqxQSKinTyjhG0QHa6f0li7U500JE8",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"id\" : 3,\r\n    \"fname\" : \"Nagulan\",\r\n    \"lname\" : \"R U\",\r\n    \"uname\" : \"Nagulan R U\",\r\n    \"password\" : \"1234\",\r\n    \"phoneno\" : \"8870323658\",\r\n    \"emailId\" : \"runagulan88@gmail.com\",\r\n    \"aadhaarCard\" : \"6101 8953 1282\",\r\n    \"panCard\" : \"AIUPU9900B\",\r\n    \"borrowerAddress\" : {\r\n        \"houseNo\" : \"63B-72B\",\r\n        \"street\" : \"Chinnarasingam Street, Vadasery\",\r\n        \"city\" : \"Nagercoil\",\r\n        \"state\" : \"TamilNadu\",\r\n        \"pincode\" : \"629001\"\r\n    },\r\n    \"roles\" : [\r\n    {\r\n        \"name\" : \"ROLE_USER\"\r\n    }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

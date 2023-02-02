@@ -89,13 +89,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MzAxMzQ5NiwiaWF0IjoxNjczMDExNjk2fQ.ZcCR6YfxcqHYuyBhwboN9lnfor-DXXbXdGO0tpA-aMw",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"borrowerId\" : \"2\",\r\n    \"loanType\" : \"Personal\",\r\n    \"loanAmt\" : \"25000\",\r\n    \"paymentPeriod\" : \"10\",\r\n    \"emiAmt\" : \"2500\",\r\n    \"issuedDate\" : \"28/12/2022\",\r\n    \"propertyDetails\" : \"House\"\r\n}",
+					"raw": "{\r\n    \"borrowerName\" : \"Nagulan R U\",\r\n    \"loanType\" : \"Personal\",\r\n    \"askedLoanAmt\" : \"25000\",\r\n    \"providedLoanAmt\" : \"20000\",\r\n    \"paymentPeriod\" : \"10\",\r\n    \"emiAmt\" : \"2000\",\r\n    \"issuedDate\" : \"2023-01-09\",\r\n    \"guarantorInfo\" : {\r\n        \"guarantorName\" : \"Ravikumar K\",\r\n        \"guarantorPhoneNo\" : \"8012946056\",\r\n        \"guarantorEmailId\" : \"ravikumaravel00@gmail.com\",\r\n        \"guarantorAddress\" : {\r\n            \"houseNo\" : \"C-113\",\r\n            \"street\" : \"Pallan Bus Stop, Cavery R S\",\r\n            \"city\" : \"Pallipalayam\",\r\n            \"state\" : \"TamilNadu\",\r\n            \"pincode\" : \"600014\"\r\n        }\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

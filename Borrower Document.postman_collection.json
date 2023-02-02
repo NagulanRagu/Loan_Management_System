@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "2ee40f26-e68a-4bed-af0e-4e5421cc6447",
+		"name": "Borrower Document",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/2129614/OneDrive - Cognizant/Documents/Personal Documents/Passport.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8084/Nagulan R U/uploadFile/AadhaarCard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"Nagulan R U",
+						"uploadFile",
+						"AadhaarCard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/downloadFile/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"downloadFile",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/allFiles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"allFiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByBorrowerName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/Nagulan R U/downloadFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"Nagulan R U",
+						"downloadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/deleteFile/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"deleteFile",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

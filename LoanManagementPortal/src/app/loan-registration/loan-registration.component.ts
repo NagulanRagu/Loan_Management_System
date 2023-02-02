@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { iif } from 'rxjs';
 import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { GuarantorAddress } from '../model/guarantor-address';
@@ -62,8 +63,6 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
     this.borrowerDetails.borrowerAddress = new Address();
-    this.aadhaarCardResponse = new ResponseFile();
-    this.pancardCardResponse = new ResponseFile();
     this.isUserAdmin();
     this.getLoanDetails();
   }
