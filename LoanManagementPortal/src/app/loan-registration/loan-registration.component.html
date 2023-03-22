@@ -11,25 +11,25 @@
                 </th>
             </tr>
             <tr *ngIf="this.adminRole">
-                <td><label for="uname">Username:*</label></td>
+                <td><label for="uname"><strong>Username:<b style="color:red">*</b></strong></label></td>
                 <td><input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="borrowerName"></td>
                 <td colspan="3" *ngIf="this.errorMessage">{{this.errorMessage}}</td>
             </tr>
             <tr>
-                <td>First Name:</td>
+                <td><strong>First Name:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.fname}}</td>
-                <td>Last Name:</td>
+                <td><strong>Last Name:</strong><b style="color:red">*</b></td>
                 <td colspan="3">{{this.borrowerDetails.lname}}</td>
             </tr>
             <tr>
-                <td>Aadhaar Card:</td>
+                <td><strong>Aadhaar Card:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.aadhaarCard}}</td>
                 <td colspan="2"><input type="file" (change)="onAadhaarFileChange($event)"></td>
                 <td><button (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname, this.fileDetail[0])">Upload</button></td>
                 <td *ngIf="this.aadhaarCardResponse"><a target="_blank" href='{{this.aadhaarCardResponse.fileUri}}'>{{this.aadhaarCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
             </tr>
             <tr>
-                <td>Pan Card:</td>
+                <td><strong>Pan Card:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.panCard}}</td>
                 <td colspan="2"><input type="file" (change)="onPanCardFileChange($event)"></td>
                 <td><button (click)="onUpload(this.panCardFile, this.borrowerDetails.uname, this.fileDetail[1])">Upload</button></td>
@@ -37,21 +37,21 @@
             </tr>
             <tr>
                 <td>
-                    <h4><strong>Address:</strong></h4>
+                    <h4><strong>Address:</strong><b style="color:red">*</b></h4>
                 </td>
             </tr>
             <tr>
-                <td>House Number:</td>
+                <td><strong>House Number:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
-                <td>Street:</td>
+                <td><strong>Street:</strong><b style="color:red">*</b></td>
                 <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
             </tr>
             <tr>
-                <td>City:</td>
+                <td><strong>City:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.borrowerAddress.city}}</td>
-                <td>State:</td>
+                <td><strong>State:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.borrowerAddress.state}}</td>
-                <td>Pincode:</td>
+                <td><strong>Pincode:</strong><b style="color:red">*</b></td>
                 <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
             </tr>
             <tr>
@@ -61,7 +61,7 @@
                 </th>
             </tr>
             <tr>
-                <td><label for="loanType">Loan Type:*</label></td>
+                <td><label for="loanType"><strong>Loan Type:</strong><b style="color:red">*</b></label></td>
                 <td colspan="5">
                     <select class="form-input" id="loanType" name="loanType"
                         [(ngModel)]="this.loanRegistration.loanType">
@@ -71,20 +71,20 @@
                 </td>
             </tr>
             <tr *ngIf="!this.adminRole">
-                <td><label for="aLoanAmt">Required Loan Amount:*</label></td>
+                <td><label for="aLoanAmt"><strong>Required Loan Amount:</strong><b style="color:red">*</b></label></td>
                 <td colspan="2">Rs. <input type="text" id="aLoanAmt" name="aLoanAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.askedLoanAmt" #aLoanAmt="ngModel" required></td>
                 <td colspan="4" *ngIf="aLoanAmt.invalid && (aLoanAmt.dirty || aLoanAmt.touched)">This Field is required
                 </td>
             </tr>
             <tr *ngIf="this.adminRole">
-                <td><label for="pLoanAmt">Provide Loan Amount:*</label></td>
+                <td><label for="pLoanAmt"><strong>Provide Loan Amount:</strong><b style="color:red">*</b></label></td>
                 <td colspan="2">Rs. <input type="text" id="pLoanAmt" name="pLoanAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.providedLoanAmt" #pLoanAmt="ngModel" required></td>
                 <td *ngIf="pLoanAmt.invalid && (pLoanAmt.dirty || pLoanAmt.touched)">This Field is required</td>
             </tr>
             <tr>
-                <td><label for="paymentPeriod">Payment Period in Month:*</label></td>
+                <td><label for="paymentPeriod"><strong>Payment Period in Month:</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="paymentPeriod" name="paymentPeriod" class="form-input"
                         [(ngModel)]="this.loanRegistration.paymentPeriod" #paymentPeriod="ngModel" required></td>
                 <td colspan="4" *ngIf="paymentPeriod.invalid && (paymentPeriod.dirty || paymentPeriod.touched)">This
@@ -92,7 +92,7 @@
                     required</td>
             </tr>
             <tr *ngIf="this.adminRole">
-                <td><label for="emiAmt">EMI Amount:*</label></td>
+                <td><label for="emiAmt"><strong>EMI Amount:</strong><b style="color:red">*</b></label></td>
                 <td colspan="2">Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
                         [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required></td>
                 <td><button
@@ -100,7 +100,7 @@
                 </td>
             </tr>
             <tr *ngIf="this.adminRole">
-                <td><label for="issuedDate">Issue Date:*</label></td>
+                <td><label for="issuedDate"><strong>Issue Date:</strong><b style="color:red">*</b></label></td>
                 <td><input type="date" id="issuedDate" name="issuedDate" class="form-input"
                         [(ngModel)]="this.loanRegistration.issuedDate" #issuedDate="ngModel" required></td>
                 <td colspan="4" *ngIf="issuedDate.invalid && (issuedDate.dirty || issuedDate.touched)">This Field is
@@ -113,7 +113,7 @@
                 </th>
             </tr>
             <tr>
-                <td><label for="guarantorName">Name:*</label></td>
+                <td><label for="guarantorName"><strong>Name</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="guarantorName" name="guarantorName" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" #guarantorName="ngModel"
                         required></td>
@@ -122,7 +122,7 @@
                     required</td>
             </tr>
             <tr>
-                <td><label for="guarantorPhoneNo">Phone Number:*</label></td>
+                <td><label for="guarantorPhoneNo"><strong>Phone Number:</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="guarantorPhoneNo" name="guarantorPhoneNo" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel"
                         required></td>
@@ -131,7 +131,7 @@
                     is required</td>
             </tr>
             <tr>
-                <td><label for="guarantorEmailId">Email Id:*</label></td>
+                <td><label for="guarantorEmailId"><strong>Email Id:</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="guarantorEmailId" name="guarantorEmailId" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel"
                         required></td>
@@ -145,21 +145,21 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="houseNo">House Number:*</label></td>
+                <td><label for="houseNo"><strong>House Number:</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="houseNo" name="houseNo" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required></td>
-                <td><label for="street">Street:*</label></td>
+                <td><label for="street"><strong>Street</strong><b style="color:red">*</b></label></td>
                 <td colspan="3"><input type="text" id="street" name="street" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.street" required></td>
             </tr>
             <tr>
-                <td><label for="city">City:*</label></td>
+                <td><label for="city"><strong>City</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="city" name="city" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.city" required></td>
-                <td><label for="state">State:*</label></td>
+                <td><label for="state"><strong>State</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="state" name="state" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.state" required></td>
-                <td><label for="pincode">Pincode:*</label></td>
+                <td><label for="pincode"><strong>Pincode</strong><b style="color:red">*</b></label></td>
                 <td><input type="text" id="pincode" name="pincode" class="form-input"
                         [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required></td>
             </tr>

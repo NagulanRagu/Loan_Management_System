@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class BorrowerAddress {
         
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "House_Number")

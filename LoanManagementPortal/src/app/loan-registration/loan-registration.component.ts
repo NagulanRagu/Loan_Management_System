@@ -40,6 +40,8 @@ export class LoanRegistrationComponent implements OnInit {
   roles!: any;
   adminRole!: boolean;
   fileDetail: string[] = ["AadhaarCard", "Pancard"];
+  getAadhaarFile!: ResponseFile;
+  getPancardFile!: ResponseFile;
   aadhaarFile!: File;
   panCardFile!: File;
   aadhaarCardResponse!: ResponseFile;
@@ -85,6 +87,7 @@ export class LoanRegistrationComponent implements OnInit {
       data => {
         console.log(data);
         this.borrowerDetails = data;
+        this.isDocumentUploaded(data.uname);
         this.errorMessage = null;
       },
       error => {
@@ -117,6 +120,23 @@ export class LoanRegistrationComponent implements OnInit {
         this.uploadSuccessMessage = " File is not uploaded";
       }
     )
+  }
+
+  isDocumentUploaded(borrowerName: string) {
+    this.borrowerDocumentService.downloadFileByBorrowerName(borrowerName).subscribe(
+      data => {
+        console.log(data);
+        data.forEach(element => {
+          if(element.fileDetail == "AadhaarCard") {
+            this.getAadhaarFile = element;
+          }else {
+            this.getPancardFile = element;
+          }
+        });
+      },
+      error => {
+        console.log(error.error)
+      });
   }
 
   getLoanDetails() {

@@ -1,12 +1,12 @@
 .container {
     background-color: ghostwhite;
-    margin-top: 50px;
-    width: unset;
-    padding: 20px 20px 20px 10px;
+    margin-top: 10px;
+    /*width: unset;
+    padding: 20px 20px 20px 10px;*/
 }
 
 form {
-    background-color: darkseagreen;
+    background-color: rgb(227, 244, 227);
     padding: 50px;
 }
 
@@ -18,6 +18,7 @@ h1 {
 h4 {
     margin-bottom: 0;
 }
+h4
 
 hr {
     margin: 0;
@@ -69,5 +70,5 @@ button:hover {
 td {
     padding: 10px;
     margin-left: 10px;
-    font-size: larger;
+    font-size: large;
 }

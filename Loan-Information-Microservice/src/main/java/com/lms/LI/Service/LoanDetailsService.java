@@ -70,6 +70,12 @@ public class LoanDetailsService {
         log.info("Saving the Details {} to the Database.", loanDetails);
         return loanDetailsRepository.save(loanDetails);
     }
+    
+    public List<LoanDetails> saveListOfDetails(List<LoanDetails> loanDetails) {
+
+        log.info("Saving the Details {} to the Database.", loanDetails);
+        return loanDetailsRepository.saveAll(loanDetails);
+    }
 
     public LoanDetails updateDetails(LoanDetails updateDetails) {
 

@@ -1,14 +1,16 @@
 <div class="container">
-    <table>
+    <table class="zigzag">
         <caption>
-            <h4><strong>Loan Details</strong></h4>
+            <h4>Loan Details</h4>
             <hr>
         </caption>
+        <thead>
         <tr>
-            <th>Loan Number</th>
-            <th>Loan Type</th>
-            <th>Rate Of Interest</th>
+            <th class="header">Loan Number</th>
+            <th class="header">Loan Type</th>
+            <th class="header">Rate Of Interest</th>
         </tr>
+      </thead>
         <tr *ngFor="let loanDetail of loanDetails">
             <td>{{loanDetail.loanNo}}</td>
             <td>{{loanDetail.loanType}}</td>
