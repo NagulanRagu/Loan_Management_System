@@ -53,36 +53,10 @@ public class LoanDetailsService {
         }
     }
 
-    public LoanDetails getByNumber(String loanNo) throws IllegalArgumentException {
-
-        log.info("Getting all Details from Database for Loan Number: {}.", loanNo);
-        if(loanDetailsRepository.findByLoanNo(loanNo) == null) {
-            log.error("No Details is found in Database for Loan Number: {}.", loanNo);
-            throw new IllegalArgumentException("No Details is found for Loan Number");
-        }else {
-            log.info("All Details are fetched for Loan Number: {}.", loanNo);
-            return loanDetailsRepository.findByLoanNo(loanNo);
-        }
-    }
-
     public LoanDetails saveDetails(LoanDetails loanDetails) {
 
         log.info("Saving the Details {} to the Database.", loanDetails);
         return loanDetailsRepository.save(loanDetails);
-    }
-    
-    public List<LoanDetails> saveListOfDetails(List<LoanDetails> loanDetails) {
-
-        log.info("Saving the Details {} to the Database.", loanDetails);
-        return loanDetailsRepository.saveAll(loanDetails);
-    }
-
-    public LoanDetails updateDetails(LoanDetails updateDetails) {
-
-        log.info("Updating the Details: {}", updateDetails);
-        getById(updateDetails.getId());
-        deleteDetails(updateDetails.getId());
-        return saveDetails(updateDetails);
     }
 
     public void deleteDetails(int id) {

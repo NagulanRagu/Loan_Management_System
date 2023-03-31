@@ -3,111 +3,105 @@ package com.lms.BI.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.lms.BI.Model.BorrowerAddress;
+import com.lms.BI.Model.Address;
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Model.Gender;
+import com.lms.BI.Model.PersonalInformation;
+import com.lms.BI.Model.Role;
 
 @ContextConfiguration
 @SpringBootTest
 public class BorrowerDetailsTest {
 
-    @Test
-    public void testNoArgConstructor() {
-        BorrowerDetails borrowerDetails = new BorrowerDetails();
-        assertNotNull(borrowerDetails);
-    }
+	@InjectMocks
+	BorrowerDetails borrowerDetails = new BorrowerDetails();
 
-    @Test
-    public void testAllArgConstructor() {
-        BorrowerDetails parameteredBorrowerDetails = new BorrowerDetails("Nagulan", "R U", "Nagulan R U", "1234",
-                "8870323658", "runagulan88@gmail.com", "612480258080", "AUIPU9900B", new BorrowerAddress(),
-                new HashSet<>());
-        assertEquals("Nagulan R U", parameteredBorrowerDetails.getUname());
-    }
+	@Test
+	public void testNoArgConstructor() {
+		assertNotNull(borrowerDetails);
+	}
 
-    @Test
-    public void testAllArgConstructorWithId() {
-        BorrowerDetails parameteredBorrowerDetails = new BorrowerDetails(2, "Nagulan", "R U", "Nagulan R U", "1234",
-                "8870323658", "runagulan88@gmail.com", "612480258080", "AUIPU9900B", new BorrowerAddress(),
-                new HashSet<>());
-        assertEquals(2, parameteredBorrowerDetails.getId());
-    }
+	@Test
+	public void testAllArgConstructor() {
+		BorrowerDetails borrowerDetails = new BorrowerDetails(1, new PersonalInformation(), "Nagulan R U", "1234",
+				"8870323658", "runagulan88@gmail.com", new Address(), new HashSet<Role>(), true);
+		assertEquals(1, borrowerDetails.getId());
+	}
 
-    @Test
-    public void testId() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setId(2);
-        assertEquals(2, borrowerDetail.getId());
-    }
+	@Test
+	public void testParamenterizedConstructor() {
+		BorrowerDetails borrowerDetails = new BorrowerDetails(new PersonalInformation(), "Nagulan R U", "1234",
+				"8870323658", "runagulan88@gmail.com", new Address(), new HashSet<Role>(), true);
+		assertEquals("Nagulan R U", borrowerDetails.getUname());
+	}
 
-    @Test
-    public void testFname() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setFname("Nagulan");
-        assertEquals("Nagulan", borrowerDetail.getFname());
-    }
+	@Test
+	public void testId() {
+		borrowerDetails.setId(1);
+		assertEquals(1, borrowerDetails.getId());
+	}
 
-    @Test
-    public void testLname() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setLname("R U");
-        assertEquals("R U", borrowerDetail.getLname());
-    }
+	@Test
+	public void testPersonalInformation() {
+		borrowerDetails.setPersonalInformation(
+				new PersonalInformation("Nagulan", "R U", new Date(), Gender.Male, "6101 8953 1282", "AIUPU9900B"));
+		assertEquals(new PersonalInformation("Nagulan", "R U", new Date(), Gender.Male, "6101 8953 1282", "AIUPU9900B"),
+				borrowerDetails.getPersonalInformation());
+	}
 
-    @Test
-    public void testUname() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setUname("Nagulan R U");
-        assertEquals("Nagulan R U", borrowerDetail.getUname());
-    }
+	@Test
+	public void testUname() {
+		borrowerDetails.setUname("Nagulan R U");
+		assertEquals("Nagulan R U", borrowerDetails.getUname());
+	}
 
-    @Test
-    public void testPassword() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setPassword("1234");
-        assertEquals("1234", borrowerDetail.getPassword());
-    }
+	@Test
+	public void testPassword() {
+		borrowerDetails.setPassword("1234");
+		assertEquals("1234", borrowerDetails.getPassword());
+	}
 
-    @Test
-    public void testPhoneno() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setPhoneno("8870323658");
-        assertEquals("8870323658", borrowerDetail.getPhoneno());
-    }
+	@Test
+	public void testPhonono() {
+		borrowerDetails.setPhoneno("8870323658");
+		assertEquals("8870323658", borrowerDetails.getPhoneno());
+	}
 
-    @Test
-    public void testEmailId() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setEmailId("runagulan88@gmail.com");
-        assertEquals("runagulan88@gmail.com", borrowerDetail.getEmailId());
-    }
+	@Test
+	public void testEmailId() {
+		borrowerDetails.setEmailId("runagulan88@gmail.com");
+		assertEquals("runagulan88@gmail.com", borrowerDetails.getEmailId());
+	}
 
-    @Test
-    public void testAadhaarCard() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setAadhaarCard("612346578079");
-        assertEquals("612346578079", borrowerDetail.getAadhaarCard());
-    }
+	@Test
+	public void testAddress() {
+		borrowerDetails.setBorrowerAddress(
+				new Address("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"));
+		;
+		assertEquals(new Address("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"),
+				borrowerDetails.getBorrowerAddress());
+	}
 
-    @Test
-    public void testPanCard() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setPanCard("AUIPU9900B");
-        assertEquals("AUIPU9900B", borrowerDetail.getPanCard());
-    }
-
-    @Test
-    public void testAddress() {
-        BorrowerDetails borrowerDetail = new BorrowerDetails();
-        borrowerDetail.setBorrowerAddress(
-                new BorrowerAddress("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"));
-        assertEquals(
-                new BorrowerAddress("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"),
-                borrowerDetail.getBorrowerAddress());
-    }
+	@Test
+	public void testRoles() {
+		Set<Role> role = new HashSet<Role>();
+		role.add(new Role("USER_ADMIN"));
+		borrowerDetails.setRoles(role);
+		assertEquals(role, borrowerDetails.getRoles());
+	}
+	
+	@Test
+	public void testEnabled() {
+		borrowerDetails.setEnabled(true);
+		assertEquals(true, borrowerDetails.isEnabled());
+	}
 }

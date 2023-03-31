@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { LoginServiceService } from '../service/login-service.service';
 
@@ -13,12 +12,10 @@ export class SignupComponent implements OnInit {
 
   constructor(private router: Router,
     private loginService: LoginServiceService,
-    public borrowerDetails: BorrowerDetails,
-    public borrowerAddress: Address) { }
+    public borrowerDetails: BorrowerDetails) { }
 
   ngOnInit(): void {
     this.borrowerDetails = new BorrowerDetails();
-    this.borrowerDetails.borrowerAddress = new Address();
   }
 
   signup() {

@@ -29,6 +29,8 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { InternalServerErrorComponent } from './errors/internal-server-error/internal-server-error.component';
 import { UniqueUsernameValidationDirective } from './validation/unique-username-validation.directive';
 import { UniqueEmailValidationDirective } from './validation/unique-email-validation.directive';
+import { PersonalInfoComponent } from './apply-loan/personal-info/personal-info.component';
+import { RegisterLoanDetailsComponent } from './apply-loan/register-loan-details/register-loan-details.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { UniqueEmailValidationDirective } from './validation/unique-email-valida
     InternalServerErrorComponent,
     UniqueUsernameValidationDirective,
     UniqueEmailValidationDirective,
+    PersonalInfoComponent,
+    RegisterLoanDetailsComponent,
   ],
   imports: [
     BrowserModule,

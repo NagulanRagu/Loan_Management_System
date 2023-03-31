@@ -64,11 +64,4 @@ public class LoanRegisteredService {
             return loanRegisteredRepository.findByBorrowerName(borrowerName);
         }
     }
-
-    public LoanRegistered updateLoanRegistered(LoanRegistered updateLoanRegistered) {
-
-        log.info("Updating the Registered Loan: {}", updateLoanRegistered);
-        deleteDetails(updateLoanRegistered.getId());
-        return saveDetails(updateLoanRegistered);
-    }
 }

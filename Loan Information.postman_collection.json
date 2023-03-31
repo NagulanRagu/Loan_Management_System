@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
@@ -37,7 +37,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
@@ -63,7 +63,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
@@ -83,45 +83,19 @@
 			"response": []
 		},
 		{
-			"name": "Get By Loan No",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
-						"type": "default"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8090/loan-by-loanNo/L1001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"loan-by-loanNo",
-						"L1001"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Add Loan",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"loanNo\" : \"L1004\",\r\n    \"loanType\" : \"Gold\",\r\n    \"rateOfInterest\" : \"6\"\r\n}",
+					"raw": "{\r\n    \"loanNo\" : \"L1005\",\r\n    \"loanType\" : \"Education\",\r\n    \"rateOfInterest\" : \"6\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,12 +123,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8090/delete-loan/1",
+					"raw": "http://localhost:8090/delete-loan/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -162,7 +136,7 @@
 					"port": "8090",
 					"path": [
 						"delete-loan",
-						"1"
+						"5"
 					]
 				}
 			},

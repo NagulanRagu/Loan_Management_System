@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoanDetails } from '../model/loan-details';
-import { LoanRegistration } from '../model/loan-registration';
 import { LoginServiceService } from './login-service.service';
 
 @Injectable({

@@ -1,3 +1,4 @@
+
 package com.lms.BI.Service;
 
 import java.util.HashSet;
@@ -82,11 +83,9 @@ public class BorrowerDetailsService {
     public BorrowerDetails updateBorrowerDetail(BorrowerDetails uBorrowerDetails) {
 
         log.info("Updating Detail to the Database: {}", uBorrowerDetails);
-        deleteBorrowerDetail(uBorrowerDetails.getId());
-        log.info("Old Detail is Deleted.");
-        BorrowerDetails addedDetails = saveBorrowerDetail(uBorrowerDetails);
-        log.info("New Detail is Updated.");
-        return addedDetails;
+        BorrowerDetails oBorrowerDetails = borrowerDetailsRepository.findById(uBorrowerDetails.getId());
+        uBorrowerDetails.setRoles(oBorrowerDetails.getRoles());
+        return borrowerDetailsRepository.save(uBorrowerDetails);
     }
 
     public void deleteBorrowerDetail(int id) {

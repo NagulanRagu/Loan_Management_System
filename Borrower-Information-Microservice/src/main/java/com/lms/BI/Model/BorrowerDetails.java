@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,56 +19,45 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "borrower_details")
 public class BorrowerDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "firstname")
-    private String fname;
-
-    @Column(name = "lastname")
-    private String lname;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private PersonalInformation personalInformation;
 
     @Column(name = "username", unique = true)
     private String uname;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "phone_number")
+    @Column(name = "Phone Number")
     private String phoneno;
 
-    @Column(name = "email_id", unique = true)
+    @Column(name = "Email Id", unique = true)
     private String emailId;
 
-    @Column(name = "aadhaar_Card")
-    private String aadhaarCard;
-
-    @Column(name = "pan_Card")
-    private String panCard;
-
     @OneToOne(cascade = CascadeType.ALL)
-    private BorrowerAddress borrowerAddress;
+    private Address borrowerAddress;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "borrower_id", referencedColumnName = "id")
     private Set<Role> roles;
+    
+    private boolean enabled;
 
-    public BorrowerDetails(String fname, String lname, String uname, String password, String phoneno, String emailId,
-            String aadhaarCard, String panCard, BorrowerAddress borrowerAddress, Set<Role> roles) {
-        this.fname = fname;
-        this.lname = lname;
-        this.uname = uname;
-        this.password = password;
-        this.phoneno = phoneno;
-        this.emailId = emailId;
-        this.aadhaarCard = aadhaarCard;
-        this.panCard = panCard;
-        this.borrowerAddress = borrowerAddress;
-        this.roles = roles;
-    }
-
+	public BorrowerDetails(PersonalInformation personalInformation, String uname, String password, String phoneno,
+			String emailId, Address borrowerAddress, Set<Role> roles, boolean enabled) {
+		super();
+		this.personalInformation = personalInformation;
+		this.uname = uname;
+		this.password = password;
+		this.phoneno = phoneno;
+		this.emailId = emailId;
+		this.borrowerAddress = borrowerAddress;
+		this.roles = roles;
+		this.enabled = enabled;
+	}
 }

@@ -91,7 +91,7 @@ public class LoanRegisteredController {
             @RequestBody LoanRegistered updateLoanRegistered) {
         if (tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanRegisteredService.updateLoanRegistered(updateLoanRegistered),
+                return new ResponseEntity<>(loanRegisteredService.saveDetails(updateLoanRegistered),
                         HttpStatus.OK);
             } catch (Exception e) {
                 return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

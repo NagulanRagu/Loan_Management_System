@@ -70,21 +70,6 @@ public class LoanDetailsController {
         }
     }
 
-    @GetMapping("/loan-by-loanNo/{loanNo}")
-    public ResponseEntity<?> getByNumber(@RequestHeader("Authorization") String token,
-            @PathVariable String loanNo) {
-
-        if (tokenService.checkValidation(token)) {
-            try {
-                return new ResponseEntity<>(loanDetailsService.getByNumber(loanNo), HttpStatus.OK);
-            } catch (NullPointerException e) {
-                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
-            }
-        } else {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
-    }
-
     @PostMapping("/add-loan")
     public ResponseEntity<LoanDetails> saveEntity(@RequestHeader("Authorization") String token,
             @RequestBody LoanDetails newLoanDetails) {
@@ -102,7 +87,7 @@ public class LoanDetailsController {
 
         if (tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanDetailsService.updateDetails(updateDetails), HttpStatus.OK);
+                return new ResponseEntity<>(loanDetailsService.saveDetails(updateDetails), HttpStatus.OK);
             } catch (IllegalArgumentException e) {
                 return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }

@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
@@ -37,20 +37,20 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8100/registration-by-loanNo/L1001",
+					"raw": "http://localhost:8100/registration-by-id/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8100",
 					"path": [
-						"registration-by-loanNo",
-						"L1001"
+						"registration-by-id",
+						"3"
 					]
 				}
 			},
@@ -63,20 +63,20 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOYWd1bGFuIFIgVSIsImV4cCI6MTY3Mjc0Nzg5MiwiaWF0IjoxNjcyNzQ2MDkyfQ.EgnJYfX6ZjoAvMK0W75JWeQWi0xut85H-IjtF9BAX2w",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8100/registration-by-BorrowerId/2",
+					"raw": "http://localhost:8100/registration-by-BorrowerName/Nagulan R U",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8100",
 					"path": [
-						"registration-by-BorrowerId",
-						"2"
+						"registration-by-BorrowerName",
+						"Nagulan R U"
 					]
 				}
 			},
@@ -89,13 +89,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MzAxMzQ5NiwiaWF0IjoxNjczMDExNjk2fQ.ZcCR6YfxcqHYuyBhwboN9lnfor-DXXbXdGO0tpA-aMw",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"borrowerName\" : \"Nagulan R U\",\r\n    \"loanType\" : \"Personal\",\r\n    \"askedLoanAmt\" : \"25000\",\r\n    \"providedLoanAmt\" : \"20000\",\r\n    \"paymentPeriod\" : \"10\",\r\n    \"emiAmt\" : \"2000\",\r\n    \"issuedDate\" : \"2023-01-09\",\r\n    \"guarantorInfo\" : {\r\n        \"guarantorName\" : \"Ravikumar K\",\r\n        \"guarantorPhoneNo\" : \"8012946056\",\r\n        \"guarantorEmailId\" : \"ravikumaravel00@gmail.com\",\r\n        \"guarantorAddress\" : {\r\n            \"houseNo\" : \"C-113\",\r\n            \"street\" : \"Pallan Bus Stop, Cavery R S\",\r\n            \"city\" : \"Pallipalayam\",\r\n            \"state\" : \"TamilNadu\",\r\n            \"pincode\" : \"600014\"\r\n        }\r\n    }\r\n}",
+					"raw": "{\r\n    \"borrowerName\" : \"Ravikumar K\",\r\n    \"loanType\" : \"Personal\",\r\n    \"askedLoanAmt\" : \"4,00,000\",\r\n    \"providedLoanAmt\" : \"4,00,000\",\r\n    \"paymentPeriod\" : \"60\",\r\n    \"emiAmt\" : \"10,000\",\r\n    \"issuedDate\" : \"2023-01-09\",\r\n    \"guarantorInfo\" : {\r\n        \"guarantorName\" : \"Ravikumar K\",\r\n        \"guarantorPhoneNo\" : \"8012946056\",\r\n        \"guarantorEmailId\" : \"ravikumaravel00@gmail.com\",\r\n        \"guarantorAddress\" : {\r\n            \"houseNo\" : \"C-113\",\r\n            \"street\" : \"Pallan Bus Stop, Cavery R S\",\r\n            \"city\" : \"Pallipalayam\",\r\n            \"state\" : \"TamilNadu\",\r\n            \"pincode\" : \"600014\"\r\n        }\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,12 +123,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3MjkwNTExOCwiaWF0IjoxNjcyOTAzMzE4fQ.A8GTfnow4pjphN8kpa2VmvG9eXEZ2p98SqPqbhqU7k0",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8100/delete-registration/152",
+					"raw": "http://localhost:8100/delete-registration/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -136,7 +136,41 @@
 					"port": "8100",
 					"path": [
 						"delete-registration",
-						"152"
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 3,\r\n        \"borrowerName\": \"Nagulan R U\",\r\n        \"loanType\": \"Vechile\",\r\n        \"askedLoanAmt\": \"10,00,000\",\r\n        \"providedLoanAmt\": \"10,00,000\",\r\n        \"paymentPeriod\": 120,\r\n        \"emiAmt\": \"45,000\",\r\n        \"issuedDate\": \"2023-03-28\",\r\n        \"guarantorInfo\": {\r\n            \"id\": 3,\r\n            \"guarantorName\": \"Ravikumar K\",\r\n            \"guarantorPhoneNo\": \"8012646056\",\r\n            \"guarantorEmailId\": \"ravikumaravel00@gmail.com\",\r\n            \"guarantorAddress\": {\r\n                \"id\": 3,\r\n                \"houseNo\": \"63B-72B\",\r\n                \"street\": \"Chinnarasingam Street\",\r\n                \"city\": \"Vadasery\",\r\n                \"state\": \"TamilNadu\",\r\n                \"pincode\": \"629001\"\r\n            }\r\n        },\r\n        \"status\": \"Approved\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8100/update-registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"update-registration"
 					]
 				}
 			},

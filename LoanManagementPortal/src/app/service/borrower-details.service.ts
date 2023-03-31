@@ -30,4 +30,8 @@ export class BorrowerDetailsService {
   getAllUsers() {
     return this.http.get<BorrowerDetails[]>(`${this.baseUrl}/all-user`);
   }
+
+  updateBorrowerDetails(borrowerDetails: BorrowerDetails) {
+    return this.http.put<BorrowerDetails>(`${this.baseUrl}/update`, borrowerDetails);
+  }
 }
