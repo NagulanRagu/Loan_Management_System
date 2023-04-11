@@ -146,8 +146,8 @@ public class BorrowerDetailsControllerTest {
 				"Nagulan R U", "1234", "8870323658", "runagulan88@gmail.com",
 				new Address(1, "63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"),
 				new HashSet<Role>(), true);
-		when(borrowerDetailsService.saveBorrowerDetail(borrowerDetails)).thenReturn(borrowerDetails);
-		assertEquals(new ResponseEntity<>(borrowerDetails, HttpStatus.CREATED),
+		when(borrowerDetailsService.saveBorrowerDetail(borrowerDetails)).thenReturn("f3465a17-4f67-4bdd-b8ad-2af452e64116");
+		assertEquals(new ResponseEntity<>("f3465a17-4f67-4bdd-b8ad-2af452e64116", HttpStatus.CREATED),
 				borrowerDetailsController.saveEntity(borrowerDetails));
 	}
 

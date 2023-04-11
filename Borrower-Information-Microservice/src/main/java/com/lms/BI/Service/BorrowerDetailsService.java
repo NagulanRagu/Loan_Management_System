@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Model.ConfirmationToken;
 import com.lms.BI.Model.Role;
 import com.lms.BI.Repository.BorrowerDetailsRepository;
 
@@ -20,6 +21,9 @@ public class BorrowerDetailsService {
 
     @Autowired
     BorrowerDetailsRepository borrowerDetailsRepository;
+    
+    @Autowired
+    ConfirmationTokenService confirmationTokenService;
 
     public List<BorrowerDetails> getAllDetails() throws NullPointerException {
 
@@ -68,7 +72,7 @@ public class BorrowerDetailsService {
         return borrowerDetailsRepository.existsByEmailId(emailId);
     }
 
-    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
+    public String saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);
         if (nBorrowerDetails.getRoles() == null) {
@@ -77,7 +81,17 @@ public class BorrowerDetailsService {
             roles.add(new Role("ROLE_USER"));
             nBorrowerDetails.setRoles(roles);
         }
-        return borrowerDetailsRepository.save(nBorrowerDetails);
+        ConfirmationToken confirmationToken = confirmationTokenService.createConfirmationToken(nBorrowerDetails);
+        borrowerDetailsRepository.save(nBorrowerDetails);
+        return confirmationToken.getToken();
+    }
+    
+    public String updateEnable(int id) {
+    	log.info("Updating the Enable to true for User id: {}", id);
+    	BorrowerDetails borrowerDetails = getById(id);
+    	borrowerDetails.setEnabled(true);
+    	borrowerDetailsRepository.save(borrowerDetails);
+    	return "Enabled";
     }
 
     public BorrowerDetails updateBorrowerDetail(BorrowerDetails uBorrowerDetails) {

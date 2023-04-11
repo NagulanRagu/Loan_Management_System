@@ -46,7 +46,7 @@ public class BorrowerDetails {
     @JoinColumn(name = "borrower_id", referencedColumnName = "id")
     private Set<Role> roles;
     
-    private boolean enabled;
+    private boolean enabled = false;
 
 	public BorrowerDetails(PersonalInformation personalInformation, String uname, String password, String phoneno,
 			String emailId, Address borrowerAddress, Set<Role> roles, boolean enabled) {

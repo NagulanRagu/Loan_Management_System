@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -18,11 +19,13 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.lms.BI.Model.Address;
 import com.lms.BI.Model.BorrowerDetails;
+import com.lms.BI.Model.ConfirmationToken;
 import com.lms.BI.Model.Gender;
 import com.lms.BI.Model.PersonalInformation;
 import com.lms.BI.Model.Role;
 import com.lms.BI.Repository.BorrowerDetailsRepository;
 import com.lms.BI.Service.BorrowerDetailsService;
+import com.lms.BI.Service.ConfirmationTokenService;
 
 @ContextConfiguration
 @SpringBootTest
@@ -30,6 +33,9 @@ public class BorrowerDetailsServiceTest {
 
 	@Mock
 	BorrowerDetailsRepository borrowerDetailsRepository;
+
+	@Mock
+	ConfirmationTokenService confirmationTokenService;
 
 	@InjectMocks
 	BorrowerDetailsService borrowerDetailsService;
@@ -108,7 +114,11 @@ public class BorrowerDetailsServiceTest {
 		when(borrowerDetailsRepository.save(borrowerDetails)).thenReturn(borrowerDetails);
 		Set<Role> roles = new HashSet<>();
 		roles.add(new Role("ROLE_USER"));
-		assertEquals(roles, borrowerDetailsService.saveBorrowerDetail(borrowerDetails).getRoles());
+		when(confirmationTokenService.createConfirmationToken(borrowerDetails))
+				.thenReturn(new ConfirmationToken(1, "f3465a17-4f67-4bdd-b8ad-2af452e64116", LocalDateTime.now(),
+						LocalDateTime.now().plusMinutes(15), LocalDateTime.now().plusMinutes(2), null));
+		assertEquals("f3465a17-4f67-4bdd-b8ad-2af452e64116",
+				borrowerDetailsService.saveBorrowerDetail(borrowerDetails));
 	}
 
 	@Test
@@ -129,6 +139,6 @@ public class BorrowerDetailsServiceTest {
 				true);
 		when(borrowerDetailsRepository.findById(1)).thenReturn(oBorrowerDetails);
 		when(borrowerDetailsRepository.save(nBorrowerDetails)).thenReturn(nBorrowerDetails);
-		assertEquals(wBorrowerDetails, borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails));
+		assertEquals(wBorrowerDetails, borrowerDetailsService.updateBorrowerDetail(nBorrowerDetails));
 	}
 }

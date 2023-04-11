@@ -86,11 +86,7 @@ public class LoanDetailsController {
             @RequestBody LoanDetails updateDetails) {
 
         if (tokenService.checkValidation(token)) {
-            try {
-                return new ResponseEntity<>(loanDetailsService.saveDetails(updateDetails), HttpStatus.OK);
-            } catch (IllegalArgumentException e) {
-                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+                return new ResponseEntity<>(loanDetailsService.updateDetails(updateDetails), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

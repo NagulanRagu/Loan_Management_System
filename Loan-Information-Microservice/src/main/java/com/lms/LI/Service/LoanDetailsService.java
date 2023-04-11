@@ -20,7 +20,7 @@ public class LoanDetailsService {
     public List<LoanDetails> getAllDetails() throws NullPointerException {
 
         log.info("Getting all Details from Database.");
-        if(loanDetailsRepository.findAll().isEmpty()) {
+        if(loanDetailsRepository.findAll() == null) {
             log.error("No Details is found in Database.");
             throw new NullPointerException("No Details Present");
         }else {
@@ -56,6 +56,12 @@ public class LoanDetailsService {
     public LoanDetails saveDetails(LoanDetails loanDetails) {
 
         log.info("Saving the Details {} to the Database.", loanDetails);
+        return loanDetailsRepository.save(loanDetails);
+    }
+
+    public LoanDetails updateDetails(LoanDetails loanDetails) {
+
+        log.info("Updating the Details {} to the Database.", loanDetails);
         return loanDetailsRepository.save(loanDetails);
     }
 
