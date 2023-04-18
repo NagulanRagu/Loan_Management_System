@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoanDetailsComponent } from './loan-details/loan-details.component';
@@ -29,8 +29,6 @@ import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
 import { InternalServerErrorComponent } from './errors/internal-server-error/internal-server-error.component';
 import { UniqueUsernameValidationDirective } from './validation/unique-username-validation.directive';
 import { UniqueEmailValidationDirective } from './validation/unique-email-validation.directive';
-import { PersonalInfoComponent } from './apply-loan/personal-info/personal-info.component';
-import { RegisterLoanDetailsComponent } from './apply-loan/register-loan-details/register-loan-details.component';
 
 @NgModule({
   declarations: [
@@ -49,9 +47,7 @@ import { RegisterLoanDetailsComponent } from './apply-loan/register-loan-details
     ListOfUsersComponent,
     InternalServerErrorComponent,
     UniqueUsernameValidationDirective,
-    UniqueEmailValidationDirective,
-    PersonalInfoComponent,
-    RegisterLoanDetailsComponent,
+    UniqueEmailValidationDirective
   ],
   imports: [
     BrowserModule,

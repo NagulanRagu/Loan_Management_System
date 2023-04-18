@@ -1,43 +1,46 @@
 .container {
-    background-color: rgb(101, 99, 99);
-    margin-top: 50px;
-    width: 100%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-top: 58px;
 }
 
 form {
-    width: 50%;
-    margin: 50px auto 0 auto;
+    margin-top: 50px;
+    padding: 0px 25px 25px 25px;
+    border: black 2px solid;
+    background-color: lightyellow;
 }
 
 h3 {
-    margin-top: 50px;
-    text-align: center;   
-    color: rgb(232, 228, 221);
+    margin: 30px;
+    padding: 5px;
+    text-align: center;
+    font-size: 50px;
 }
 
 .error {
-    padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(222, 196, 196);
+    padding-left: 10px;
 }
 
 label {
-    padding: 8px 0px 0px 0px;
-    color: white;
+    margin: 10px;
+    display: inline-block;
+    width: 150px; 
+    font-size: medium;
 }
 
 .form-input {
-    width: 100%;
     padding: 5px;
-    border: white 2px solid;
     border-radius: 5px;
-    background-color: rgb(225, 190, 209);
+    height: 20px;
+    width: 200px;
 }
 
 .form-input:focus, .form-input:hover {
-    border: 2px solid;
+    border: 1px solid;
     border-radius: 5px;
-    background-color: rgb(214, 208, 218);
     transition:cubic-bezier(5, 5, 5, 5)
 }
 
@@ -48,17 +51,22 @@ input.ng-invalid.ng-touched {
 }
 
 .group {
-    margin: 10px;
+    padding: 5px;
 }
 
-.sub-group {
-    padding: 0px 10px 0px 30px;
-    width: 90%;
+.submit {
+    text-align: center;
+    padding: 10px;
 }
 
 button {
-    width: 100%;
-    margin: 10px 0px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: blue;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+    width: 100px;
 }
 
 button:hover {

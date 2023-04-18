@@ -5,9 +5,9 @@
         </caption>
         <tr>
             <td>First Name:</td>
-            <td>{{this.borrowerDetails.fname}}</td>
+            <td>{{this.borrowerDetails.personalInformation.fname}}</td>
             <td>Last Name:</td>
-            <td colspan="3">{{this.borrowerDetails.lname}}</td>
+            <td colspan="3">{{this.borrowerDetails.personalInformation.lname}}</td>
         </tr>
         <tr>
             <td>Phone Number:</td>
@@ -19,13 +19,13 @@
         </tr>
         <tr>
             <td>Aadhaar Card:</td>
-            <td>{{this.borrowerDetails.aadhaarCard}}</td>
+            <td>{{this.borrowerDetails.personalInformation.aadhaarCard}}</td>
             <td *ngIf="this.aadhaarFile" colspan="4">View <a href="{{this.aadhaarFile.fileUri}}">{{this.aadhaarFile.fileDetail}}</a></td>
             <td *ngIf="!this.aadhaarFile" colspan="4">No Document is found</td>
         </tr>
         <tr>
             <td>Pan Card:</td>
-            <td>{{this.borrowerDetails.panCard}}</td>
+            <td>{{this.borrowerDetails.personalInformation.panCard}}</td>
             <td *ngIf="this.panCardFile" colspan="4">View <a href="{{this.panCardFile.fileUri}}">{{this.panCardFile.fileDetail}}</a></td>
             <td *ngIf="!this.panCardFile" colspan="4">No Document is found</td>
         </tr>

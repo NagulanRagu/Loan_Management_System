@@ -1,150 +1,150 @@
 <div class="container">
-    <table>
-        <caption>
-            <h2><strong>Applicated Form</strong></h2>
-        </caption>
-        <tr>
-            <th scope="col" colspan="6">
-                <h2><strong>Borrower Details</strong></h2>
-            </th>
-        </tr>
-        <tr>
-            <td>First Name:</td>
-            <td>{{this.borrowerDetails.fname}}</td>
-            <td>Last Name:</td>
-            <td colspan="3">{{this.borrowerDetails.lname}}</td>
-        </tr>
-        <tr>
-            <td>Phone Number:</td>
-            <td colspan="5">{{this.borrowerDetails.phoneno}}</td>
-        </tr>
-        <tr>
-            <td>Email Id:</td>
-            <td colspan="5">{{this.borrowerDetails.emailId}}</td>
-        </tr>
-        <tr>
-            <td>Aadhaar Card:</td>
-            <td>{{this.borrowerDetails.aadhaarCard}}</td>
-            <td *ngIf="this.aadhaarFile" colspan="4">View <a href="{{this.aadhaarFile.fileUri}}">{{this.aadhaarFile.fileDetail}}</a></td>
-            <td *ngIf="!this.aadhaarFile" colspan="4">No Document is found</td>
-        </tr>
-        <tr>
-            <td>Pan Card:</td>
-            <td>{{this.borrowerDetails.panCard}}</td>
-            <td *ngIf="this.panCardFile" colspan="4">View <a href="{{this.panCardFile.fileUri}}">{{this.panCardFile.fileDetail}}</a></td>
-            <td *ngIf="!this.panCardFile" colspan="4">No Document is found</td>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <h4><strong>Address:</strong></h4>
-            </td>
-        </tr>
-        <tr>
-            <td>House Number:</td>
-            <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
-            <td>Street:</td>
-            <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
-        </tr>
-        <tr>
-            <td>City:</td>
-            <td>{{this.borrowerDetails.borrowerAddress.city}}</td>
-            <td>State:</td>
-            <td>{{this.borrowerDetails.borrowerAddress.state}}</td>
-            <td>Pincode:</td>
-            <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
-        </tr>
-        <tr>
-            <th scope="col" colspan="6">
-                <h2><strong>Loan Details</strong></h2>
-            </th>
-        </tr>
-        <tr>
-            <td>Loan Type:</td>
-            <td colspan="5">{{this.loanRegistration.loanType}}</td>
-        </tr>
-        <tr>
-            <td>Asked Loan Amount:</td>
-            <td colspan="5">Rs. {{this.loanRegistration.askedLoanAmt}}</td>
-        </tr>
-        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td><label for="providedLoanAmt">Provide Loan Amount:*</label></td>
-            <td colspan="5">Rs. <input type="text" id="providedLoanAmt" class="form-input"
-                    [(ngModel)]="this.loanRegistration.providedLoanAmt" required></td>
-        </tr>
-        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
-            <td>Provided Loan Amount:</td>
-            <td colspan="5">Rs. {{this.loanRegistration.providedLoanAmt}}</td>
-        </tr>
-        <tr>
-            <td>Payment Period in Months:</td>
-            <td colspan="5">{{this.loanRegistration.paymentPeriod}}</td>
-        </tr>
-        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td><label for="emiAmt">Emi Amount:*</label></td>
-            <td>Rs. <input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
-                    required>
-            </td>
-            <td><button
-                    (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanDetails.rateOfInterest)">Calculate</button>
-            </td>
-        </tr>
-        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
-            <td>Emi Amount:</td>
-            <td colspan="5">Rs. {{this.loanRegistration.emiAmt}}</td>
-        </tr>
-        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td><label for="issuedDate">Issue Date:*</label></td>
-            <td colspan="5"><input type="date" id="issuedDate" class="form-input"
-                    [(ngModel)]="this.loanRegistration.issuedDate" required></td>
-        </tr>
-        <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
-            <td>Issue Date:</td>
-            <td colspan="5">{{this.loanRegistration.issuedDate}}</td>
-        </tr>
-        <tr>
-            <th scope="col" colspan="6">
-                <h2><strong>Guarantor Details</strong></h2>
-            </th>
-        </tr>
-        <tr>
-            <td>Guarantor Name:</td>
-            <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorName}}</td>
-        </tr>
-        <tr>
-            <td>Phone Number:</td>
-            <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorPhoneNo}}</td>
-        </tr>
-        <tr>
-            <td>Email Id:</td>
-            <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorEmailId}}</td>
-        </tr>
-        <tr>
-            <td colspan="6">
-                <h4><strong>Guarantor Address:</strong></h4>
-            </td>
-        </tr>
-        <tr>
-            <td>House Number:</td>
-            <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.houseNo}}</td>
-            <td>Street:</td>
-            <td colspan="3">{{this.loanRegistration.guarantorInfo.guarantorAddress.street}}</td>
-        </tr>
-        <tr>
-            <td>City:</td>
-            <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.city}}</td>
-            <td>State:</td>
-            <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.state}}</td>
-            <td>Pincode:</td>
-            <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.pincode}}</td>
-        </tr>
-        <tr>
-            <td colspan="6" id="status">Loan {{this.loanRegistration.status}}</td>
-        </tr>
-        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td colspan="6" class="noBorder"><button id="accept" (click)="loanAccepted()">Accept</button></td>
-        </tr>
-        <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
-            <td colspan="6" class="noBorder"><button id="reject" (click)="loanRejected()">Reject</button></td>
-        </tr>
-    </table>
+    <form #acceptionForm="ngForm">
+        <table>
+            <caption>
+                <h2><strong>Applicated Form</strong></h2>
+            </caption>
+            <tr>
+                <th scope="col" colspan="6">
+                    <h2><strong>Borrower Details</strong></h2>
+                </th>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td>{{this.borrowerDetails.personalInformation.fname}}</td>
+                <td>Last Name:</td>
+                <td colspan="3">{{this.borrowerDetails.personalInformation.lname}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td colspan="5">{{this.borrowerDetails.phoneno}}</td>
+            </tr>
+            <tr>
+                <td>Email Id:</td>
+                <td colspan="5">{{this.borrowerDetails.emailId}}</td>
+            </tr>
+            <tr>
+                <td>Aadhaar Card:</td>
+                <td>{{this.borrowerDetails.personalInformation.aadhaarCard}}</td>
+                <td *ngIf="this.aadhaarFile" colspan="4">View <a href="{{this.aadhaarFile.fileUri}}">{{this.aadhaarFile.fileDetail}}</a></td>
+                <td *ngIf="!this.aadhaarFile" colspan="4">No Document is found</td>
+            </tr>
+            <tr>
+                <td>Pan Card:</td>
+                <td>{{this.borrowerDetails.personalInformation.panCard}}</td>
+                <td *ngIf="this.panCardFile" colspan="4">View <a href="{{this.panCardFile.fileUri}}">{{this.panCardFile.fileDetail}}</a></td>
+                <td *ngIf="!this.panCardFile" colspan="4">No Document is found</td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h4><strong>Address:</strong></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>House Number:</td>
+                <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
+                <td>Street:</td>
+                <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>{{this.borrowerDetails.borrowerAddress.city}}</td>
+                <td>State:</td>
+                <td>{{this.borrowerDetails.borrowerAddress.state}}</td>
+                <td>Pincode:</td>
+                <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
+            </tr>
+            <tr>
+                <th scope="col" colspan="6">
+                    <h2><strong>Loan Details</strong></h2>
+                </th>
+            </tr>
+            <tr>
+                <td>Loan Type:</td>
+                <td colspan="5">{{this.loanRegistration.loanType}}</td>
+            </tr>
+            <tr>
+                <td>Asked Loan Amount:</td>
+                <td colspan="5">Rs. {{this.loanRegistration.askedLoanAmt}}</td>
+            </tr>
+            <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+                <td><label for="providedLoanAmt">Provide Loan Amount:*</label></td>
+                <td colspan="5">Rs. <input type="text" id="providedLoanAmt" class="form-input"
+                        [(ngModel)]="this.loanRegistration.providedLoanAmt" #providedLoanAmt="ngModel" required></td>
+            </tr>
+            <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
+                <td>Provided Loan Amount:</td>
+                <td colspan="5">Rs. {{this.loanRegistration.providedLoanAmt}}</td>
+            </tr>
+            <tr>
+                <td>Payment Period in Months:</td>
+                <td colspan="5">{{this.loanRegistration.paymentPeriod}}</td>
+            </tr>
+            <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+                <td><label for="emiAmt">Emi Amount:*</label></td>
+                <td>Rs. <input type="text" id="emiAmt" class="form-input" [(ngModel)]="this.loanRegistration.emiAmt"
+                        #emiAmt="ngModel" required>
+                </td>
+                <td colspan="4"><button
+                        (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanDetails.rateOfInterest)">Calculate</button>
+                </td>
+            </tr>
+            <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
+                <td>Emi Amount:</td>
+                <td colspan="5">Rs. {{this.loanRegistration.emiAmt}}</td>
+            </tr>
+            <tr *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+                <td><label for="issuedDate">Issue Date:*</label></td>
+                <td colspan="5"><input type="date" id="issuedDate" class="form-input"
+                        [(ngModel)]="this.loanRegistration.issuedDate" #issueDate="ngModel" required></td>
+            </tr>
+            <tr *ngIf="this.whenToShow(this.loanRegistration.status)">
+                <td>Issue Date:</td>
+                <td colspan="5">{{this.loanRegistration.issuedDate}}</td>
+            </tr>
+            <tr>
+                <th scope="col" colspan="6">
+                    <h2><strong>Guarantor Details</strong></h2>
+                </th>
+            </tr>
+            <tr>
+                <td>Guarantor Name:</td>
+                <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorName}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorPhoneNo}}</td>
+            </tr>
+            <tr>
+                <td>Email Id:</td>
+                <td colspan="5">{{this.loanRegistration.guarantorInfo.guarantorEmailId}}</td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <h4><strong>Guarantor Address:</strong></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>House Number:</td>
+                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.houseNo}}</td>
+                <td>Street:</td>
+                <td colspan="3">{{this.loanRegistration.guarantorInfo.guarantorAddress.street}}</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.city}}</td>
+                <td>State:</td>
+                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.state}}</td>
+                <td>Pincode:</td>
+                <td>{{this.loanRegistration.guarantorInfo.guarantorAddress.pincode}}</td>
+            </tr>
+            <tr *ngIf="(this.loanRegistration.status!='Pending')">
+                <td colspan="6" id="status">Loan {{this.loanRegistration.status}}</td>
+            </tr>
+            <div id="statusButton" *ngIf="this.adminRole && this.isLoanAcceptedOrRejected(this.loanRegistration.status)">
+                <button id="accept" [disabled]="acceptionForm.invalid" (click)="loanAccepted()">Accept</button>
+                <button id="reject" (click)="loanRejected()">Reject</button>
+            </div>
+        </table>
+    </form>
 </div>

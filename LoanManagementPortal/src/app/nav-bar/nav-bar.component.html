@@ -3,10 +3,10 @@
         <li class="loan"><a><strong>Loan Managment System</strong></a></li>
         <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/home">Home</a></li>
         <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan">Loan Details</a></li>
-        <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/loan-registration">Apply Loan</a></li>
+        <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="loan-registration">Apply Loan</a></li>
         <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="/all-registration">View</a></li>
         <li class="rest"><a *ngIf="this.loginService.isUserLoggedIn() && this.adminRole" routerLink="/allUsers">Users</a></li>
-        <li class="loan" style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="#"
+        <li class="rest" style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()" routerLink="#"
                 (click)="logout()">Logout</a></li>
         <li  class="rest"style="float:right"><a *ngIf="this.loginService.isUserLoggedIn()"
                 routerLink="/profile/{{uname}}">{{uname}}</a></li>

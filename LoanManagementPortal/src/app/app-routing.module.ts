@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddLoanDetailsComponent } from './add-loan-details/add-loan-details.component';
-import { PersonalInfoComponent } from './apply-loan/personal-info/personal-info.component';
 import { InternalServerErrorComponent } from './errors/internal-server-error/internal-server-error.component';
 import { HomeComponent } from './home/home.component';
 import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   { path: "registeredForm/:id", component: RegisteredFormComponent, canActivate: [RouterGuardService] },
   { path: "allUsers", component: ListOfUsersComponent, canActivate: [RouterGuardService] },
   { path: "internal-server-error", component: InternalServerErrorComponent},
-  { path: "applyloan/personalInfo", component: PersonalInfoComponent, canActivate: [RouterGuardService] }
 ];
 
 @NgModule({

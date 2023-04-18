@@ -117,7 +117,7 @@ public class BorrowerDetailsServiceTest {
 		when(confirmationTokenService.createConfirmationToken(borrowerDetails))
 				.thenReturn(new ConfirmationToken(1, "f3465a17-4f67-4bdd-b8ad-2af452e64116", LocalDateTime.now(),
 						LocalDateTime.now().plusMinutes(15), LocalDateTime.now().plusMinutes(2), null));
-		assertEquals("f3465a17-4f67-4bdd-b8ad-2af452e64116",
+		assertEquals(borrowerDetails,
 				borrowerDetailsService.saveBorrowerDetail(borrowerDetails));
 	}
 

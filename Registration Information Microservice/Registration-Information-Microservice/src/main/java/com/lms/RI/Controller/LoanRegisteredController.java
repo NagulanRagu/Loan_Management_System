@@ -63,7 +63,7 @@ public class LoanRegisteredController {
         if (tokenService.checkValidation(token)) {
             try {
                 return new ResponseEntity<>(loanRegisteredService.getByBorrowerName(borrowerName), HttpStatus.OK);
-            } catch (NullPointerException e) {
+            } catch (IllegalArgumentException e) {
                 return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.NOT_FOUND);
             }
         } else {

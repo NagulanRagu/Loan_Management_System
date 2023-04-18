@@ -1,12 +1,13 @@
 .main {
     height: 100%;
-    margin: 50px 0px 0px 0px;
     background-image: url('~src/assets/images/loan-management.jpg');
     min-height: 700px;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    position: fixed;
+    margin-top: 58px;
 }
 
 .main-form-div {
@@ -14,10 +15,7 @@
     position: absolute;
     margin: 100px 100px;
     background-color: white;
-}
-
-h2 {
-    padding-left: 50px;
+    border-radius: 5px;
 }
 
 .error {
@@ -28,10 +26,11 @@ h2 {
 
 .form-div {
     margin: 20px;
+    text-align: center;
 }
 
 input {
-    width: 100%;
+    width: 200px;
     padding: 10px;
     border: 2px solid transparent;
     border-bottom-color: black;
@@ -47,6 +46,21 @@ input:focus, input:hover {
     padding: 10px;
     border-radius: 1rem;
     border-color: rgb(0, 9, 9);
+}
+
+button {
+    width: 80px;
+    padding: 8px;
+    color: black;
+    border-radius: 5px;
+    background-color: lightblue;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: violet;
 }
 
 a {

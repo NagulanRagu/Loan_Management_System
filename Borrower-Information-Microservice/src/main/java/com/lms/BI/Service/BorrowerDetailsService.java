@@ -72,7 +72,7 @@ public class BorrowerDetailsService {
         return borrowerDetailsRepository.existsByEmailId(emailId);
     }
 
-    public String saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
+    public BorrowerDetails saveBorrowerDetail(BorrowerDetails nBorrowerDetails) {
 
         log.info("Adding Detail to the Database: {}", nBorrowerDetails);
         if (nBorrowerDetails.getRoles() == null) {
@@ -82,8 +82,7 @@ public class BorrowerDetailsService {
             nBorrowerDetails.setRoles(roles);
         }
         ConfirmationToken confirmationToken = confirmationTokenService.createConfirmationToken(nBorrowerDetails);
-        borrowerDetailsRepository.save(nBorrowerDetails);
-        return confirmationToken.getToken();
+        return borrowerDetailsRepository.save(nBorrowerDetails);
     }
     
     public String updateEnable(int id) {

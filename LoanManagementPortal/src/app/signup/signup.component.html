@@ -1,6 +1,6 @@
 <div class="container">
     <form #signupForm=ngForm (ngSubmit)="signup()">
-        <h3><strong>Sign in</strong></h3>
+        <h3><strong>Sign up</strong></h3>
         <div class="group">
             <label for="uname">User Name:*</label>
             <input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="this.borrowerDetails.uname"
@@ -35,12 +35,9 @@
                 Phone Number is required field.
             </div>
         </div>
-        <div class="error" *ngIf="signupForm.invalid">
-            <p>Please fill all the required fields</p>
-        </div>
-        <div class="group">
+        <div class="submit">
             <button class="btn btn-primary btn-block mb-4" [disabled]="signupForm.invalid" type="submit">Signup</button>
-            <div style="color: white;"><strong>Already Register<a routerLink="/login"> Click here</a></strong></div>
+            <div style="padding: 10px;"><strong>Already Register<a routerLink="/login"> Click here</a></strong></div>
         </div>
     </form>
 </div>

@@ -1,171 +1,221 @@
 <div class="container">
-    <form #registrationForm="ngForm">
-        <table>
-            <caption>
-                <h1><strong>Application Form</strong></h1>
-            </caption>
-            <tr>
-                <th scope="col" colspan="6">
-                    <h2><strong>Borrower Details</strong></h2>
-                    <hr>
-                </th>
-            </tr>
-            <tr *ngIf="this.adminRole">
-                <td><label for="uname"><strong>Username:<b style="color:red">*</b></strong></label></td>
-                <td><input type="text" id="uname" name="uname" class="form-input" [(ngModel)]="borrowerName"></td>
-                <td colspan="3" *ngIf="this.errorMessage">{{this.errorMessage}}</td>
-            </tr>
-            <tr>
-                <td><strong>First Name:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.fname}}</td>
-                <td><strong>Last Name:</strong><b style="color:red">*</b></td>
-                <td colspan="3">{{this.borrowerDetails.lname}}</td>
-            </tr>
-            <tr>
+        <!-- <tr>
                 <td><strong>Aadhaar Card:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.aadhaarCard}}</td>
+                <td>{{this.borrowerDetails.personalInformation.aadhaarCard}}</td>
                 <td colspan="2"><input type="file" (change)="onAadhaarFileChange($event)"></td>
                 <td><button (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname, this.fileDetail[0])">Upload</button></td>
                 <td *ngIf="this.aadhaarCardResponse"><a target="_blank" href='{{this.aadhaarCardResponse.fileUri}}'>{{this.aadhaarCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
             </tr>
             <tr>
                 <td><strong>Pan Card:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.panCard}}</td>
+                <td>{{this.borrowerDetails.personalInformation.panCard}}</td>
                 <td colspan="2"><input type="file" (change)="onPanCardFileChange($event)"></td>
                 <td><button (click)="onUpload(this.panCardFile, this.borrowerDetails.uname, this.fileDetail[1])">Upload</button></td>
                 <td *ngIf="this.pancardCardResponse"><a target="_blank" href='{{this.pancardCardResponse.fileUri}}'>{{this.pancardCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
-            </tr>
-            <tr>
-                <td>
-                    <h4><strong>Address:</strong><b style="color:red">*</b></h4>
-                </td>
-            </tr>
-            <tr>
-                <td><strong>House Number:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.borrowerAddress.houseNo}}</td>
-                <td><strong>Street:</strong><b style="color:red">*</b></td>
-                <td colspan="3">{{this.borrowerDetails.borrowerAddress.street}}</td>
-            </tr>
-            <tr>
-                <td><strong>City:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.borrowerAddress.city}}</td>
-                <td><strong>State:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.borrowerAddress.state}}</td>
-                <td><strong>Pincode:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.borrowerAddress.pincode}}</td>
-            </tr>
-            <tr>
-                <th scope="col" colspan="6">
-                    <h2><strong>Loan Details</strong></h2>
-                    <hr>
-                </th>
-            </tr>
-            <tr>
-                <td><label for="loanType"><strong>Loan Type:</strong><b style="color:red">*</b></label></td>
-                <td colspan="5">
-                    <select class="form-input" id="loanType" name="loanType"
-                        [(ngModel)]="this.loanRegistration.loanType">
-                        <option>Select Loan Type</option>
-                        <option *ngFor="let loanDetail of loanDetails">{{this.loanDetail.loanType}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr *ngIf="!this.adminRole">
-                <td><label for="aLoanAmt"><strong>Required Loan Amount:</strong><b style="color:red">*</b></label></td>
-                <td colspan="2">Rs. <input type="text" id="aLoanAmt" name="aLoanAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.askedLoanAmt" #aLoanAmt="ngModel" required></td>
-                <td colspan="4" *ngIf="aLoanAmt.invalid && (aLoanAmt.dirty || aLoanAmt.touched)">This Field is required
-                </td>
-            </tr>
-            <tr *ngIf="this.adminRole">
-                <td><label for="pLoanAmt"><strong>Provide Loan Amount:</strong><b style="color:red">*</b></label></td>
-                <td colspan="2">Rs. <input type="text" id="pLoanAmt" name="pLoanAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.providedLoanAmt" #pLoanAmt="ngModel" required></td>
-                <td *ngIf="pLoanAmt.invalid && (pLoanAmt.dirty || pLoanAmt.touched)">This Field is required</td>
-            </tr>
-            <tr>
-                <td><label for="paymentPeriod"><strong>Payment Period in Month:</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="paymentPeriod" name="paymentPeriod" class="form-input"
-                        [(ngModel)]="this.loanRegistration.paymentPeriod" #paymentPeriod="ngModel" required></td>
-                <td colspan="4" *ngIf="paymentPeriod.invalid && (paymentPeriod.dirty || paymentPeriod.touched)">This
-                    Field is
-                    required</td>
-            </tr>
-            <tr *ngIf="this.adminRole">
-                <td><label for="emiAmt"><strong>EMI Amount:</strong><b style="color:red">*</b></label></td>
-                <td colspan="2">Rs. <input type="text" id="emiAmt" name="emiAmt" class="form-input"
-                        [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required></td>
-                <td><button
-                        (click)="emiCalculation(this.loanRegistration.providedLoanAmt, this.loanRegistration.paymentPeriod, this.loanRegistration.loanType)">Calculate</button>
-                </td>
-            </tr>
-            <tr *ngIf="this.adminRole">
-                <td><label for="issuedDate"><strong>Issue Date:</strong><b style="color:red">*</b></label></td>
-                <td><input type="date" id="issuedDate" name="issuedDate" class="form-input"
-                        [(ngModel)]="this.loanRegistration.issuedDate" #issuedDate="ngModel" required></td>
-                <td colspan="4" *ngIf="issuedDate.invalid && (issuedDate.dirty || issuedDate.touched)">This Field is
-                    required</td>
-            </tr>
-            <tr>
-                <th scope="col" colspan="6">
-                    <h2><strong>Guarantor Details</strong></h2>
-                    <hr>
-                </th>
-            </tr>
-            <tr>
-                <td><label for="guarantorName"><strong>Name</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="guarantorName" name="guarantorName" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" #guarantorName="ngModel"
-                        required></td>
-                <td colspan="4" *ngIf="guarantorName.invalid && (guarantorName.dirty || guarantorName.touched)">This
-                    Field is
-                    required</td>
-            </tr>
-            <tr>
-                <td><label for="guarantorPhoneNo"><strong>Phone Number:</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="guarantorPhoneNo" name="guarantorPhoneNo" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel"
-                        required></td>
-                <td colspan="4"
-                    *ngIf="guarantorPhoneNo.invalid && (guarantorPhoneNo.dirty || guarantorPhoneNo.touched)">This Field
-                    is required</td>
-            </tr>
-            <tr>
-                <td><label for="guarantorEmailId"><strong>Email Id:</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="guarantorEmailId" name="guarantorEmailId" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel"
-                        required></td>
-                <td colspan="4"
-                    *ngIf="guarantorEmailId.invalid && (guarantorEmailId.dirty || guarantorEmailId.touched)">This Field
-                    is required</td>
-            </tr>
-            <tr>
-                <td>
-                    <h4><strong>Address:</strong></h4>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="houseNo"><strong>House Number:</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="houseNo" name="houseNo" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" required></td>
-                <td><label for="street"><strong>Street</strong><b style="color:red">*</b></label></td>
-                <td colspan="3"><input type="text" id="street" name="street" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.street" required></td>
-            </tr>
-            <tr>
-                <td><label for="city"><strong>City</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="city" name="city" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.city" required></td>
-                <td><label for="state"><strong>State</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="state" name="state" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.state" required></td>
-                <td><label for="pincode"><strong>Pincode</strong><b style="color:red">*</b></label></td>
-                <td><input type="text" id="pincode" name="pincode" class="form-input"
-                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.pincode" required></td>
-            </tr>
-        </table>
-        <div>
-            <button type="submit" [disabled]="registrationForm.invalid" (click)="sendOnClick()">Submit</button>
+            </tr> -->
+    <div class="navbar">
+        <button type="submit" class="navbarButton" (click)="personalInfo()">Personal Information</button>
+        <button type="submit" class="navbarButton" (click)="next()">Loan Details</button>
+    </div>
+    <form #registrationForm="ngForm">
+        <div class="subContainer" *ngIf="this.isPersonalInfo">
+            <h3>Personal Information</h3>
+            <div *ngIf="this.adminRole">
+                <label for="uname" class="label">Username<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="uname" name="uname" class="input" [(ngModel)]="borrowerName">
+                <span *ngIf="this.errorMessage">{{this.errorMessage}}</span>
+            </div>
+            <div>
+                <label for="fname" class="label">First Name<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="fname" name="fname" class="input"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.fname" #fname="ngModel" required>
+                <span *ngIf="fname.invalid && (fname.touched || fname.dirty)">Firstname is Required</span>
+            </div>
+            <div>
+                <label for="lname" class="label">Last Name<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="lname" name="lname" class="input"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.lname" #lname="ngModel" required>
+                <span *ngIf="lname.invalid && (lname.touched || lname.dirty)">Lastname is Required</span>
+            </div>
+            <div>
+                <label for="dob" class="label">Date of Birth<b style="color:red">*</b></label><b>:</b>
+                <input type="date" id="dob" name="dob" class="input"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.dateOfBirth" #dob="ngModel" required>
+                <span *ngIf="dob.invalid && (dob.touched || dob.dirty)">Date of Birth is Required</span>
+            </div>
+            <div>
+                <label for="gender" class="label">Gender<b style="color:red">*</b></label><b>:</b>
+                <input type="radio" value="Male" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Male
+                <input type="radio" value="Female" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Female
+                <input type="radio" value="Transgender" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Transgender
+                <span *ngIf="gender.invalid && (gender.dirty || gender.touched)">Gender is Required</span>
+            </div>
+            <div>
+                <label for="emailId" class="label">Email Id</label><b>:</b>
+                <span id="emailId" name="emailId">{{this.borrowerDetails.emailId}}</span>
+            </div>
+            <div>
+                <label for="phoneno" class="label">Phone Number</label><b>:</b>
+                <span id="phoneno" name="phoneno">{{this.borrowerDetails.phoneno}}</span>
+            </div>
+            <div>
+                <p>Address</p>
+                <div>
+                    <label for="houseNo" class="subLabel">House No<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="houseNo" name="houseNo" class="input"
+                        [(ngModel)]="this.borrowerDetails.borrowerAddress.houseNo" #houseNo="ngModel" required>
+                    <span *ngIf="houseNo.invalid && (houseNo.touched || houseNo.dirty)">House No is Required</span>
+                </div>
+                <div>
+                    <label for="street" class="subLabel">Street<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="street" name="street" class="input"
+                        [(ngModel)]="this.borrowerDetails.borrowerAddress.street" #street="ngModel" required>
+                    <span *ngIf="street.invalid && (street.touched || street.dirty)">Street is Required</span>
+                </div>
+                <div>
+                    <label for="city" class="subLabel">City<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="city" name="city" class="input"
+                        [(ngModel)]="this.borrowerDetails.borrowerAddress.city" #city="ngModel" required>
+                    <span *ngIf="city.invalid && (city.touched || city.dirty)">City is Required</span>
+                </div>
+                <div>
+                    <label for="state" class="subLabel">State<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="state" name="state" class="input"
+                        [(ngModel)]="this.borrowerDetails.borrowerAddress.state" #state="ngModel" required>
+                    <span *ngIf="state.invalid && (state.touched || state.dirty)">State is Required</span>
+                </div>
+                <div>
+                    <label for="pincode" class="subLabel">Pincode<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="pincode" name="pincode" class="input"
+                        [(ngModel)]="this.borrowerDetails.borrowerAddress.pincode" #pincode="ngModel" required>
+                    <span *ngIf="pincode.invalid && (pincode.touched || pincode.dirty)">Pincode is Required</span>
+                </div>
+            </div>
+            <div>
+                <label for="panCard" class="label">Pan Card Number<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="panCard" name="panCard" class="input"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.panCard" #panCard="ngModel" required>
+                <span *ngIf="panCard.invalid && (panCard.touched || panCard.dirty)">Pan Card Number is Required</span>
+            </div>
+            <div>
+                <label for="aadhaarCard" class="label">Aadhaar Number<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="aadhaarCard" name="aadhaarCard" class="input"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.aadhaarCard" #aadhaarCard="ngModel" required>
+                <span *ngIf="aadhaarCard.invalid && (aadhaarCard.touched || aadhaarCard.dirty)">Aadhaar Card Number is
+                    Required</span>
+            </div>
+            <div>
+                <button type="submit" class="submit" (click)="save()">Save</button>
+                <button type="submit" class="submit" (click)="next()">Next</button>
+            </div>
+        </div>
+        <div class="subContainer" *ngIf="this.isLoanDetail">
+            <h3>Loan Details</h3>
+            <div>
+                <label for="loanType" class="label">Loan Type<b style="color:red">*</b></label><b>:</b>
+                <select class="input" id="loanType" name="loanType" [(ngModel)]="this.loanRegistration.loanType">
+                    <option>Select Loan Type</option>
+                    <option *ngFor="let loanDetail of loanDetails">{{this.loanDetail.loanType}}</option>
+                </select>
+            </div>
+            <div *ngIf="!this.adminRole">
+                <label for="aLoanAmt" class="label">Required Loan Amount<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="aLoanAmt" name="aLoanAmt" class="input"
+                    [(ngModel)]="this.loanRegistration.askedLoanAmt" #aLoanAmt="ngModel" required>
+                <span *ngIf="aLoanAmt.invalid && (aLoanAmt.dirty || aLoanAmt.touched)">This Field is required</span>
+            </div>
+            <div *ngIf="this.adminRole">
+                <label for="pLoanAmt" class="label">Provide Loan Amount<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="pLoanAmt" name="pLoanAmt" class="input"
+                    [(ngModel)]="this.loanRegistration.providedLoanAmt" #pLoanAmt="ngModel" required>
+                <span *ngIf="pLoanAmt.invalid && (pLoanAmt.dirty || pLoanAmt.touched)">This Field is required</span>
+            </div>
+            <div>
+                <label for="paymentPeriod" class="label">Payment Period in Month<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="paymentPeriod" name="paymentPeriod" class="input"
+                    [(ngModel)]="this.loanRegistration.paymentPeriod" #paymentPeriod="ngModel" required>
+                <span *ngIf="paymentPeriod.invalid && (paymentPeriod.dirty || paymentPeriod.touched)">This Field is
+                    Required</span>
+            </div>
+            <div>
+                <label for="emiAmt" class="label">EMI Amount<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="emiAmt" name="emiAmt" class="input"
+                    [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required>
+                <button class="submit"
+                    (click)="emiCalculation()">Calculate</button>
+                <span *ngIf="this.emiErrorMessage">{{this.emiErrorMessage}}</span>
+            </div>
+            <div *ngIf="this.adminRole">
+                <label for="issuedDate" class="label">Issue Date<b style="color:red">*</b></label><b>:</b>
+                <input type="date" id="issuedDate" name="issuedDate" class="input"
+                    [(ngModel)]="this.loanRegistration.issuedDate" #issuedDate="ngModel" required>
+                <span *ngIf="issuedDate.invalid && (issuedDate.dirty || issuedDate.touched)">This Field is
+                    required</span>
+            </div>
+            <h3>Guarantor Details</h3>
+            <div>
+                <label for="guarantorName" class="label">Name<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="guarantorName" name="guarantorName" class="input"
+                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorName" #guarantorName="ngModel" required>
+                <span *ngIf="guarantorName.invalid && (guarantorName.dirty || guarantorName.touched)">This Field is
+                    required</span>
+            </div>
+            <div>
+                <label for="guarantorPhoneNo" class="label">Phone Number<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="guarantorPhoneNo" name="guarantorPhoneNo" class="input"
+                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel" required>
+                <span *ngIf="guarantorPhoneNo.invalid && (guarantorPhoneNo.dirty || guarantorPhoneNo.touched)">This
+                    Field is required</span>
+            </div>
+            <div>
+                <label for="guarantorEmailId" class="label">Email Id<b style="color:red">*</b></label><b>:</b>
+                <input type="text" id="guarantorEmailId" name="guarantorEmailId" class="input"
+                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel" required>
+                <span *ngIf="guarantorEmailId.invalid && (guarantorEmailId.dirty || guarantorEmailId.touched)">This
+                    Field is required</span>
+            </div>
+            <div>
+                <p>Address</p>
+                <div>
+                    <label for="houseNo" class="subLabel">House No<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="houseNo" name="houseNo" class="input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.houseNo" #houseNo="ngModel"
+                        required>
+                    <span *ngIf="houseNo.invalid && (houseNo.touched || houseNo.dirty)">House No is Required</span>
+                </div>
+                <div>
+                    <label for="street" class="subLabel">Street<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="street" name="street" class="input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.street" #street="ngModel"
+                        required>
+                    <span *ngIf="street.invalid && (street.touched || street.dirty)">Street is Required</span>
+                </div>
+                <div>
+                    <label for="city" class="subLabel">City<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="city" name="city" class="input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.city" #city="ngModel"
+                        required>
+                    <span *ngIf="city.invalid && (city.touched || city.dirty)">City is Required</span>
+                </div>
+                <div>
+                    <label for="state" class="subLabel">State<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="state" name="state" class="input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.state" #state="ngModel"
+                        required>
+                    <span *ngIf="state.invalid && (state.touched || state.dirty)">State is Required</span>
+                </div>
+                <div>
+                    <label for="pincode" class="subLabel">Pincode<b style="color:red">*</b></label><b>:</b>
+                    <input type="text" id="pincode" name="pincode" class="input"
+                        [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorAddress.pincode" #pincode="ngModel"
+                        required>
+                    <span *ngIf="pincode.invalid && (pincode.touched || pincode.dirty)">Pincode is Required</span>
+                </div>
+                <div>
+                    <button type="submit" class="submit" (click)="personalInfo()">Back</button>
+                    <button type="submit" class="submit" [disabled]="registrationForm.invalid" (click)="sendOnClick()">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>

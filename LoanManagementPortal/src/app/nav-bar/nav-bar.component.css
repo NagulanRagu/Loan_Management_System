@@ -3,7 +3,12 @@
     overflow: hidden;
     background-color: #3a2bc0;
     width: 100%;
-    position: static;
+    position: fixed;
+    top: 0;
+  }
+
+  ul {
+    margin: 0;
   }
   
   /* .dropdown-content {
@@ -47,10 +52,12 @@
     border-radius: fit;
   
   }
+
   .rest
   {
-    font-family:garamond;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
+
   .loan
   {
     font-family:Arial ;

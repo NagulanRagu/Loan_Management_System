@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { iif } from 'rxjs';
+import { empty, iif } from 'rxjs';
 import { Address } from '../model/address';
 import { BorrowerDetails } from '../model/borrower-details';
 import { GuarantorAddress } from '../model/guarantor-address';
 import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanDetails } from '../model/loan-details';
 import { LoanRegistration } from '../model/loan-registration';
+import { PersonalInformation } from '../model/personal-information';
 import { ResponseFile } from '../model/response-file';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { BorrowerDocumentServiceService } from '../service/borrower-document-service.service';
@@ -26,29 +27,28 @@ export class LoanRegistrationComponent implements OnInit {
     private borrowerDetailsService: BorrowerDetailsService, 
     private loginService: LoginServiceService,
     private loanDetailsService: LoanDetailsService,
-    private borrowerDocumentService: BorrowerDocumentServiceService) { }
+    private borrowerDocumentService: BorrowerDocumentServiceService,
+    public borrowerDetails: BorrowerDetails,
+    public loanRegistration: LoanRegistration) { }
 
-  
-  borrowerDetails!: BorrowerDetails;
-  borrowerAddress!: Address;
-  loanRegistration!: LoanRegistration; 
-  guarantorInfo!: GuarantorInfo;
-  guarantorAddress!: GuarantorAddress;
+  isPersonalInfo: boolean = true;
+  isLoanDetail: boolean = false;
   errorMessage!: any;
   uname!: any;
   loanDetails!: LoanDetails[];
   roles!: any;
   adminRole!: boolean;
-  fileDetail: string[] = ["AadhaarCard", "Pancard"];
-  getAadhaarFile!: ResponseFile;
-  getPancardFile!: ResponseFile;
-  aadhaarFile!: File;
-  panCardFile!: File;
-  aadhaarCardResponse!: ResponseFile;
-  pancardCardResponse!: ResponseFile;
-  aadhaarCardUploaded: boolean = false;
-  panCardUploaded: boolean = false;
-  uploadSuccessMessage!: string;
+  emiErrorMessage!: string;
+  // fileDetail: string[] = ["AadhaarCard", "Pancard"];
+  // getAadhaarFile!: ResponseFile;
+  // getPancardFile!: ResponseFile;
+  // aadhaarFile!: File;
+  // panCardFile!: File;
+  // aadhaarCardResponse!: ResponseFile;
+  // pancardCardResponse!: ResponseFile;
+  // aadhaarCardUploaded: boolean = false;
+  // panCardUploaded: boolean = false;
+  // uploadSuccessMessage!: string;
   private _borrowerName!: string;
   get borrowerName(): string {
     return this._borrowerName;
@@ -64,6 +64,7 @@ export class LoanRegistrationComponent implements OnInit {
     this.loanRegistration.guarantorInfo = new GuarantorInfo();
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
+    this.borrowerDetails.personalInformation = new PersonalInformation();
     this.borrowerDetails.borrowerAddress = new Address();
     this.isUserAdmin();
     this.getLoanDetails();
@@ -82,12 +83,23 @@ export class LoanRegistrationComponent implements OnInit {
     }
   }
 
+  personalInfo() {
+    this.isPersonalInfo = true;
+    this.isLoanDetail = false;
+  }
+
   getBorrowerDetails(value: string) {
     this.borrowerDetailsService.getBorrowerDetails(value).subscribe(
       data => {
         console.log(data);
         this.borrowerDetails = data;
-        this.isDocumentUploaded(data.uname);
+        if(!this.borrowerDetails.personalInformation) {
+          this.borrowerDetails.personalInformation = new PersonalInformation();
+        }
+        if(!this.borrowerDetails.borrowerAddress) {
+          this.borrowerDetails.borrowerAddress = new Address();
+        }
+        // this.isDocumentUploaded(data.uname);
         this.errorMessage = null;
       },
       error => {
@@ -96,48 +108,48 @@ export class LoanRegistrationComponent implements OnInit {
       });
   }
 
-  onAadhaarFileChange(event: any) {
-    this.aadhaarFile = event.target.files[0];
-  }
+  // onAadhaarFileChange(event: any) {
+  //   this.aadhaarFile = event.target.files[0];
+  // }
 
-  onPanCardFileChange(event: any) {
-    this.panCardFile = event.target.files[0];
-  }
+  // onPanCardFileChange(event: any) {
+  //   this.panCardFile = event.target.files[0];
+  // }
 
-  onUpload(file: File, borrowerName: string, fileDetail: string) {
-    this.borrowerDocumentService.uploadFile(file, borrowerName, fileDetail).subscribe(
-      data => {
-        console.log(data);
-        if(data.fileDetail == "AadhaarCard") {
-          this.aadhaarCardResponse = data;
-        }else {
-          this.pancardCardResponse = data;
-        }
-        this.uploadSuccessMessage = " File is Uploaded";
-      },
-      error => {
-        console.log(error.error);
-        this.uploadSuccessMessage = " File is not uploaded";
-      }
-    )
-  }
+  // onUpload(file: File, borrowerName: string, fileDetail: string) {
+  //   this.borrowerDocumentService.uploadFile(file, borrowerName, fileDetail).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       if(data.fileDetail == "AadhaarCard") {
+  //         this.aadhaarCardResponse = data;
+  //       }else {
+  //         this.pancardCardResponse = data;
+  //       }
+  //       this.uploadSuccessMessage = " File is Uploaded";
+  //     },
+  //     error => {
+  //       console.log(error.error);
+  //       this.uploadSuccessMessage = " File is not uploaded";
+  //     }
+  //   )
+  // }
 
-  isDocumentUploaded(borrowerName: string) {
-    this.borrowerDocumentService.downloadFileByBorrowerName(borrowerName).subscribe(
-      data => {
-        console.log(data);
-        data.forEach(element => {
-          if(element.fileDetail == "AadhaarCard") {
-            this.getAadhaarFile = element;
-          }else {
-            this.getPancardFile = element;
-          }
-        });
-      },
-      error => {
-        console.log(error.error)
-      });
-  }
+  // isDocumentUploaded(borrowerName: string) {
+  //   this.borrowerDocumentService.downloadFileByBorrowerName(borrowerName).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       data.forEach(element => {
+  //         if(element.fileDetail == "AadhaarCard") {
+  //           this.getAadhaarFile = element;
+  //         }else {
+  //           this.getPancardFile = element;
+  //         }
+  //       });
+  //     },
+  //     error => {
+  //       console.log(error.error)
+  //     });
+  // }
 
   getLoanDetails() {
     this.loanDetailsService.getLoanDetails().subscribe(
@@ -147,8 +159,7 @@ export class LoanRegistrationComponent implements OnInit {
       },
       error => {
         console.log(error.error);
-      }
-    )
+      })
   }
 
   getRateOfInterest(loanType: string) {
@@ -161,11 +172,44 @@ export class LoanRegistrationComponent implements OnInit {
     return rateOfInterest;
   }
 
-  emiCalculation(providedLoanAmt: string, n: number, loanType: string) {
-    let p: number = Number(providedLoanAmt);
-    let r: number = this.getRateOfInterest(loanType)/(12*100);
-    let emi: number = Math.round((p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
-    this.loanRegistration.emiAmt = String(emi);
+  emiCalculation() {
+    let p: number = 0;
+    let r: number = 0;
+    let n: number = 0;
+    if((this.loanRegistration.providedLoanAmt || this.loanRegistration.askedLoanAmt) && this.loanRegistration.loanType && this.loanRegistration.paymentPeriod) {
+      this.emiErrorMessage = "";
+      if(this.loanRegistration.providedLoanAmt) {
+        p = Number(this.loanRegistration.providedLoanAmt);
+      }else {
+        p = Number(this.loanRegistration.askedLoanAmt);
+      }
+      r = this.getRateOfInterest(this.loanRegistration.loanType)/(12*100);
+      n = this.loanRegistration.paymentPeriod;
+      let emi: number = Math.round((p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+      this.loanRegistration.emiAmt = String(emi);
+    }else {
+      this.emiErrorMessage = "Please Enter the Loan Amount, Loan Type and Payment Period";
+    }
+  }
+
+  saveBorrowerDetails() {
+    this.borrowerDetailsService.updateBorrowerDetails(this.borrowerDetails).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error.error);
+      }
+    )
+  }
+
+  save() {
+    this.saveBorrowerDetails();
+  }
+
+  next() {
+    this.isPersonalInfo = false;
+    this.isLoanDetail = true;
   }
 
   sendOnClick() {

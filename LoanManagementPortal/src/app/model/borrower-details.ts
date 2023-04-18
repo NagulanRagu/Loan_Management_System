@@ -10,4 +10,5 @@ export class BorrowerDetails {
     public phoneno!: string;
     public emailId!: string;
     public borrowerAddress!: Address;
+    public enabled!: boolean;
 }

@@ -13,8 +13,8 @@
         </tr>
         <tr *ngFor="let borrowerDetail of borrowerDetails">
             <td><a routerLink="/profile/{{this.borrowerDetail.uname}}">{{this.borrowerDetail.uname}}</a></td>
-            <td>{{this.borrowerDetail.fname}}</td>
-            <td>{{this.borrowerDetail.lname}}</td>
+            <td>{{this.borrowerDetail.personalInformation.fname}}</td>
+            <td>{{this.borrowerDetail.personalInformation.lname}}</td>
             <td>{{this.borrowerDetail.emailId}}</td>
             <td>{{this.borrowerDetail.phoneno}}</td>
         </tr>
