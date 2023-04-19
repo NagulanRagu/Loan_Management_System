@@ -22,9 +22,9 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class LoanRegistrationComponent implements OnInit {
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
     private loanRegistrationService: LoanRegistrationService,
-    private borrowerDetailsService: BorrowerDetailsService, 
+    private borrowerDetailsService: BorrowerDetailsService,
     private loginService: LoginServiceService,
     private loanDetailsService: LoanDetailsService,
     private borrowerDocumentService: BorrowerDocumentServiceService,
@@ -39,16 +39,16 @@ export class LoanRegistrationComponent implements OnInit {
   roles!: any;
   adminRole!: boolean;
   emiErrorMessage!: string;
-  // fileDetail: string[] = ["AadhaarCard", "Pancard"];
-  // getAadhaarFile!: ResponseFile;
-  // getPancardFile!: ResponseFile;
-  // aadhaarFile!: File;
-  // panCardFile!: File;
-  // aadhaarCardResponse!: ResponseFile;
-  // pancardCardResponse!: ResponseFile;
-  // aadhaarCardUploaded: boolean = false;
-  // panCardUploaded: boolean = false;
-  // uploadSuccessMessage!: string;
+  fileDetail: string[] = ["AadhaarCard", "Pancard"];
+  getAadhaarFile!: ResponseFile;
+  getPancardFile!: ResponseFile;
+  aadhaarFile!: File;
+  panCardFile!: File;
+  aadhaarCardResponse!: ResponseFile;
+  pancardCardResponse!: ResponseFile;
+  aadhaarCardUploaded: boolean = false;
+  panCardUploaded: boolean = false;
+  uploadSuccessMessage!: string;
   private _borrowerName!: string;
   get borrowerName(): string {
     return this._borrowerName;
@@ -93,13 +93,13 @@ export class LoanRegistrationComponent implements OnInit {
       data => {
         console.log(data);
         this.borrowerDetails = data;
-        if(!this.borrowerDetails.personalInformation) {
+        if (!this.borrowerDetails.personalInformation) {
           this.borrowerDetails.personalInformation = new PersonalInformation();
         }
-        if(!this.borrowerDetails.borrowerAddress) {
+        if (!this.borrowerDetails.borrowerAddress) {
           this.borrowerDetails.borrowerAddress = new Address();
         }
-        // this.isDocumentUploaded(data.uname);
+        this.isDocumentUploaded(data.uname);
         this.errorMessage = null;
       },
       error => {
@@ -108,48 +108,48 @@ export class LoanRegistrationComponent implements OnInit {
       });
   }
 
-  // onAadhaarFileChange(event: any) {
-  //   this.aadhaarFile = event.target.files[0];
-  // }
+  onAadhaarFileChange(event: any) {
+    this.aadhaarFile = event.target.files[0];
+  }
 
-  // onPanCardFileChange(event: any) {
-  //   this.panCardFile = event.target.files[0];
-  // }
+  onPanCardFileChange(event: any) {
+    this.panCardFile = event.target.files[0];
+  }
 
-  // onUpload(file: File, borrowerName: string, fileDetail: string) {
-  //   this.borrowerDocumentService.uploadFile(file, borrowerName, fileDetail).subscribe(
-  //     data => {
-  //       console.log(data);
-  //       if(data.fileDetail == "AadhaarCard") {
-  //         this.aadhaarCardResponse = data;
-  //       }else {
-  //         this.pancardCardResponse = data;
-  //       }
-  //       this.uploadSuccessMessage = " File is Uploaded";
-  //     },
-  //     error => {
-  //       console.log(error.error);
-  //       this.uploadSuccessMessage = " File is not uploaded";
-  //     }
-  //   )
-  // }
+  onUpload(file: File, borrowerName: string, fileDetail: string) {
 
-  // isDocumentUploaded(borrowerName: string) {
-  //   this.borrowerDocumentService.downloadFileByBorrowerName(borrowerName).subscribe(
-  //     data => {
-  //       console.log(data);
-  //       data.forEach(element => {
-  //         if(element.fileDetail == "AadhaarCard") {
-  //           this.getAadhaarFile = element;
-  //         }else {
-  //           this.getPancardFile = element;
-  //         }
-  //       });
-  //     },
-  //     error => {
-  //       console.log(error.error)
-  //     });
-  // }
+    this.borrowerDocumentService.uploadFile(file, borrowerName, fileDetail).subscribe(
+      data => {
+        console.log(data);
+        if (data.fileDetail == "AadhaarCard") {
+          this.aadhaarCardResponse = data;
+        } else {
+          this.pancardCardResponse = data;
+        }
+        this.uploadSuccessMessage = " File is Uploaded";
+      },
+      error => {
+        console.log(error.error);
+        this.uploadSuccessMessage = " File is not uploaded";
+      })
+  }
+
+  isDocumentUploaded(borrowerName: string) {
+    this.borrowerDocumentService.downloadFileByBorrowerName(borrowerName).subscribe(
+      data => {
+        console.log(data);
+        data.forEach(element => {
+          if (element.fileDetail == "AadhaarCard") {
+            this.getAadhaarFile = element;
+          } else {
+            this.getPancardFile = element;
+          }
+        });
+      },
+      error => {
+        console.log(error.error)
+      });
+  }
 
   getLoanDetails() {
     this.loanDetailsService.getLoanDetails().subscribe(
@@ -164,8 +164,8 @@ export class LoanRegistrationComponent implements OnInit {
 
   getRateOfInterest(loanType: string) {
     let rateOfInterest: any
-    this.loanDetails.forEach(function(loanDetail){
-      if(loanDetail.loanType == loanType){
+    this.loanDetails.forEach(function (loanDetail) {
+      if (loanDetail.loanType == loanType) {
         rateOfInterest = loanDetail.rateOfInterest
       }
     })
@@ -176,18 +176,18 @@ export class LoanRegistrationComponent implements OnInit {
     let p: number = 0;
     let r: number = 0;
     let n: number = 0;
-    if((this.loanRegistration.providedLoanAmt || this.loanRegistration.askedLoanAmt) && this.loanRegistration.loanType && this.loanRegistration.paymentPeriod) {
+    if ((this.loanRegistration.providedLoanAmt || this.loanRegistration.askedLoanAmt) && this.loanRegistration.loanType && this.loanRegistration.paymentPeriod) {
       this.emiErrorMessage = "";
-      if(this.loanRegistration.providedLoanAmt) {
+      if (this.loanRegistration.providedLoanAmt) {
         p = Number(this.loanRegistration.providedLoanAmt);
-      }else {
+      } else {
         p = Number(this.loanRegistration.askedLoanAmt);
       }
-      r = this.getRateOfInterest(this.loanRegistration.loanType)/(12*100);
+      r = this.getRateOfInterest(this.loanRegistration.loanType) / (12 * 100);
       n = this.loanRegistration.paymentPeriod;
-      let emi: number = Math.round((p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+      let emi: number = Math.round((p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
       this.loanRegistration.emiAmt = String(emi);
-    }else {
+    } else {
       this.emiErrorMessage = "Please Enter the Loan Amount, Loan Type and Payment Period";
     }
   }
@@ -213,9 +213,9 @@ export class LoanRegistrationComponent implements OnInit {
   }
 
   sendOnClick() {
-    if(!this.adminRole) {
+    if (!this.adminRole) {
       this.loanRegistration.status = "Pending";
-    }else {
+    } else {
       this.loanRegistration.status = "Accepted";
     }
     this.loanRegistration.borrowerName = this.borrowerDetails.uname;

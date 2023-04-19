@@ -1,18 +1,4 @@
 <div class="container">
-        <!-- <tr>
-                <td><strong>Aadhaar Card:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.personalInformation.aadhaarCard}}</td>
-                <td colspan="2"><input type="file" (change)="onAadhaarFileChange($event)"></td>
-                <td><button (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname, this.fileDetail[0])">Upload</button></td>
-                <td *ngIf="this.aadhaarCardResponse"><a target="_blank" href='{{this.aadhaarCardResponse.fileUri}}'>{{this.aadhaarCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
-            </tr>
-            <tr>
-                <td><strong>Pan Card:</strong><b style="color:red">*</b></td>
-                <td>{{this.borrowerDetails.personalInformation.panCard}}</td>
-                <td colspan="2"><input type="file" (change)="onPanCardFileChange($event)"></td>
-                <td><button (click)="onUpload(this.panCardFile, this.borrowerDetails.uname, this.fileDetail[1])">Upload</button></td>
-                <td *ngIf="this.pancardCardResponse"><a target="_blank" href='{{this.pancardCardResponse.fileUri}}'>{{this.pancardCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</td>
-            </tr> -->
     <div class="navbar">
         <button type="submit" class="navbarButton" (click)="personalInfo()">Personal Information</button>
         <button type="submit" class="navbarButton" (click)="next()">Loan Details</button>
@@ -45,9 +31,12 @@
             </div>
             <div>
                 <label for="gender" class="label">Gender<b style="color:red">*</b></label><b>:</b>
-                <input type="radio" value="Male" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Male
-                <input type="radio" value="Female" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Female
-                <input type="radio" value="Transgender" name="gender" [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Transgender
+                <input type="radio" value="Male" name="gender"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Male
+                <input type="radio" value="Female" name="gender"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Female
+                <input type="radio" value="Transgender" name="gender"
+                    [(ngModel)]="this.borrowerDetails.personalInformation.gender" #gender="ngModel">Transgender
                 <span *ngIf="gender.invalid && (gender.dirty || gender.touched)">Gender is Required</span>
             </div>
             <div>
@@ -95,14 +84,34 @@
                 <label for="panCard" class="label">Pan Card Number<b style="color:red">*</b></label><b>:</b>
                 <input type="text" id="panCard" name="panCard" class="input"
                     [(ngModel)]="this.borrowerDetails.personalInformation.panCard" #panCard="ngModel" required>
-                <span *ngIf="panCard.invalid && (panCard.touched || panCard.dirty)">Pan Card Number is Required</span>
+                <span *ngIf="!this.getPancardFile">
+                    <input type="file" id="uploadPanCard" name="uploadPanCard" (change)="onPanCardFileChange($event)">
+                    <button class="upload"
+                        (click)="onUpload(this.panCardFile, this.borrowerDetails.uname, this.fileDetail[1])">Upload</button>
+                    <span class="uploadStatus" *ngIf="this.pancardCardResponse"><a target="_blank"
+                        href='{{this.pancardCardResponse.fileUri}}'>{{this.pancardCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</span>
+                </span>
+                <span *ngIf="this.getPancardFile">
+                    <a target="_blank" href="{{this.getPancardFile.fileUri}}">{{this.getPancardFile.fileName}}</a>
+                </span>
+                <div *ngIf="panCard.invalid && (panCard.touched || panCard.dirty)">Pan Card Number is Required</div>
             </div>
             <div>
                 <label for="aadhaarCard" class="label">Aadhaar Number<b style="color:red">*</b></label><b>:</b>
                 <input type="text" id="aadhaarCard" name="aadhaarCard" class="input"
                     [(ngModel)]="this.borrowerDetails.personalInformation.aadhaarCard" #aadhaarCard="ngModel" required>
-                <span *ngIf="aadhaarCard.invalid && (aadhaarCard.touched || aadhaarCard.dirty)">Aadhaar Card Number is
-                    Required</span>
+                <span *ngIf="!this.getAadhaarFile">
+                    <input type="file" id="uploadAadhaarCard" name="uploadAadhaarCard" (change)="onAadhaarFileChange($event)">
+                    <button class="upload"
+                        (click)="onUpload(this.aadhaarFile, this.borrowerDetails.uname, this.fileDetail[0])">Upload</button>
+                    <span class="uploadStatus" *ngIf="this.aadhaarCardResponse"><a target="_blank"
+                            href='{{this.aadhaarCardResponse.fileUri}}'>{{this.aadhaarCardResponse.fileName}}</a>{{this.uploadSuccessMessage}}</span>
+                </span>
+                <span *ngIf="this.getAadhaarFile">
+                    <a target="_blank" href="{{this.getAadhaarFile.fileUri}}">{{this.getAadhaarFile.fileName}}</a>
+                </span>
+                <div *ngIf="aadhaarCard.invalid && (aadhaarCard.touched || aadhaarCard.dirty)">Aadhaar Card Number is
+                    Required</div>
             </div>
             <div>
                 <button type="submit" class="submit" (click)="save()">Save</button>
@@ -131,7 +140,8 @@
                 <span *ngIf="pLoanAmt.invalid && (pLoanAmt.dirty || pLoanAmt.touched)">This Field is required</span>
             </div>
             <div>
-                <label for="paymentPeriod" class="label">Payment Period in Month<b style="color:red">*</b></label><b>:</b>
+                <label for="paymentPeriod" class="label">Payment Period in Month<b
+                        style="color:red">*</b></label><b>:</b>
                 <input type="text" id="paymentPeriod" name="paymentPeriod" class="input"
                     [(ngModel)]="this.loanRegistration.paymentPeriod" #paymentPeriod="ngModel" required>
                 <span *ngIf="paymentPeriod.invalid && (paymentPeriod.dirty || paymentPeriod.touched)">This Field is
@@ -139,10 +149,9 @@
             </div>
             <div>
                 <label for="emiAmt" class="label">EMI Amount<b style="color:red">*</b></label><b>:</b>
-                <input type="text" id="emiAmt" name="emiAmt" class="input"
-                    [(ngModel)]="this.loanRegistration.emiAmt" #emiAmt="ngModel" required>
-                <button class="submit"
-                    (click)="emiCalculation()">Calculate</button>
+                <input type="text" id="emiAmt" name="emiAmt" class="input" [(ngModel)]="this.loanRegistration.emiAmt"
+                    #emiAmt="ngModel" required>
+                <button class="submit" (click)="emiCalculation()">Calculate</button>
                 <span *ngIf="this.emiErrorMessage">{{this.emiErrorMessage}}</span>
             </div>
             <div *ngIf="this.adminRole">
@@ -163,14 +172,16 @@
             <div>
                 <label for="guarantorPhoneNo" class="label">Phone Number<b style="color:red">*</b></label><b>:</b>
                 <input type="text" id="guarantorPhoneNo" name="guarantorPhoneNo" class="input"
-                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel" required>
+                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorPhoneNo" #guarantorPhoneNo="ngModel"
+                    required>
                 <span *ngIf="guarantorPhoneNo.invalid && (guarantorPhoneNo.dirty || guarantorPhoneNo.touched)">This
                     Field is required</span>
             </div>
             <div>
                 <label for="guarantorEmailId" class="label">Email Id<b style="color:red">*</b></label><b>:</b>
                 <input type="text" id="guarantorEmailId" name="guarantorEmailId" class="input"
-                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel" required>
+                    [(ngModel)]="this.loanRegistration.guarantorInfo.guarantorEmailId" #guarantorEmailId="ngModel"
+                    required>
                 <span *ngIf="guarantorEmailId.invalid && (guarantorEmailId.dirty || guarantorEmailId.touched)">This
                     Field is required</span>
             </div>
@@ -213,7 +224,8 @@
                 </div>
                 <div>
                     <button type="submit" class="submit" (click)="personalInfo()">Back</button>
-                    <button type="submit" class="submit" [disabled]="registrationForm.invalid" (click)="sendOnClick()">Submit</button>
+                    <button type="submit" class="submit" [disabled]="registrationForm.invalid"
+                        (click)="sendOnClick()">Submit</button>
                 </div>
             </div>
         </div>

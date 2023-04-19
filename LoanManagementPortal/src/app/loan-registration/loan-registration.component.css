@@ -24,12 +24,6 @@ form {
     padding: 10px 50px 50px 50px;
 }
 
-.form-input {
-    padding: 5px;
-    border-radius: 5px;
-    border-color: aliceblue;
-}
-
 .subContainer {
     padding-left: 50px;
 }
@@ -73,6 +67,17 @@ form {
     border-left: 5px red solid;
 }
 
+input[type=file] {
+    height: 30px;
+    text-align: center;
+    width: 200px;
+}
+
+.uploadStatus {
+    padding: 5px;
+    margin-left: 8px;
+}
+
 .input#loanType {
     height: 30px;
 }
@@ -100,6 +105,20 @@ p {
     font-size: 18px;
     font-weight: bold;
     margin-left: 5px;
+}
+
+.upload {
+    padding: 8px;
+    width: 80px;
+    background-color: lightyellow;
+    border-radius: 5px;
+    border: 1px solid;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+.upload:hover {
+    background-color: lightgreen;
 }
 
 .submit {
