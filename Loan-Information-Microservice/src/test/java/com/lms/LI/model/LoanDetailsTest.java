@@ -25,7 +25,7 @@ public class LoanDetailsTest {
 	@Test
 	public void testAllArgsContructor() {
 		LoanDetails loanDetails = new LoanDetails(1, "L1001", "Personal", 16);
-		assertEquals(16, loanDetails.getRateOfInterest());
+		assertEquals(1, loanDetails.getId());
 	}
 	
 	@Test

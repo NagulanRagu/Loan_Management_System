@@ -72,13 +72,13 @@ public class LoanRegisteredController {
     }
 
     @PostMapping("/apply")
-    public ResponseEntity<LoanRegistered> saveEntity(@RequestHeader("Authorization") String token,
+    public ResponseEntity<?> saveEntity(@RequestHeader("Authorization") String token,
             @RequestBody LoanRegistered newLoanRegistered) {
 
         if (tokenService.checkValidation(token)) {
             try {
-                return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered), HttpStatus.OK);
-            } catch (IllegalArgumentException e) {
+                return new ResponseEntity<>(loanRegisteredService.saveDetails(newLoanRegistered), HttpStatus.CREATED);
+            } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
@@ -92,9 +92,9 @@ public class LoanRegisteredController {
         if (tokenService.checkValidation(token)) {
             try {
                 return new ResponseEntity<>(loanRegisteredService.saveDetails(updateLoanRegistered),
-                        HttpStatus.OK);
+                        HttpStatus.CREATED);
             } catch (Exception e) {
-                return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

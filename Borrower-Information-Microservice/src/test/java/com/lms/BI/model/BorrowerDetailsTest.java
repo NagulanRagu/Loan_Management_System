@@ -86,7 +86,6 @@ public class BorrowerDetailsTest {
 	public void testAddress() {
 		borrowerDetails.setBorrowerAddress(
 				new Address("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"));
-		;
 		assertEquals(new Address("63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"),
 				borrowerDetails.getBorrowerAddress());
 	}

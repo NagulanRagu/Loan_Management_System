@@ -114,11 +114,20 @@ public class BorrowerDetailsServiceTest {
 		when(borrowerDetailsRepository.save(borrowerDetails)).thenReturn(borrowerDetails);
 		Set<Role> roles = new HashSet<>();
 		roles.add(new Role("ROLE_USER"));
+		borrowerDetails.setRoles(roles);
 		when(confirmationTokenService.createConfirmationToken(borrowerDetails))
 				.thenReturn(new ConfirmationToken(1, "f3465a17-4f67-4bdd-b8ad-2af452e64116", LocalDateTime.now(),
-						LocalDateTime.now().plusMinutes(15), LocalDateTime.now().plusMinutes(2), null));
-		assertEquals(borrowerDetails,
-				borrowerDetailsService.saveBorrowerDetail(borrowerDetails));
+						LocalDateTime.now().plusMinutes(15), LocalDateTime.now().plusMinutes(2), borrowerDetails));
+		assertEquals(borrowerDetails.getRoles(),
+				borrowerDetailsService.saveBorrowerDetail(borrowerDetails).getRoles());
+	}
+	
+	@Test
+	public void testUpdateEnable() {
+		BorrowerDetails borrowerDetails = new BorrowerDetails(1, null, "Nagulan R U", "1234", "8870323658",
+				"runagulan88@gmail.com", null, null, false);
+		when(borrowerDetailsRepository.findById(1)).thenReturn(borrowerDetails);
+		assertEquals("Enabled", borrowerDetailsService.updateEnable(1));
 	}
 
 	@Test
@@ -128,17 +137,13 @@ public class BorrowerDetailsServiceTest {
 				"Nagulan R U", "1234", "8870323658", "runagulan88@gmail.com",
 				new Address(1, "63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"), null,
 				true);
+		when(borrowerDetailsRepository.save(nBorrowerDetails)).thenReturn(nBorrowerDetails);
 		Set<Role> roles = new HashSet<>();
 		roles.add(new Role("ROLE_USER"));
 		BorrowerDetails oBorrowerDetails = new BorrowerDetails(1, null, "Nagulan R U", "1234", "8870323658",
 				"runagulan88@gmail.com", null, roles, true);
-		BorrowerDetails wBorrowerDetails = new BorrowerDetails(1,
-				new PersonalInformation(1, "Nagulan", "R U", new Date(), Gender.Male, "6101 8953 1282", "AIUPU9900B"),
-				"Nagulan R U", "1234", "8870323658", "runagulan88@gmail.com",
-				new Address(1, "63B-72B", "Chinnarasingam Street, Vadasery", "Nagercoil", "TamilNadu", "629001"), roles,
-				true);
+		nBorrowerDetails.setRoles(roles);
 		when(borrowerDetailsRepository.findById(1)).thenReturn(oBorrowerDetails);
-		when(borrowerDetailsRepository.save(nBorrowerDetails)).thenReturn(nBorrowerDetails);
-		assertEquals(wBorrowerDetails, borrowerDetailsService.updateBorrowerDetail(nBorrowerDetails));
+		assertEquals(nBorrowerDetails, borrowerDetailsService.updateBorrowerDetail(nBorrowerDetails));
 	}
 }

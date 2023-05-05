@@ -1,16 +1,20 @@
 
 package com.lms.BI.Service;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lms.BI.FeignClient.FeignEmailSender;
 import com.lms.BI.Model.BorrowerDetails;
 import com.lms.BI.Model.ConfirmationToken;
 import com.lms.BI.Model.Role;
+import com.lms.BI.Pojo.EmailSender;
 import com.lms.BI.Repository.BorrowerDetailsRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +28,9 @@ public class BorrowerDetailsService {
     
     @Autowired
     ConfirmationTokenService confirmationTokenService;
+    
+    @Autowired
+    FeignEmailSender feignEmailSender;
 
     public List<BorrowerDetails> getAllDetails() throws NullPointerException {
 
@@ -81,8 +88,15 @@ public class BorrowerDetailsService {
             roles.add(new Role("ROLE_USER"));
             nBorrowerDetails.setRoles(roles);
         }
-        ConfirmationToken confirmationToken = confirmationTokenService.createConfirmationToken(nBorrowerDetails);
-        return borrowerDetailsRepository.save(nBorrowerDetails);
+        BorrowerDetails savedBorrowerDetails = borrowerDetailsRepository.save(nBorrowerDetails);
+        ConfirmationToken confirmationToken = confirmationTokenService.createConfirmationToken(savedBorrowerDetails);
+        log.info("Confirmation Token is Generated: {}", confirmationToken);
+//        Map<String, String> variables = new HashMap<>();
+//        variables.put("link", "http://localhost:8080/token/confirm/" + confirmationToken.getToken());
+//        EmailSender emailSender = new EmailSender(savedBorrowerDetails.getEmailId(), "confirmationToken", variables);
+//        log.info("Email Sender is created: {} and send mail is send", emailSender);
+//        feignEmailSender.sendMail(emailSender);
+        return savedBorrowerDetails;
     }
     
     public String updateEnable(int id) {

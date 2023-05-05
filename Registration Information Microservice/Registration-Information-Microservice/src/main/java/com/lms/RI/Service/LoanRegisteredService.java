@@ -22,7 +22,7 @@ public class LoanRegisteredService {
         log.info("Getting all Details from Database.");
         if (loanRegisteredRepository.findAll().isEmpty()) {
             log.error("No Details is found in Database.");
-            throw new NullPointerException("No Details Present");
+            throw new NullPointerException("No Details Present in Database");
         } else {
             log.info("All Details are fetched.");
             return loanRegisteredRepository.findAll();
@@ -49,7 +49,7 @@ public class LoanRegisteredService {
             return loanRegisteredRepository.findById(id);
         } else {
             log.error("No Detail found for Loan Id: {}", id);
-            throw new IllegalArgumentException("No Detail found for the Loan Id");
+            throw new IllegalArgumentException("No Detail found for the Loan Id: " + id);
         }
     }
 
@@ -58,7 +58,7 @@ public class LoanRegisteredService {
         log.info("Getting Details by Borrower Name: {}", borrowerName);
         if (loanRegisteredRepository.findByBorrowerName(borrowerName).isEmpty()) {
             log.error("No Details found for Borrower Name: {}", borrowerName);
-            throw new IllegalArgumentException("No Details found for Borrower Name");
+            throw new IllegalArgumentException("No Details found for Borrower Name: " + borrowerName);
         } else {
             log.info("All Details are found for Borrower borrowerName: {}", borrowerName);
             return loanRegisteredRepository.findByBorrowerName(borrowerName);

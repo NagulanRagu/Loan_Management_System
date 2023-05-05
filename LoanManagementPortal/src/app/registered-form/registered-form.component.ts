@@ -6,6 +6,7 @@ import { GuarantorAddress } from '../model/guarantor-address';
 import { GuarantorInfo } from '../model/guarantor-info';
 import { LoanDetails } from '../model/loan-details';
 import { LoanRegistration } from '../model/loan-registration';
+import { PersonalInformation } from '../model/personal-information';
 import { ResponseFile } from '../model/response-file';
 import { BorrowerDetailsService } from '../service/borrower-details.service';
 import { BorrowerDocumentServiceService } from '../service/borrower-document-service.service';
@@ -49,6 +50,7 @@ export class RegisteredFormComponent implements OnInit {
     this.loanRegistration.guarantorInfo = new GuarantorInfo();
     this.loanRegistration.guarantorInfo.guarantorAddress = new GuarantorAddress();
     this.borrowerDetails = new BorrowerDetails();
+    this.borrowerDetails.personalInformation = new PersonalInformation();
     this.borrowerDetails.borrowerAddress = new Address();
     this.loanDetails = new LoanDetails();
     this.getDetails();

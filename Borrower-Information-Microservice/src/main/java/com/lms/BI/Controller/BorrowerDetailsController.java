@@ -88,8 +88,12 @@ public class BorrowerDetailsController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> saveEntity(@RequestBody BorrowerDetails nBorrowerDetails) {
+    	try {
+            return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
+    	}catch(Exception e) {
+    		return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
 
-        return new ResponseEntity<>(borrowerDetailsService.saveBorrowerDetail(nBorrowerDetails), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

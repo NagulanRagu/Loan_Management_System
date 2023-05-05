@@ -11,6 +11,10 @@ export class BorrowerDetailsService {
 
   private baseUrl = 'http://localhost:8080';
 
+  getAllUsers() {
+    return this.http.get<BorrowerDetails[]>(`${this.baseUrl}/all-user`);
+  }
+
   getBorrowerDetails(uname: string) {
     return this.http.get<BorrowerDetails>(`${this.baseUrl}/user-by-uname/${uname}`);
   }
@@ -19,19 +23,15 @@ export class BorrowerDetailsService {
     return this.http.get<BorrowerDetails>(`${this.baseUrl}/user-by-id/${id}`);
   }
 
+  updateBorrowerDetails(borrowerDetails: BorrowerDetails) {
+    return this.http.put<BorrowerDetails>(`${this.baseUrl}/update`, borrowerDetails);
+  }
+
   checkUserName(uname: string) {
     return this.http.post<boolean>(`${this.baseUrl}/user-by-uname`, uname);
   }
 
   checkEmailId(emailId: string) {
     return this.http.post<boolean>(`${this.baseUrl}/user-by-emailId`, emailId);
-  }
-
-  getAllUsers() {
-    return this.http.get<BorrowerDetails[]>(`${this.baseUrl}/all-user`);
-  }
-
-  updateBorrowerDetails(borrowerDetails: BorrowerDetails) {
-    return this.http.put<BorrowerDetails>(`${this.baseUrl}/update`, borrowerDetails);
   }
 }
