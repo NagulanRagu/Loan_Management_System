@@ -40,7 +40,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY4MDE3NTU5NiwiaWF0IjoxNjgwMTczNzk2fQ.GJwxahXT9_9wf2pAOuAVzsNkswp9nXWIQ2FDT3KA_co",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY4MjU3MjAxNCwiaWF0IjoxNjgyNTcwMjE0fQ.USBNBdxVPF_VumEY5pVXJaVYFv4lgimJoiQD5qmb_Cc",
 						"type": "default"
 					}
 				],
@@ -172,6 +172,27 @@
 					"port": "8080",
 					"path": [
 						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/token/confirm/a782f244-b942-4356-82ed-e64b8f375095",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"token",
+						"confirm",
+						"a782f244-b942-4356-82ed-e64b8f375095"
 					]
 				}
 			},

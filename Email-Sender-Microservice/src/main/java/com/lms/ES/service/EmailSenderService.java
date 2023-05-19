@@ -31,9 +31,7 @@ public class EmailSenderService {
 		mimeMessageHelper.setTo(emailSender.getSendTo());
 		mimeMessageHelper.setFrom(new InternetAddress("runagulan88@gmail.com", false));
 		mimeMessageHelper.setSubject(emailTemplate.getSubject());
-		mimeMessageHelper.setText(emailTemplateService.getBody(emailTemplate.getBody(), emailSender.getVariables()));
-		System.out.println(emailTemplateService.getBody(emailTemplate.getBody(), emailSender.getVariables()));
-		log.info("Mime Message is created: {}", mimeMessage);
+		mimeMessageHelper.setText(emailTemplateService.getBody(emailTemplate.getBody(), emailSender.getVariables()), "text/html; charset=utf-8");
 		javaMailSender.send(mimeMessage);
 		return "Mail send successfull";
 	}

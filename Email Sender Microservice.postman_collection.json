@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "a41317db-f57b-484d-96db-d61c9447d4f7",
+		"name": "Email Sender Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Email Template",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"templateName\" : \"confirmationToken\",\r\n    \"subject\" : \"Confirmation Mail\",\r\n    \"body\" : \"Hi, This is test mail\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8092/template/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"template",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByTemplateName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8092/template/confirmationToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"template",
+								"confirmationToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email Sender",
+			"item": [
+				{
+					"name": "Send Mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sendTo\" : \"runagulan88@gmail.com\",\r\n    \"templateName\" : \"confirmationToken\",\r\n    \"variables\" : {\r\n        \"link\" : \"http://localhost:8080/token/confirm/a782f244-b942-4356-82ed-e64b8f375095\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8092/send/confirmationMail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"send",
+								"confirmationMail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

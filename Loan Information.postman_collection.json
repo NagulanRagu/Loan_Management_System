@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY3OTkxMTg2MywiaWF0IjoxNjc5OTEwMDYzfQ.MpEoAPU_08Ew6TAv_Y6sK-CL-w_Zi0uwT8pZamFjNqE",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY4MjY1OTQ0NSwiaWF0IjoxNjgyNjU3NjQ1fQ.RX0AclK7a-BHjV2CYiYHrYrA6NPUyst5OGVfXXb6Vuc",
 						"type": "default"
 					}
 				],
