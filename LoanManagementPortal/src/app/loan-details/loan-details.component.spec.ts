@@ -15,7 +15,6 @@ describe('LoanDetailsComponent', () => {
   let fixture: ComponentFixture<LoanDetailsComponent>;
   let el: DebugElement;
   let router: Router;
-  let loanDetailsService: LoanDetailsService;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
